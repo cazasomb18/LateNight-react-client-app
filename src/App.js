@@ -8,7 +8,6 @@ import Header from './Header';
 import AppTitle from './TitleHeader';
 import LateRestaurantsList from './LateRestaurantsList';
 import Dashboard from './Dashboard';
-// import HomeContainer from './Home';
 
 class App extends Component {
   constructor(props){
@@ -31,9 +30,6 @@ class App extends Component {
         loggedIn: true,
         isRegistered: true,
         showList: false
-        // userName: userInfo.userName,
-        // userName: this.props.userName
-
       })
     console.log("APP State before cdm: ", this.state);
     }
@@ -68,7 +64,6 @@ class App extends Component {
 
           <Header/>
           <Dashboard/>
-    {!this.state.showList ? <LateRestaurantsList/> : null}
           <Switch>
             <Route path="/register" render={ (props) => <RegisterControl {...props} setUserInfo={this.setUserInfo}/> } />
             <Route path="/login" render={ (props) => <Login {...props} setUserInfo={this.props.setUserInfo}/> } />

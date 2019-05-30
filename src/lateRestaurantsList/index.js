@@ -31,7 +31,7 @@ class LateRestaurantsList extends React.Component {
 	getRestaurants = async (e) => {
 		e.preventDefault();
 		try {
-			const getRestaurantsResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'restaurants', {
+			const getRestaurantsResponse = await fetch(process.env.REACT_APP_BACK_END_PY + '/restaurants/restaurants/', {
 
 				method: 'GET',
 				credentials: 'include',
@@ -39,7 +39,9 @@ class LateRestaurantsList extends React.Component {
 					'Content-Type': 'application/json'
 				}
 			})
-			const parsedResponse = await getRestaurantsResponse.json();
+			console.log(typeof(getRestaurantsResponse));
+			console.log(getRestaurantsResponse);
+			const parsedResponse = await JSON.parse(getRestaurantsResponse);
 			console.log(parsedResponse) // object
 			this.setState({
 				restaurants: parsedResponse.allRestaurants.results,

@@ -52,7 +52,7 @@ class Login extends Component {
   logOut = async (e) => {
       e.preventDefault();
       try{
-        const logoutResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/logout', {
+        const logoutResponse = await fetch(process.env.REACT_APP_BACK_END_PY + 'register', {
           method: 'GET',
           credentials: 'include',
           headers: {
@@ -69,7 +69,6 @@ class Login extends Component {
           console.log("App state: ", this.state);
         }
       }catch(err){
-        console.log(err);
         console.error(err);
 
       }

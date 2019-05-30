@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Modal from '../Modal';
+import LateRestaurantsList from '../LateRestaurantsList';
 
 class Dashboard extends Component {
   constructor(){
@@ -14,13 +15,8 @@ class Dashboard extends Component {
     }
   }
 
-  componentDidMount(){}
+  componentDidMount(){
 
-
-  handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
   }
 
   showModal = () => {
@@ -141,10 +137,7 @@ class Dashboard extends Component {
             </div>
 
           }
-
-
-
-          
+          <LateRestaurantsList/>
 
           
       </div>
