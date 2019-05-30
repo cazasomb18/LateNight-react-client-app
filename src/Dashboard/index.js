@@ -1,36 +1,157 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Modal from '../Modal';
 
 class Dashboard extends Component {
   constructor(){
-  console.log('constructor',);
+  console.log('constructor');
   super();
-  state = {show: false};
-  }
-  showModal = () => {
-    this.setState({show: true});
-  };
-  hideModal = () => {
-    this.setState({show: false});
-  };
-  render(){
-    return{
-      <main>
-       <div>
-          <h1>UNDER CONSTRUCTION, GOALS OF THIS PAGE:</h1>
-          <h4>Want to the list of data, w/ name, vicinity, and place_id in each li</h4>
-          <h4>Each li will be a clickable link</h4>
-          <h4>Each link will onClick: hit POST restaurant/place_id/comment route on backend</h4>
-          <h4>Will redirect to space where users can edit/delete || their comments on that entry</h4>
-          <h1>MODAL</h1>
-          <button type='button' onClick={this.showModal}>
-            comment
-          </button>
-        </div>
-      </main>
+  
+  this.state = {
+    comments: [],
+    restaurants: [],
+    show: false
     }
   }
-};
+
+  componentDidMount(){}
+
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  showModal = () => {
+    this.setState(
+        {
+          show: true
+        }
+      ) 
+  }
+
+  hideModal = () => {
+    this.setState({show: false});
+  }
+
+  handlePost = async (e) =>{
+    e.preventDefault();
+    try{
+      await this.postRestaurantComments();
+
+    }catch(err){
+      console.error(err);
+    }
+  }
+
+  postRestaurantComments = async (e)  => {
+    e.preventDefault();
+    try{
+        const postComments = await fetch(process.env.REACT_APP_BACK_END_URL + 'restaurants/:place_id/comment', {
+          method: 'POST',
+          credentials: 'include',
+          body: JSON.stringify(postComments),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        const commentResponse = await postComments.json();
+        console.log(commentResponse);
+        this.setState({
+          comments: JSON.stringify(commentResponse)
+        })
+
+
+        console.log('these are the comments: ', commentResponse);
+        console.log("this is the comment response: ", commentResponse);
+    }catch(err){
+        console.error(err)
+      }
+  };
+
+  handleEdit = async (e)  => {
+    e.preventDefault()
+    try{
+      await this.editRestaurantComment();
+
+    }catch(err){
+      console.error(err)
+    }   
+  };
+
+  editRestaurantComment = async (e) => {
+    try{
+      const editedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/:place_id/edit/:comment_id', {
+
+        method: 'PUT',
+        credentials: 'include',
+        body: JSON.stringify(this.state),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const editCommentResponse = await editedComment.json();
+      console.log('edited comment response: ', editCommentResponse);
+
+    }catch(err){
+      console.error(err);
+    }
+  }
+
+  
+  
+  render(){
+    return(
+      <div>
+        <h1>This is the dashboard</h1>
+          
+          { 
+            this.state.show === true ? 
+            <div>
+              
+                <p>Here is the modal</p>
+                <form>
+                  Leave a Comment: 
+                  <input
+                    type='text' 
+                    name='comment' 
+                    onChange={this.handleChange} 
+                    value={this.state.comment}
+                  />
+                  
+                  <input 
+                    type='submit' 
+                    onSubmit={this.handlePost} 
+                    value='POST'
+                  />
+                </form>
+              
+
+              <button type='button' onClick={this.hideModal}>
+                Hide Dashboard
+              </button>
+            </div>
+            : 
+            <div>
+
+              <button type='button' onClick={this.showModal}>
+                Show Dashboard
+              </button>
+            </div>
+
+          }
+
+
+
+          
+
+          
+      </div>
+      )
+  }
+
+  };
     // this.state = ({
     //   loggedIn: false,
     //   isRegistered: false,
@@ -70,27 +191,9 @@ class Dashboard extends Component {
 //   }
 // }
 
-
-export default Dashboard;
-
-
-
+// const container = document.createElement('div');
+// document.body.appendChild(container);
+// ReactDOM.render(<Dashboard/>, container);
 
 
-
-
-
- //    if (this.state.loggedIn === true){
-  // const mapRestaurantData = this.state.restaurants.parsedResponse.map((restaurant, i) => {
- //       <div>
- //             <li key={restaurant.id}>
- //               <p className="faux" data={i} onClick={this.mapRestaurantData}> Name: {restaurant.name}</p>
- //               Address: {restaurant.vicinity}
- //               ID: {restaurant.place_id}
- //             </li>
- //       </div>
-  //    )
-
-  //  })
- //    }
-
+export default Dashboard

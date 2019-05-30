@@ -50,29 +50,29 @@ class Login extends Component {
     }
   }
   logOut = async (e) => {
-    e.preventDefault();
-    try{
-      const logoutResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/logout', {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json'
-        }})
-      console.log(logoutResponse);
-      const parsedResponse = await JSON.stringify(logoutResponse);
-      console.log('parsedResponse: ', parsedResponse);
-      if (parsedResponse){
-        this.setState({
-          loggedIn: false,
-          userName: ''
-        })
-        console.log("App state: ", this.state);
-      }
-    }catch(err){
-      console.log(err);
-      console.error(err);
+      e.preventDefault();
+      try{
+        const logoutResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/logout', {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json'
+          }})
+        console.log(logoutResponse);
+        const parsedResponse = await JSON.stringify(logoutResponse);
+        console.log('parsedResponse: ', parsedResponse);
+        if (parsedResponse){
+          this.setState({
+            loggedIn: false,
+            userName: ''
+          })
+          console.log("App state: ", this.state);
+        }
+      }catch(err){
+        console.log(err);
+        console.error(err);
 
-    }
+      }
   }
   handleChange = (e) => {
     e.preventDefault();
@@ -82,17 +82,31 @@ class Login extends Component {
   }
   render(){
     return (
-		<div className="form">
-			<h1 className='/login-title'>Login for LateNight</h1><br/>
-				<form className="mb-2 mr-sm-2 mb-sm-0" onSubmit={this.handleSubmit}>
-					<h4 className="mb-2 mr-sm-2 mb-sm-0">Username:</h4>
-					<input className="mr-sm-2" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
-					<h4 className="mb-2 mr-sm-2 mb-sm-0">Password:</h4><br/>
-					<input className="mr-sm-2" type="password" name="password" placeholder="********" onChange={this.handleChange}/><br/>
-					{! this.state.loggedIn ? <input className="mr-sm-2" type="submit" value="Login!"/> : null}
-          { this.state.loggedIn ? <button onClick={this.logOut}>Logout</button> : null}
-				</form>
-		</div>
+        <div>
+					{
+            this.state.loggedIn ? 
+            <button onClick={this.logOut}>Logout</button>  
+
+            : 
+            <div>
+              <h1 className='/login-title'>Login for LateNight</h1>
+                
+              <form className="mb-2 mr-sm-2 mb-sm-0" onSubmit={this.handleSubmit}>
+                <p className="mb-2 mr-sm-2 mb-sm-0">Username:</p>
+
+                <input className="mr-sm-2" type="text" name="userName" placeholder="username" onChange={this.handleChange}/>
+                 <br/>
+                
+                <p className="mb-2 mr-sm-2 mb-sm-0">Password:</p>
+                  <br/>
+
+                <input className="mr-sm-2" type="password" name="password" placeholder="********" onChange={this.handleChange}/>
+                  <br/>
+                <input className="mr-sm-2" type="submit" value="Login!"/> 
+              </form>
+            </div>
+          }
+        </div>
       );
   }
 }

@@ -10,14 +10,20 @@ const RenderListComponent = (props) => {
 				Name: <a href={'/faux'}> {restaurant.name}</a><br/>
 				Address: {restaurant.vicinity}<br/>
 				ID: {restaurant.place_id}<br/>
+				<button>
+				comment
+				</button><br/>
 			</li>
 		)
 
 	})
 		return (
-			<ul>
-			{renderList}
-			</ul>
+			<div className='renderList'>
+				This is the RenderList Component that renders API data 
+				<ul>
+				{renderList}
+				</ul>
+			</div>
 		)
 }
 

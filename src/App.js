@@ -7,6 +7,7 @@ import Login from './Login';
 import Header from './Header';
 import AppTitle from './TitleHeader';
 import LateRestaurantsList from './LateRestaurantsList';
+import Dashboard from './Dashboard';
 // import HomeContainer from './Home';
 
 class App extends Component {
@@ -19,7 +20,8 @@ class App extends Component {
       userName: '',
       restaurants: [],
       comments: [],
-      showList: false
+      showList: false,
+      showDash: false
 
     })
   }
@@ -27,7 +29,8 @@ class App extends Component {
     if (this.state.loggedIn === true){
       this.setState({
         loggedIn: true,
-        isRegistered: true
+        isRegistered: true,
+        showList: false
         // userName: userInfo.userName,
         // userName: this.props.userName
 
@@ -40,33 +43,13 @@ class App extends Component {
     console.log('cdm: ');
     console.log('STATE: ', this.state);
     console.log('PROPS: ', this.props);
+    if (this.state.loggedIn === true){
+      this.setState({
+        showList: true
+      })
+    }
 
   }
-  // logOut = async (e) => {
-  //   e.preventDefault();
-  //   try{
-  //     const logoutResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/logout', {
-  //       method: 'GET',
-  //       credentials: 'include',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       }})
-  //     console.log(logoutResponse);
-  //     const parsedResponse = await JSON.stringify(logoutResponse);
-  //     console.log('parsedResponse: ', parsedResponse);
-  //     if (parsedResponse){
-  //       this.setState({
-  //         loggedIn: false,
-  //         userName: ''
-  //       })
-  //       console.log("App state: ", this.state);
-  //     }
-  //   }catch(err){
-  //     console.log(err);
-  //     console.error(err);
-
-  //   }
-  // }
   handleChange = (e) => {
     e.preventDefault();
     this.setState({
@@ -75,20 +58,21 @@ class App extends Component {
     })
   }
   ////////// CONDITIONAL RENDERING LOGIC FOR RESTAURANTS LIST RELATED TO LOGIN STATE////////
-  ////////// CONDITIONAL RENDERING LOGIC FOR RESTAURANTS LIST RELATED TO LOGIN STATE////////
-
-
   render(){
-    console.log(this.state);
 
+    console.log(this.state);
     return (
       <main>
         <div>
           <AppTitle/>
-        <Header/>
-          {!this.state.loggedIn ? <Login/> : null}
-          {this.state.userName ? <LateRestaurantsList /> : null}
 
+          <Header/>
+          <Dashboard/>
+    {!this.state.showList ? <LateRestaurantsList/> : null}
+          <Switch>
+            <Route path="/register" render={ (props) => <RegisterControl {...props} setUserInfo={this.setUserInfo}/> } />
+            <Route path="/login" render={ (props) => <Login {...props} setUserInfo={this.props.setUserInfo}/> } />
+          </Switch>
         </div>
       </main>
     );
@@ -96,10 +80,12 @@ class App extends Component {
 }
 
 export default App;
+            // {!this.state.isRegistered ? <RegisterControl props={this.props}/> : null}
+            // {!this.state.loggedIn ? <Login props={this.props}/> : null}
 
-        // <Switch>
-          // <Route path="/home" onClick={this.showList} />
-          // <Route path="/restaurantList" component={LateRestaurantsList}/>
-        //   <Route path="/register" render={ (props) => <RegisterControl {...props} setUserInfo={this.setUserInfo}/> } />
-        //   <Route path="/login" render={ (props) => <Login {...props} setUserInfo={this.props.setUserInfo}/> } />
-        // </Switch>
+          // <Switch>
+          //   <Route path="/home" onClick={this.showList} />
+          //   <Route path="/restaurantList" component={LateRestaurantsList}/>
+          //   <Route path="/register" render={ (props) => <RegisterControl {...props} setUserInfo={this.setUserInfo}/> } />
+          //   <Route path="/login" render={ (props) => <Login {...props} setUserInfo={this.props.setUserInfo}/> } />
+          // </Switch>
