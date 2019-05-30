@@ -12,7 +12,7 @@ class App extends React.Component{
 			userName: this.props.userName
 	} try{
 
-	const ':place_id' = 
+	const ':place_id' = this.props.place_id;
 	const editCommentResponse = await fetch('http://localhost:9000/restaurants/:place_id/edit/:comment_id', {
 
 		method: 'PUT',

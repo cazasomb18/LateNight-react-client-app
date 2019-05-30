@@ -1,6 +1,6 @@
 import React from 'react';
 import RenderList from '../RenderList';
-import ShowModal from '../ShowModal';
+// import ShowModal from '../ShowModal';
 
 class LateRestaurantsList extends React.Component {
 	constructor(props){
@@ -56,13 +56,11 @@ class LateRestaurantsList extends React.Component {
 		return(
 			<div>
 				<h2>LATE RESTAURANTS LIST</h2>
-				<button onClick={this.getRestaurants}>GET LIST</button>
 				<form className="mb-2 mr-sm-2 mb-sm-0" onSubmit={this.getRestaurants}>
 					<h4 className="mb-2 mr-sm-2 mb-sm-0">ARE YOU HUNGRY?!</h4>
 					<input className="mr-sm-2" type="text" name="superfulous" placeholder="AWWW YEAAAAHHHH" onChange={this.handleChange}/><br/>
 					<input className="mr-sm-2" type="submit" value="What's Open?!"/>
 				</form>
-				{this.props.show ? <ShowModal onClick={this.props.onClose}/> : null}
 				{this.state.showList ? <RenderList restaurants={this.state.restaurants}/> : null}
 			</div>
 		)

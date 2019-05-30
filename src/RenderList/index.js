@@ -1,7 +1,6 @@
 import React from 'react';
-import ShowModal from '../ShowModal'
 
-
+///has to be a smart component??
 
 const RenderListComponent = (props) => {
 	const restaurants = props.restaurants;
@@ -18,7 +17,6 @@ const RenderListComponent = (props) => {
 		return (
 			<ul>
 			{renderList}
-			<ShowModal />
 			</ul>
 		)
 }

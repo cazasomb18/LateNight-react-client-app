@@ -2,18 +2,15 @@ import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { Route, Switch, Link } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
-
 import RegisterControl from './RegisterControl';
 import Login from './Login';
 import Header from './Header';
 import AppTitle from './TitleHeader';
-import LateList from './LateList';
 import LateRestaurantsList from './LateRestaurantsList';
-import HomeContainer from './Home';
+// import HomeContainer from './Home';
 
 class App extends Component {
-  constructor(){
+  constructor(props){
     console.log('constructor',);
     super();
     this.state = ({
@@ -31,7 +28,7 @@ class App extends Component {
         loggedIn: true,
         isRegistered: true,
         // userName: userInfo.userName,
-        userName: this.userName
+        // userName: this.props.userName
 
       })
     console.log("APP State before cdm: ", this.state);
@@ -47,18 +44,19 @@ class App extends Component {
   logOut = async (e) => {
     e.preventDefault();
     try{
-      const logoutResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'logout', {
-        method: 'POST',
+      const logoutResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/logout', {
+        method: 'GET',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json'
         }})
       console.log(logoutResponse);
-      const parsedResponse = await logoutResponse.json();
+      const parsedResponse = await JSON.stringify(logoutResponse);
       console.log('parsedResponse: ', parsedResponse);
       if (parsedResponse){
         this.setState({
-          loggedIn: false
+          loggedIn: false,
+          userName: ''
         })
         console.log("App state: ", this.state);
       }
@@ -97,14 +95,16 @@ class App extends Component {
 
     return (
       <main>
-        <AppTitle/>
+        <div>
+          <AppTitle/>
+          {!this.state.loggedIn ? <button onClick={this.logOut}>Logout</button> : null}
+        </div>
         <Header/>
         <Switch>
           <Route path="/home" onClick={this.showList} />
           <Route path="/register" render={ (props) => <RegisterControl {...props} setUserInfo={this.setUserInfo}/> } />
-          <Route path="/login" render={ (props) => <Login {...props} setUserInfo={this.setUserInfo}/> } />
+          <Route path="/login" render={ (props) => <Login {...props} setUserInfo={this.props.setUserInfo}/> } />
           <Route path="/restaurantList" component={LateRestaurantsList}/>
-          <Route path="/logout" onClick={this.logOut}/>
         </Switch>
       </main>
     );

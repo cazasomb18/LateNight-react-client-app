@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import { Route, Redirect } from 'react-router-dom';
-// import Login from '../Login';
+import { Route, Redirect } from 'react-router-dom';
+import Login from '../Login';
 
 
 class RegisterControl extends Component {
@@ -40,7 +40,7 @@ constructor(props) {
 				})
 			}
 			// this.props.setUserInfo(userInfo);
-			this.props.history.push("/login");
+			// this.props.history.push("/login");
 			/// REDIRECT TO ^^^ LOGIN?///
 		}catch(err){
 			console.log(err);

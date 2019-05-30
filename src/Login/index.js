@@ -7,8 +7,7 @@ class Login extends Component {
     super();
     this.state = {
       userName: '',
-      password: '',
- 
+      loggedIn: false
     }
   }
   handleChange = (e) => {
@@ -31,13 +30,14 @@ class Login extends Component {
       console.log('parsedResponse: ', parsedResponse);
       if (parsedResponse.success === true) {
         this.setState({
-          loggedIn: true
+          loggedIn: true,
+          userName: parsedResponse.data.userName
         })
         console.log("App state: ", this.state);
         console.log("Props: ", this.props);
         console.log(parsedResponse.success);
       }
-      this.props.history.push('/restaurantList');
+      // this.props.history.push('/restaurantList');
 		      // if parsedResponse.success is true, then you know that 
 		      // parsedResponse.data contains the user information 
 
@@ -52,9 +52,7 @@ class Login extends Component {
   handleChange = (e) => {
     e.preventDefault();
     this.setState({
-
       [e.currentTarget.name]: e.currentTarget.value
-
     })
   }
   render(){

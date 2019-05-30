@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+///has to be a function
+
 class ShowModal extends React.Component {
   render() {
     // Render nothing if the "Show" prop is false
