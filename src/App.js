@@ -18,7 +18,8 @@ class App extends Component {
       isRegistered: false,
       userName: '',
       restaurants: [],
-      comments: []
+      comments: [],
+      showList: false
 
     })
   }
@@ -26,7 +27,7 @@ class App extends Component {
     if (this.state.loggedIn === true){
       this.setState({
         loggedIn: true,
-        isRegistered: true,
+        isRegistered: true
         // userName: userInfo.userName,
         // userName: this.props.userName
 
@@ -41,31 +42,31 @@ class App extends Component {
     console.log('PROPS: ', this.props);
 
   }
-  logOut = async (e) => {
-    e.preventDefault();
-    try{
-      const logoutResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/logout', {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json'
-        }})
-      console.log(logoutResponse);
-      const parsedResponse = await JSON.stringify(logoutResponse);
-      console.log('parsedResponse: ', parsedResponse);
-      if (parsedResponse){
-        this.setState({
-          loggedIn: false,
-          userName: ''
-        })
-        console.log("App state: ", this.state);
-      }
-    }catch(err){
-      console.log(err);
-      console.error(err);
+  // logOut = async (e) => {
+  //   e.preventDefault();
+  //   try{
+  //     const logoutResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/logout', {
+  //       method: 'GET',
+  //       credentials: 'include',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       }})
+  //     console.log(logoutResponse);
+  //     const parsedResponse = await JSON.stringify(logoutResponse);
+  //     console.log('parsedResponse: ', parsedResponse);
+  //     if (parsedResponse){
+  //       this.setState({
+  //         loggedIn: false,
+  //         userName: ''
+  //       })
+  //       console.log("App state: ", this.state);
+  //     }
+  //   }catch(err){
+  //     console.log(err);
+  //     console.error(err);
 
-    }
-  }
+  //   }
+  // }
   handleChange = (e) => {
     e.preventDefault();
     this.setState({
@@ -74,38 +75,21 @@ class App extends Component {
     })
   }
   ////////// CONDITIONAL RENDERING LOGIC FOR RESTAURANTS LIST RELATED TO LOGIN STATE////////
-  // {this.state.loggedIn ? <LateRestaurantsList /> : null}
   ////////// CONDITIONAL RENDERING LOGIC FOR RESTAURANTS LIST RELATED TO LOGIN STATE////////
-  
-
-    // const mapRestaurantData = this.state.restaurants.map((restaurant, i) => {
-    //   return (
-    //     <div>
-    //       <li key={restaurant.id}>
-    //         <p className="faux" data={i} onClick={this.handleClick}> Name: {restaurant.name}</p>
-    //         Address: {restaurant.vicinity}
-    //         ID: {restaurant.place_id}
-    //       </li>
-    //     </div>
-    //   ) 
-    // })
 
 
   render(){
+    console.log(this.state);
 
     return (
       <main>
         <div>
           <AppTitle/>
-          {!this.state.loggedIn ? <button onClick={this.logOut}>Logout</button> : null}
-        </div>
         <Header/>
-        <Switch>
-          <Route path="/home" onClick={this.showList} />
-          <Route path="/register" render={ (props) => <RegisterControl {...props} setUserInfo={this.setUserInfo}/> } />
-          <Route path="/login" render={ (props) => <Login {...props} setUserInfo={this.props.setUserInfo}/> } />
-          <Route path="/restaurantList" component={LateRestaurantsList}/>
-        </Switch>
+          {!this.state.loggedIn ? <Login/> : null}
+          {this.state.userName ? <LateRestaurantsList /> : null}
+
+        </div>
       </main>
     );
   }
@@ -113,3 +97,9 @@ class App extends Component {
 
 export default App;
 
+        // <Switch>
+          // <Route path="/home" onClick={this.showList} />
+          // <Route path="/restaurantList" component={LateRestaurantsList}/>
+        //   <Route path="/register" render={ (props) => <RegisterControl {...props} setUserInfo={this.setUserInfo}/> } />
+        //   <Route path="/login" render={ (props) => <Login {...props} setUserInfo={this.props.setUserInfo}/> } />
+        // </Switch>

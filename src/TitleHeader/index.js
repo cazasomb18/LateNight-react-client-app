@@ -1,7 +1,6 @@
 import React from 'react';
 
 const AppTitle = (props) => {
-	const name = props.userName
 	return (
 		<div>
 	        <h1 className="AppTitle">
@@ -13,5 +12,3 @@ const AppTitle = (props) => {
 };
 
 export default AppTitle;
-
- // {this.state.loggedIn ? ({name = userName})
