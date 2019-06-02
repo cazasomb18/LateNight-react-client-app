@@ -13,14 +13,17 @@ class RenderListComponent extends React.Component{
 	}
 	handleChange = (e) => {
 		console.log(e.currentTarget)
-		// console.log(e.currentTarget.commentInput);
+		console.log(e.currentTarget.commentInput);
 	    e.preventDefault();
 	    this.setState({
-	      [e.target.name]: e.target.value
+	      [e.target.name]: e.target.commentInput
 	    })
 	}
 	render(){ 
+		console.log(this.props);
+		console.log(this.state);
 		const restaurants = this.props.restaurants;
+		console.log(restaurants);
 		const renderList = restaurants.map((restaurant, i) => {
 		return(
 			<li key={i}>
@@ -29,7 +32,7 @@ class RenderListComponent extends React.Component{
 					Name: <a href={'/faux'}> {restaurant.name}</a><br/>
 					Address: {restaurant.vicinity}<br/>
 					ID: {restaurant.place_id}<br/>
-					{restaurants.forEach((i) => <textarea value={this.state.commentInput[i]} onChange={this.handleChange} name='commentInput'/>)}
+					{restaurants.forEach((i) => <textarea value={this.state.commentInput} onChange={this.handleChange} name='commentInput'/>)}
 					<input type='submit' value='comment'/>
 				</label>
 				</form>

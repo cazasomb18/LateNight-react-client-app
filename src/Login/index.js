@@ -17,7 +17,7 @@ class Login extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const loginResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/login/', {
+      const loginResponse = await fetch(process.env.REACT_APP_BACK_END_PY_URL + 'users/login/', {
         method: 'POST',
         credentials: 'include', 
         body: JSON.stringify(this.state),
@@ -52,7 +52,7 @@ class Login extends Component {
   logOut = async (e) => {
       e.preventDefault();
       try{
-        const logoutResponse = await fetch(process.env.REACT_APP_BACK_END_PY + 'register', {
+        const logoutResponse = await fetch(process.env.REACT_APP_BACK_END_PY + 'users/registration', {
           method: 'GET',
           credentials: 'include',
           headers: {
@@ -101,6 +101,13 @@ class Login extends Component {
 
                 <input className="mr-sm-2" type="password" name="password" placeholder="********" onChange={this.handleChange}/>
                   <br/>
+
+                <p className="mb-2 mr-sm-2 mb-sm-0">Verify Password:</p>
+                  <br/>
+
+                <input className="mr-sm-2" type="password" name="verify_password" placeholder="********" onChange={this.handleChange}/>
+                  <br/>
+                  
                 <input className="mr-sm-2" type="submit" value="Login!"/> 
               </form>
             </div>
