@@ -26,18 +26,17 @@ class LateRestaurantsList extends React.Component {
 			console.error(err);
 		}
 	}
-	/// API Call
 	getRestaurants = async (e) => {
 		e.preventDefault();
 		try {
-			const getRestaurantsResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'restaurants', {
+			const getRestaurantsResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'restaurants/', {
 
 				method: 'GET',
 				credentials: 'include',
 				headers: {
-					'Content-Type': 'Access-Control-Allow-Origin',
-					'Content-Type': 'Access-Control-Allow-Methods',
-					'Content-Type': 'Access-Control-Allow-Headers'
+					'Content-Type': ['Access-Control-Allow-Origin', 'Access-Control-Allow-Methods', 'Access-Control-Allow-Headers']
+					// 'Content-Type': 'Access-Control-Allow-Methods',
+					// 'Content-Type': 'Access-Control-Allow-Headers'
 				}
 			})
 			console.log(getRestaurantsResponse);

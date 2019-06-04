@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 ///has to be a smart component??
 
@@ -11,10 +11,16 @@ class RenderListComponent extends React.Component{
 			targetRestaurant: null
 		}
 	}
+	componentDidMount(){
+		console.log('renderList state/props: ', this.state, this.props);
+	}
 	handleChange = (e) => {
     this.setState({
 	      [e.currentTarget.name]: e.target.value
 	    })
+	}
+	getUserComments = (e) => {
+
 	}
   	postRestaurantComments = async (e)  => {
 	e.preventDefault();
@@ -97,7 +103,7 @@ class RenderListComponent extends React.Component{
 						Address: <input readOnly name="address" value={this.state.targetRestaurant.vicinity}></input><br/>
 						ID: <input readOnly name="place_id" value={this.state.targetRestaurant.place_id}></input><br/>
 						<textarea onChange={this.handleChange} name='commentInput'/>
-						<input type='submit' value='comment' />
+						<input type='submit' value='comment'/>
 					</form>
 				</div>
 			)
@@ -105,21 +111,6 @@ class RenderListComponent extends React.Component{
 	}
 }
 
-
-
-/// {restaurants.forEach((i) => <textarea value={this.state.commentInput} onChange={this.handleChange} name='commentInput'/>)}
-/// THIS WAS PREVIOUSLY THE WAY THAT I WAS ABLE TO GET 
-
-
-	///this is the method to open/close modal
-	// const toggleModal = () => {
-	// 	this.props.onClose
- //    	this.setState({
- //      		isOpen: !this.state.isOpen
- //    	});
- //  	}
-  	///// on click of <li> <a> tag.....
-  	// onClick={new ShowModal.this.setState({isOpen: true})}
 
 
 

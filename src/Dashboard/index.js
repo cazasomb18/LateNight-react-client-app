@@ -1,33 +1,58 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Modal from '../Modal';
 import LateRestaurantsList from '../LateRestaurantsList';
-////// here we want the functionality to edit, or delete comments 
-////// that have been posted by the user....
+import RenderListComponent from '../RenderList';
+import RestaurantComment from '../RestaurantComment';
+////// here we want the functionality to edit, or delete comments/////
 
 class Dashboard extends Component {
   constructor(){
   console.log('constructor');
   super();
-  
   this.state = {
-    comments: [],
     restaurants: [],
-    show: false
+    show: false,
+    userComments: []
     }
   }
-
   componentDidMount(){
     console.log(this.state);
-
+    this.getUserComments().then(comment => {
+      console.log(comment);
+      if(comment != null) {
+        this.setState({
+          userComments: [...comment.data]
+        })
+      } else if(comment === null) {
+        this.setState({
+          userComments: []
+        })
+      }
+    })
   }
-
+  getUserComments = async (e) => {
+    try{
+      const userCommentsResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/usercomments', {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const parsedUserCommentsResponse = await userCommentsResponse.json();
+      console.log(parsedUserCommentsResponse);
+      this.setState({
+        userComments: parsedUserCommentsResponse
+      })
+    }catch(err){
+      console.error(err)
+    }
+  }
   showModal = () => {
     this.setState({
           show: true
     });
   }
-
   hideModal = () => {
     this.setState({
       show: false
@@ -58,14 +83,12 @@ class Dashboard extends Component {
         this.setState({
           comments: JSON.stringify(commentResponse)
         })
-
-
         console.log('these are the comments: ', commentResponse);
         console.log("this is the comment response: ", commentResponse);
     }catch(err){
         console.error(err)
       }
-  };
+  }
   editRestaurantComment = async (e) => {
     try{
       const editedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/:place_id/edit/:comment_id', {
@@ -83,7 +106,7 @@ class Dashboard extends Component {
     }catch(err){
       console.error(err);
     }
-  };
+  }
   handleEdit = async (e)  => {
     e.preventDefault()
     try{
@@ -92,7 +115,7 @@ class Dashboard extends Component {
     }catch(err){
       console.error(err)
     }   
-  };
+  }
   deleteRestaurantComment = async (e) => {
     try{
       const deletedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/:place_id/:comment_id', {
@@ -125,6 +148,7 @@ class Dashboard extends Component {
             this.state.show === true ? 
             <div>
                 <p>THIS IS WHERE USERS CAN EDIT/DELETE THEIR COMMENTS</p>
+                <RestaurantComment userComments={this.state.userComments} />
                 <form>
                   Leave a Comment: 
                   <input
@@ -160,8 +184,8 @@ class Dashboard extends Component {
             </div>
 
           }
-
-          
+      <RenderListComponent  restaurants={this.state.restaurants}/>
+      <button onClick={this.getUserComments}>Get Them!</button>
       </div>
       )
   }
@@ -169,45 +193,6 @@ class Dashboard extends Component {
   };
 
 
-    // this.state = ({
-    //   loggedIn: false,
-    //   isRegistered: false,
-    //   userName: '',
-    //   restaurants: [],
-    //   comments: [],
-    // })
-    // console.log(this.state.restaurants.restaurants.allRestaurants.results);
-    ////this is^^^ where the data from the api call is ^^^stored in state////
-  // }
-    ///trying to handle all of these routes here: PUT/comment, POST,restaurants, and DELETE/comment
-
-    // showRestaurant = async (e) => {
-    //   e.preventDefault();
-    //   try{
-    //     const showRestaurantResponse = await fetch(process.env.REACT_APP_BACK_END + "restaurants/:place_id/comment", {
-    //       method: 'POST',
-    //       credentials: 'include',
-    //       headers: {
-    //         'Content-Type': 'application/json'
-    //       }
-    //     })
-   //     console.log(showRestaurantResponse);
-      // parsedResponse = await showRestaurantResponse.json();
-   //     console.log(parsedResponse);
-   //     this.setState
-
-//       }catch(err){
-//         console.log(err);
-//         console.error(err);
-//       }
-//     }
-//   render(){
-//     return (
-
-//       )
-//   }
-// }
-
-          // <// LateRestaurantsList
+          // <// LateRestaurantsList/>
 
 export default Dashboard

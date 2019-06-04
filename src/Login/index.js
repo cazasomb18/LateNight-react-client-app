@@ -7,7 +7,7 @@ class Login extends Component {
     super();
     this.state = {
       userName: '',
-      password: '',
+      password: ''
  
     }
   }
@@ -43,7 +43,6 @@ class Login extends Component {
           // and bc the login is successful, then you should  
           // invoke this.props.setUserInfo(), passing in the parsedResponse.data 
     }catch(err){
-      console.log(err);
       console.error(err);
 
     }

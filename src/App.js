@@ -61,7 +61,6 @@ class App extends Component {
       <main>
         <div>
           <AppTitle/>
-
           <Header/>
           <Dashboard/>
           <Switch>
