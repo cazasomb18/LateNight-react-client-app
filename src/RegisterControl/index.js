@@ -58,8 +58,6 @@ constructor(props) {
 					<input className="mr-sm-2" type="text" name="username" placeholder="username" onChange={this.handleChange}/><br/>
 					<h4 className="mb-2 mr-sm-2 mb-sm-0">Password:</h4>
 					<input className="mr-sm-2" type="password" name="password" placeholder="********" onChange={this.handleChange}/><br/>
-					<h4 className="mb-2 mr-sm-2 mb-sm-0">Password:</h4>
-					<input className="mr-sm-2" type="password" name="verify_password" placeholder="********" onChange={this.handleChange}/><br/>
 					<h4 className="mb-2 mr-sm-2 mb-sm-0">Email:</h4>
 					<input className="mr-sm-2" type="email" name="email" placeholder="email" onChange={this.handleChange}/><br/>
 					<input className="mr-sm-2" type="submit" value="Register!"/>

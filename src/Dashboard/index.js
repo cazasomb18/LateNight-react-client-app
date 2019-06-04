@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Modal from '../Modal';
 import LateRestaurantsList from '../LateRestaurantsList';
+////// here we want the functionality to edit, or delete comments 
+////// that have been posted by the user....
 
 class Dashboard extends Component {
   constructor(){
@@ -20,17 +22,16 @@ class Dashboard extends Component {
   }
 
   showModal = () => {
-    this.setState(
-        {
+    this.setState({
           show: true
-        }
-      ) 
+    });
   }
 
   hideModal = () => {
-    this.setState({show: false});
+    this.setState({
+      show: false
+    });
   }
-
   handlePost = async (e) =>{
     e.preventDefault();
     try{
@@ -40,7 +41,6 @@ class Dashboard extends Component {
       console.error(err);
     }
   }
-
   postRestaurantComments = async (e)  => {
     e.preventDefault();
     try{
@@ -65,17 +65,6 @@ class Dashboard extends Component {
         console.error(err)
       }
   };
-
-  handleEdit = async (e)  => {
-    e.preventDefault()
-    try{
-      await this.editRestaurantComment();
-
-    }catch(err){
-      console.error(err)
-    }   
-  };
-
   editRestaurantComment = async (e) => {
     try{
       const editedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/:place_id/edit/:comment_id', {
@@ -93,20 +82,48 @@ class Dashboard extends Component {
     }catch(err){
       console.error(err);
     }
-  }
+  };
+  handleEdit = async (e)  => {
+    e.preventDefault()
+    try{
+      await this.editRestaurantComment();
 
-  
-  
+    }catch(err){
+      console.error(err)
+    }   
+  };
+  deleteRestaurantComment = async (e) => {
+    try{
+      const deletedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/:place_id/:comment_id', {
+        method: 'DELETE',
+        credentials: 'include',
+        body: JSON.stringify(this.state),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const deletedCommentResponse = await deletedComment.json();
+      console.log('deleted comment response: ', deletedCommentResponse);
+    }catch(err){
+      console.error(err)
+    }
+  }
+  handleDelete = async (e) => {
+    try{
+      await this.deleteRestaurantComment();
+
+    }catch(err){
+      console.error(err)
+    }
+  }
   render(){
     return(
       <div>
-        <h1>This is the dashboard</h1>
-          
+        <h1>This is the user dashboard</h1>
           { 
             this.state.show === true ? 
             <div>
-              
-                <p>Here is the modal</p>
+                <p>THIS IS WHERE USERS CAN EDIT/DELETE THEIR COMMENTS</p>
                 <form>
                   Leave a Comment: 
                   <input
@@ -118,8 +135,13 @@ class Dashboard extends Component {
                   
                   <input 
                     type='submit' 
-                    onSubmit={this.handlePost} 
-                    value='POST'
+                    onSubmit={this.handleEdit} 
+                    value='EDIT'
+                  />
+                  <input 
+                    type='submit'
+                    onSubmit={this.handleDelete}
+                    value='DELETE'
                   />
                 </form>
               
@@ -183,10 +205,6 @@ class Dashboard extends Component {
 //       )
 //   }
 // }
-
-// const container = document.createElement('div');
-// document.body.appendChild(container);
-// ReactDOM.render(<Dashboard/>, container);
 
 
 export default Dashboard

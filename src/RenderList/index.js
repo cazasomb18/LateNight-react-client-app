@@ -6,18 +6,52 @@ class RenderListComponent extends React.Component{
 	constructor(){
 		super();
 		this.state = {
-			value: '',
-			commentInput: ''
-		} 
-
+			commentInput: '',
+			addingComment: false,
+			targetRestaurant: null
+		}
 	}
 	handleChange = (e) => {
-		console.log(e.currentTarget)
-		console.log(e.currentTarget.commentInput);
-	    e.preventDefault();
-	    this.setState({
-	      [e.target.name]: e.target.commentInput
+    this.setState({
+	      [e.currentTarget.name]: e.target.value
 	    })
+	}
+  	postRestaurantComments = async (e)  => {
+	e.preventDefault();
+	try{
+        const postComments = await fetch(process.env.REACT_APP_BACK_END_URL + 'restaurants/:place_id/comment', {
+          method: 'POST',
+          credentials: 'include',
+          body: JSON.stringify(postComments),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        const commentResponse = await postComments.json();
+        console.log(commentResponse);
+        await this.setState({
+          commentInput: JSON.stringify(commentResponse)
+        })
+        console.log('these are the comments: ', commentResponse);
+        console.log("this is the comment response: ", commentResponse);
+    }catch(err){
+        console.error(err)
+      	}
+  	}
+	handlePost = async (e) => {
+		try{
+	  		await this.postRestaurantComments();
+	  	}catch(err){
+	  		console.error(err)
+	  	}
+  	}
+	addCommentView = async (e) => {
+		e.preventDefault();
+		this.setState({
+				addingComment: true,
+				targetRestaurant: this.props.restaurants[e.currentTarget.id]
+			});
+
 	}
 	render(){ 
 		console.log(this.props);
@@ -28,27 +62,45 @@ class RenderListComponent extends React.Component{
 		return(
 			<li key={i}>
 				<form>
-				<label>
-					Name: <a href={'/faux'}> {restaurant.name}</a><br/>
+					Name: {restaurant.name}<br/>
 					Address: {restaurant.vicinity}<br/>
 					ID: {restaurant.place_id}<br/>
-					{restaurants.forEach((i) => <textarea value={this.state.commentInput} onChange={this.handleChange} name='commentInput'/>)}
-					<input type='submit' value='comment'/>
-				</label>
+					<button id={i} onClick={this.addCommentView} >Add Comment </button> 
 				</form>
 			</li>
 		)
 	})
-		return (
-			<div className='renderList'>
-				This is the RenderList Component that renders API data 
-				<ul>
-				{renderList}
-				</ul>
-			</div>
-		)
+
+		if (!this.state.addingComment) {
+			return (
+				<div className='renderList'>
+					<h4>This is the RenderList Component that renders API data</h4> 
+					<ul>
+					{renderList}
+					</ul>
+				</div>
+			)
+		} else {
+			return (
+				<div>
+					<form>
+						Name:{this.state.targetRestaurant.name}<br/>
+						Address: {this.state.targetRestaurant.vicinity}<br/>
+						ID: {this.state.targetRestaurant.place_id}<br/>
+						<textarea value={this.state.commentInput} onChange={this.handleChange} name='commentInput'/>
+						<input type='submit' value='comment' onSubmit={this.postRestaurantComments}/>
+					</form>
+				</div>
+			)
+		}
 	}
 }
+
+
+
+/// {restaurants.forEach((i) => <textarea value={this.state.commentInput} onChange={this.handleChange} name='commentInput'/>)}
+/// THIS WAS PREVIOUSLY THE WAY THAT I WAS ABLE TO GET 
+
 
 	///this is the method to open/close modal
 	// const toggleModal = () => {

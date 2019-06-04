@@ -36,7 +36,7 @@ class Login extends Component {
         console.log("Props: ", this.props);
         console.log(parsedResponse.success);
       }
-      this.props.history.push('/restaurantList');
+      // this.props.history.push('/restaurantList');
           // if parsedResponse.success is true, then you know that 
           // parsedResponse.data contains the user information 
 

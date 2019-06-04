@@ -13,7 +13,7 @@ class App extends React.Component{
 	} try{
 
 	const ':place_id' = this.props.place_id;
-	const editCommentResponse = await fetch('http://localhost:9000/restaurants/:place_id/edit/:comment_id', {
+	const editCommentResponse = await fetch(REACT_APP_BACK_END_URL + 'restaurants/:place_id/edit/:comment_id', {
 
 		method: 'PUT',
 		credentials: 'include',
