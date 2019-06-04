@@ -18,6 +18,7 @@ class Dashboard extends Component {
   }
 
   componentDidMount(){
+    console.log(this.state);
 
   }
 

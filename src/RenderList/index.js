@@ -88,7 +88,7 @@ class RenderListComponent extends React.Component{
 						Address: {this.state.targetRestaurant.vicinity}<br/>
 						ID: {this.state.targetRestaurant.place_id}<br/>
 						<textarea value={this.state.commentInput} onChange={this.handleChange} name='commentInput'/>
-						<input type='submit' value='comment' onSubmit={this.postRestaurantComments}/>
+						<input type='submit' value='comment' onSubmit={this.handlePost}/>
 					</form>
 				</div>
 			)
