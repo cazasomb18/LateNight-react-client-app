@@ -18,15 +18,23 @@ class RenderListComponent extends React.Component{
 	}
   	postRestaurantComments = async (e)  => {
 	e.preventDefault();
+	console.log(this.state);
 	try{
-        const postComments = await fetch(process.env.REACT_APP_BACK_END_URL + 'restaurants/:place_id/comment', {
+        const postComments = await fetch(process.env.REACT_APP_BACK_END_URL + 'restaurants/' + this.state.targetRestaurant.place_id + '/comment', {
           method: 'POST',
           credentials: 'include',
-          body: JSON.stringify(postComments),
+          body: JSON.stringify({
+          	name: this.state.targetRestaurant.name,
+          	address: this.state.targetRestaurant.vicinity,
+          	place_id: this.state.targetRestaurant.place_id,
+          	commentAuthor: this.props.userName,
+          	commentBody: this.state.commentInput
+          }),
           headers: {
             'Content-Type': 'application/json'
           }
         })
+
         const commentResponse = await postComments.json();
         console.log(commentResponse);
         await this.setState({
@@ -40,6 +48,7 @@ class RenderListComponent extends React.Component{
   	}
 	handlePost = async (e) => {
 		try{
+			console.log(this.state.targetRestaurant);
 	  		await this.postRestaurantComments();
 	  	}catch(err){
 	  		console.error(err)
@@ -83,12 +92,12 @@ class RenderListComponent extends React.Component{
 		} else {
 			return (
 				<div>
-					<form>
-						Name:{this.state.targetRestaurant.name}<br/>
-						Address: {this.state.targetRestaurant.vicinity}<br/>
-						ID: {this.state.targetRestaurant.place_id}<br/>
-						<textarea value={this.state.commentInput} onChange={this.handleChange} name='commentInput'/>
-						<input type='submit' value='comment' onSubmit={this.handlePost}/>
+					<form onSubmit={this.postRestaurantComments}>
+						Name:<input readOnly name="name" value={this.state.targetRestaurant.name}></input><br/>
+						Address: <input readOnly name="address" value={this.state.targetRestaurant.vicinity}></input><br/>
+						ID: <input readOnly name="place_id" value={this.state.targetRestaurant.place_id}></input><br/>
+						<textarea onChange={this.handleChange} name='commentInput'/>
+						<input type='submit' value='comment' />
 					</form>
 				</div>
 			)

@@ -160,7 +160,6 @@ class Dashboard extends Component {
             </div>
 
           }
-          <LateRestaurantsList/>
 
           
       </div>
@@ -168,6 +167,8 @@ class Dashboard extends Component {
   }
 
   };
+
+
     // this.state = ({
     //   loggedIn: false,
     //   isRegistered: false,
@@ -207,5 +208,6 @@ class Dashboard extends Component {
 //   }
 // }
 
+          // <// LateRestaurantsList
 
 export default Dashboard

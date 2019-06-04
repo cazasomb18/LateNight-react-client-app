@@ -68,6 +68,7 @@ class App extends Component {
             <Route path="/register" render={ (props) => <RegisterControl {...props} setUserInfo={this.setUserInfo}/> } />
             <Route path="/login" render={ (props) => <Login {...props} setUserInfo={this.props.setUserInfo}/> } />
           </Switch>
+          <LateRestaurantsList userName={this.state.userName}/>
         </div>
       </main>
     );
