@@ -36,15 +36,34 @@ class Login extends Component {
         console.log("Props: ", this.props);
         console.log(parsedResponse.success);
       }
-      // this.props.history.push('/restaurantList');
-          // if parsedResponse.success is true, then you know that 
-          // parsedResponse.data contains the user information 
-
           // and bc the login is successful, then you should  
           // invoke this.props.setUserInfo(), passing in the parsedResponse.data 
     }catch(err){
       console.error(err);
 
+    }
+  }
+  logOut = async (e) => {
+    try{
+      const logoutResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/logout/', {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application.json'
+        }})
+      console.log(logoutResponse);
+      const parsedResponse = await logoutResponse.json();
+      console.log('logout response: ', parsedResponse);
+      if (parsedResponse.loggedout === true) {
+        this.setState({
+          loggedIn: false
+        })
+        console.log("App state: ", this.state);
+        console.log("Props: ", this.props);
+        console.log(parsedResponse.loggedout);
+      }
+    }catch(err){
+      console.error(err)
     }
   }
   handleChange = (e) => {
@@ -56,6 +75,7 @@ class Login extends Component {
     })
   }
   render(){
+  if (this.state.loggedIn === false) {
     return (
     <div className="loginForm">
       <h1 className='/login-title'>Login for LateNight</h1><br/>
@@ -68,8 +88,15 @@ class Login extends Component {
         </form>
     </div>
     );
+  } else {
+    return (
+      <div>
+        <h4>{this.state.userName} has successfully logged in!</h4>
+        <button onClick={this.logOut}>Logout</button>
+      </div>
+    );
   }
-}
+}}
 
 export default Login;
 
