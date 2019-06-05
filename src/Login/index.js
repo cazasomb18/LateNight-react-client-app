@@ -99,5 +99,3 @@ class Login extends Component {
 }}
 
 export default Login;
-
-// {this.state.showList ? <RenderList restaurants={this.state.restaurants}/> : null}

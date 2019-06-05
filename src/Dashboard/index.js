@@ -148,9 +148,9 @@ class Dashboard extends Component {
             this.state.show === true ? 
             <div>
                 <p>THIS IS WHERE USERS CAN EDIT/DELETE THEIR COMMENTS</p>
-                <RestaurantComment userComments={this.state.userComments}/>
+                <RestaurantComment userData={this.state.userComments.data}/>
                 <form>
-                  Leave a Comment: 
+                  Edit Comment: 
                   <input
                     type='text' 
                     name='comment' 
@@ -184,8 +184,8 @@ class Dashboard extends Component {
             </div>
 
           }
-      <RenderListComponent  restaurants={this.state.restaurants}/>
-      <button onClick={this.getUserComments}>Get Them!</button>
+      <RenderListComponent restaurants={this.state.restaurants}/>
+      <button onClick={this.getUserComments}>Get User Comments</button>
       </div>
       )
   }

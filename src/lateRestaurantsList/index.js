@@ -12,7 +12,6 @@ class LateRestaurantsList extends React.Component {
 			isOpen: false
 		}
 	}
-	
 	componentDidMount(){
 		console.log("cdm - LateRestaurantsList Component: ", this.state, this.props);
 	}
@@ -30,13 +29,10 @@ class LateRestaurantsList extends React.Component {
 		e.preventDefault();
 		try {
 			const getRestaurantsResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'restaurants/', {
-
 				method: 'GET',
 				credentials: 'include',
 				headers: {
 					'Content-Type': ['Access-Control-Allow-Origin', 'Access-Control-Allow-Methods', 'Access-Control-Allow-Headers']
-					// 'Content-Type': 'Access-Control-Allow-Methods',
-					// 'Content-Type': 'Access-Control-Allow-Headers'
 				}
 			})
 			console.log(getRestaurantsResponse);
@@ -47,32 +43,27 @@ class LateRestaurantsList extends React.Component {
 				restaurants: response,
 				showList: true
 			})
-
 		} catch(err) {
 			console.error(err);
 		}
 	}
-
 	toggleModal = () => {
 		this.setState({
 			isOpen: false
 	    })
 	}
-
 	render(){
-		console.log("this.state in render() in LateRestaurantList: ", this.state);		
+		console.log("this.state in render() in LateRestaurantList: ", this.state);
 		return(
-			<div>
-				
+			<div>	
 				<form onSubmit={this.getRestaurants}>
 					<h4 >ARE YOU HUNGRY?!</h4>
 					<input type="submit" value="Find Late Bytes"/>
 				</form>
 				{this.state.showList ? <RenderList restaurants={this.state.restaurants}/> : null}
 			</div>
-		)
+		);
 	}
-
 }
 
 export default LateRestaurantsList;
