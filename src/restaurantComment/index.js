@@ -1,11 +1,19 @@
 import React from 'react'
-import Dashboard from '../Dashboard'
+// import Dashboard from '../Dashboard'
 
 const RestaurantComment = (props) => {
-	console.log(props);	
-	return(
-		<div>Hello World</div>
-	)
+		console.log(props);
+		console.log(props.userComments.data);
+		const userData = props.userComments.data;
+		userData.map((comment, i) => {
+		return(
+			<div>
+				<li key={i}>
+					ID: {comment.restaurant_id}
+				</li>
+			</div>
+		)
+	})
 };
 
-export default RestaurantComment	
+export default RestaurantComment;

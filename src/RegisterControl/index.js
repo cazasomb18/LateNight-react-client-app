@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import Login from '../Login';
+// import { Route, Redirect } from 'react-router-dom';
+// import Login from '../Login';
 
 
 class RegisterControl extends Component {
@@ -24,7 +24,7 @@ constructor(props) {
 		e.preventDefault();
 		console.log(this.state);
 		try{			
-			const registerResponse = await fetch(process.env.REACT_APP_BACK_END_PY_URL + 'users/registration', {
+			const registerResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/register/', {
 				method: 'POST',
 				credentials: 'include',
 				body: JSON.stringify(this.state),
@@ -32,39 +32,47 @@ constructor(props) {
 					'Content-Type': 'application/json'
 				}})
 			console.log(registerResponse);
-			const parsedResponse = await registerResponse.json;
+			const parsedResponse = await registerResponse.json();
 			console.log("parsedResponse: ", parsedResponse);
-			if (parsedResponse.success === true) {
+			if (parsedResponse.registered === true) {
 				this.setState({
 					isRegistered: true
 				})
 			}
-			// this.props.setUserInfo(userInfo);
-			// this.props.history.push("/login");
-			/// REDIRECT TO ^^^ LOGIN?///
 		}catch(err){
 			console.log(err);
 			console.error(err)
 		}
-		///continue this logic to get the backend do to the work///
 	}
 
-	render(){	
+	render(){
+	if (this.state.isRegistered === false) {
 		return (
 		<div className="form">
 			<h1 className='register-title'>Register for LateNight</h1><br/>
-				<form className="mb-2 mr-sm-2 mb-sm-0" onSubmit={this.handleSubmit}>
-					<h4 className="mb-2 mr-sm-2 mb-sm-0">Username:</h4>
-					<input className="mr-sm-2" type="text" name="username" placeholder="username" onChange={this.handleChange}/><br/>
-					<h4 className="mb-2 mr-sm-2 mb-sm-0">Password:</h4>
-					<input className="mr-sm-2" type="password" name="password" placeholder="********" onChange={this.handleChange}/><br/>
-					<h4 className="mb-2 mr-sm-2 mb-sm-0">Email:</h4>
-					<input className="mr-sm-2" type="email" name="email" placeholder="email" onChange={this.handleChange}/><br/>
-					<input className="mr-sm-2" type="submit" value="Register!"/>
+				<form onSubmit={this.handleSubmit}>
+					<h4 >Username:</h4>
+					<input type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
+					<h4 >Password:</h4>
+					<input type="password" name="password" placeholder="********" onChange={this.handleChange}/><br/>
+					<h4 >Email:</h4>
+					<input type="email" name="email" placeholder="email" onChange={this.handleChange}/><br/>
+					<input type="submit" value="Register!"/>
 				</form>
 		</div>
-		)
+		);
+	} else {
+		return (
+			<h4>{this.state.userName} has registered, now login!</h4>
+		);
 	}
-}
+}}
 
 export default RegisterControl;
+
+
+
+
+			// this.props.setUserInfo(userInfo);
+			// this.props.history.push("/login");
+			/// REDIRECT TO ^^^ LOGIN?///

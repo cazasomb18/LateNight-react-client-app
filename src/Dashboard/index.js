@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import LateRestaurantsList from '../LateRestaurantsList';
+// import ReactDOM from 'react-dom';
+// import LateRestaurantsList from '../LateRestaurantsList';
 import RenderListComponent from '../RenderList';
 import RestaurantComment from '../RestaurantComment';
 ////// here we want the functionality to edit, or delete comments/////
@@ -144,11 +144,11 @@ class Dashboard extends Component {
     return(
       <div>
         <h1>This is the user dashboard</h1>
-          { 
+          {
             this.state.show === true ? 
             <div>
                 <p>THIS IS WHERE USERS CAN EDIT/DELETE THEIR COMMENTS</p>
-                <RestaurantComment userComments={this.state.userComments} />
+                <RestaurantComment userComments={this.state.userComments}/>
                 <form>
                   Leave a Comment: 
                   <input
@@ -190,9 +190,9 @@ class Dashboard extends Component {
       )
   }
 
-  };
-
-
-          // <// LateRestaurantsList/>
+};
 
 export default Dashboard
+
+
+// <RestaurantComment userComments={this.props.userComments}/>

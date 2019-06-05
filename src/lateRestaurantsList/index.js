@@ -64,9 +64,9 @@ class LateRestaurantsList extends React.Component {
 		return(
 			<div>
 				
-				<form className="mb-2 mr-sm-2 mb-sm-0" onSubmit={this.getRestaurants}>
-					<h4 className="mb-2 mr-sm-2 mb-sm-0">ARE YOU HUNGRY?!</h4>
-					<input className="mr-sm-2" type="submit" value="Find Late Bytes"/>
+				<form onSubmit={this.getRestaurants}>
+					<h4 >ARE YOU HUNGRY?!</h4>
+					<input type="submit" value="Find Late Bytes"/>
 				</form>
 				{this.state.showList ? <RenderList restaurants={this.state.restaurants}/> : null}
 			</div>

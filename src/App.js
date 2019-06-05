@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch} from 'react-router-dom';
 import RegisterControl from './RegisterControl';
 import Login from './Login';
 import Header from './Header';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import RegisterControl from '../RegisterControl';
+// import { Route, Redirect } from 'react-router-dom';
+// import RegisterControl from '../RegisterControl';
 
 class Login extends Component {
   constructor(props){
@@ -56,20 +56,21 @@ class Login extends Component {
     })
   }
   render(){
-
     return (
-    <div className="form">
+    <div className="loginForm">
       <h1 className='/login-title'>Login for LateNight</h1><br/>
-        <form className="mb-2 mr-sm-2 mb-sm-0" onSubmit={this.handleSubmit}>
-          <h4 className="mb-2 mr-sm-2 mb-sm-0">Username:</h4>
-          <input className="mr-sm-2" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
-          <h4 className="mb-2 mr-sm-2 mb-sm-0">Password:</h4>
-          <input className="mr-sm-2" type="password" name="password" placeholder="********" onChange={this.handleChange}/><br/>
-          <input className="mr-sm-2" type="submit" value="Login!"/>
+        <form onSubmit={this.handleSubmit}>
+          <h4 >Username:</h4>
+          <input  type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
+          <h4 >Password:</h4>
+          <input type="password" name="password" placeholder="password" onChange={this.handleChange}/><br/>
+          <input type="submit" value="Login!"/>
         </form>
     </div>
-      );
+    );
   }
 }
 
 export default Login;
+
+// {this.state.showList ? <RenderList restaurants={this.state.restaurants}/> : null}
