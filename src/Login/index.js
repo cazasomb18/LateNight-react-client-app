@@ -81,7 +81,7 @@ class Login extends Component {
       <h1 className='/login-title'>Login for LateNight</h1><br/>
         <form onSubmit={this.handleSubmit}>
           <h4 >Username:</h4>
-          <input  type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
+          <input type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
           <h4 >Password:</h4>
           <input type="password" name="password" placeholder="password" onChange={this.handleChange}/><br/>
           <input type="submit" value="Login!"/>

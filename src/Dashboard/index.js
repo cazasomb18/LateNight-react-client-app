@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
-// import LateRestaurantsList from '../LateRestaurantsList';
 import RenderListComponent from '../RenderList';
 import RestaurantComment from '../RestaurantComment';
 ////// here we want the functionality to edit, or delete comments/////
@@ -12,37 +10,38 @@ class Dashboard extends Component {
   this.state = {
     restaurants: [],
     show: false,
-    userComments: []
+    userComments: [],
+    userRestaurants: [],
+    deleteComment: this.deleteRestaurantComment
     }
   }
   componentDidMount(){
     console.log(this.state);
-    this.getUserComments().then(comment => {
-      console.log(comment);
-      if(comment != null) {
+    this.getUserComments().then(restaurant => {
+      console.log(restaurant);
+      if(restaurant != null) {
         this.setState({
-          userComments: [...comment.data]
+          userRestaurants: [...restaurant.data]
         })
-      } else if(comment === null) {
+      } else if(restaurant === null) {
         this.setState({
-          userComments: []
+          userRestaurants: []
         })
       }
     })
   }
   getUserComments = async (e) => {
     try{
-      const userCommentsResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/usercomments', {
+      const userRestaurantsResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/usercomments', {
         method: 'GET',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json'
         }
       })
-      const parsedUserCommentsResponse = await userCommentsResponse.json();
-      console.log(parsedUserCommentsResponse);
+      const parsedUserRestaurantsResponse = await userRestaurantsResponse.json();
       this.setState({
-        userComments: parsedUserCommentsResponse
+        userRestaurants: parsedUserRestaurantsResponse
       })
     }catch(err){
       console.error(err)
@@ -50,7 +49,7 @@ class Dashboard extends Component {
   }
   showModal = () => {
     this.setState({
-          show: true
+      show: true
     });
   }
   hideModal = () => {
@@ -107,15 +106,15 @@ class Dashboard extends Component {
       console.error(err);
     }
   }
-  handleEdit = async (e)  => {
-    e.preventDefault()
-    try{
-      await this.editRestaurantComment();
+  // handleEdit = async (e)  => {
+  //   e.preventDefault()
+  //   try{
+  //     await this.editRestaurantComment();
 
-    }catch(err){
-      console.error(err)
-    }   
-  }
+  //   }catch(err){
+  //     console.error(err)
+  //   }   
+  // }
   deleteRestaurantComment = async (e) => {
     try{
       const deletedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/:place_id/:comment_id', {
@@ -132,15 +131,16 @@ class Dashboard extends Component {
       console.error(err)
     }
   }
-  handleDelete = async (e) => {
-    try{
-      await this.deleteRestaurantComment();
+  // handleDelete = async (e) => {
+  //   try{
+  //     await this.deleteRestaurantComment();
 
-    }catch(err){
-      console.error(err)
-    }
-  }
+  //   }catch(err){
+  //     console.error(err)
+  //   }
+  // }
   render(){
+    console.log(this.state.userRestaurants);
     return(
       <div>
         <h1>This is the user dashboard</h1>
@@ -148,7 +148,10 @@ class Dashboard extends Component {
             this.state.show === true ? 
             <div>
                 <p>THIS IS WHERE USERS CAN EDIT/DELETE THEIR COMMENTS</p>
-                <RestaurantComment userData={this.state.userComments.data}/>
+                <RestaurantComment 
+                  userData={this.state.userRestaurants.data}
+                  userComments={this.state.userRestaurants.foundComments}
+                />
                 <form>
                   Edit Comment: 
                   <input
@@ -185,7 +188,7 @@ class Dashboard extends Component {
 
           }
       <RenderListComponent restaurants={this.state.restaurants}/>
-      <button onClick={this.getUserComments}>Get User Comments</button>
+      <button onClick={this.getUserComments}>Show User Data</button>
       </div>
       )
   }
@@ -195,4 +198,5 @@ class Dashboard extends Component {
 export default Dashboard
 
 
+// delete={this.state.deleteComment}
 // <RestaurantComment userComments={this.props.userComments}/>

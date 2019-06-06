@@ -3,26 +3,55 @@ import React from 'react'
 const RestaurantComment = (props) => {
 	console.log(props);
 	console.log(props.userData);
+	console.log(props.userComments);
 	const userData = props.userData;
+	const userComments = props.userComments;
 	console.log(userData);
-	const commentList = userData.map((data, i) => {
-		return(
-			<li>
-				<p>Comment: {data.commentBody}</p>
-				<p>By: {data.commentAuthor}</p>
-				<p>ID: {data.restaurant_id}</p>
-				<p>Restaurant: {data.restaurant_name}</p>
-			</li>
-		);
+	console.log(userComments);
+
+	const restaurantList = userData.map((data, i) => {
+		
+		const thisCommentList = userComments.map((comment, i) => {
+			// move comment list rendering stuff to here 
+			// need some conditional return — only if the rest. id of the comment matches the 
+			// current restaurant id in outer loop
+			if (comment.restaurant_id[0] === data._id){
+
+				return(
+						<ul key={`comment-${i}`}>
+							<p> Comments: {comment.commentBody}</p>
+						</ul>
+				);
+			}
+		})
+
+		return (
+
+			<div key={`restaurant-${i}`}>
+				<h3>Restaurant: {data.name}</h3>
+				<h6>Google ID: {data.place_id}</h6><br/>
+				<h3> Comments: </h3>
+				{thisCommentList}
+			</div>
+		)
+
 	})
-
-
 	return(
 		<div>	
-		{commentList}
+		{restaurantList}
 		</div>
 	)
-
 };
 
 export default RestaurantComment;
+	// const commentList = userComments.map((comment, i) => {
+	// 	return(
+	// 		<li key={i}>
+	// 			<p>Comment: {comment.commentBody}</p>
+	// 			<p>Posted By: {comment.commentAuthor}</p>
+	// 		</li>
+	// 	);
+	// })
+				// < button onClick={props.delete}>Delete Comment</button><br/>
+				// <p>ID: {data.restaurant.id}</p>
+				// <p>Restaurant: {data.restaurant_name}</p>

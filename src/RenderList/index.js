@@ -30,23 +30,22 @@ class RenderListComponent extends React.Component{
           method: 'POST',
           credentials: 'include',
           body: JSON.stringify({
+          	commentAuthor: this.props.userName,
+          	commentBody: this.state.commentInput,
+          	restaurant_name: this.state.targetRestaurant.name,
           	name: this.state.targetRestaurant.name,
           	address: this.state.targetRestaurant.vicinity,
-          	place_id: this.state.targetRestaurant.place_id,
-          	commentAuthor: this.props.userName,
-          	commentBody: this.state.commentInput
+          	place_id: this.state.targetRestaurant.place_id
           }),
           headers: {
             'Content-Type': 'application/json'
           }
         })
-
         const commentResponse = await postComments.json();
         console.log(commentResponse);
         await this.setState({
           commentInput: JSON.stringify(commentResponse)
         })
-        console.log('these are the comments: ', commentResponse);
         console.log("this is the comment response: ", commentResponse);
     }catch(err){
         console.error(err)
@@ -80,7 +79,7 @@ class RenderListComponent extends React.Component{
 					Name: {restaurant.name}<br/>
 					Address: {restaurant.vicinity}<br/>
 					ID: {restaurant.place_id}<br/>
-					<button id={i} onClick={this.addCommentView} >Add Comment </button> 
+					<button id={i} onClick={this.addCommentView}>Add Comment </button> 
 				</form>
 			</li>
 		)
