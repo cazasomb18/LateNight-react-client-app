@@ -55,11 +55,15 @@ class LateRestaurantsList extends React.Component {
 	render(){
 		console.log("this.state in render() in LateRestaurantList: ", this.state);
 		return(
-			<div>	
+			<div>
+			{
+				!this.state.showList ?
 				<form onSubmit={this.getRestaurants}>
 					<h4 >ARE YOU HUNGRY?!</h4>
 					<input type="submit" value="Find Late Bytes"/>
 				</form>
+				: null
+			}
 				{this.state.showList ? <RenderList restaurants={this.state.restaurants}/> : null}
 			</div>
 		);

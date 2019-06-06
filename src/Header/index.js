@@ -15,5 +15,3 @@ const Header = () => {
 }
 
 export default Header;
-				// <Link to='/home'><h2 className=" home home-expand-md home-light bg-dark">Home</h2> </Link> <br/>
-				// <Link to='/restaurantList'><h2 className=" restaurants restaurants-expand-md restaurants-light bg-dark">Restaurants</h2> </Link> <br/>

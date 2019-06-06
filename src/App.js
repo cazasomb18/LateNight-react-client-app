@@ -12,7 +12,7 @@ import Dashboard from './Dashboard';
 class App extends Component {
   constructor(props){
     console.log('constructor',);
-    super();
+    super(props);
     this.state = ({
       loggedIn: false,
       isRegistered: false,
@@ -60,14 +60,14 @@ class App extends Component {
     return (
       <main>
         <div>
-          <AppTitle/>
+          <AppTitle userName={this.props.userName}/>
           <Header/>
+          <LateRestaurantsList userName={this.props.userName}/>
           <Dashboard/>
           <Switch>
             <Route path="/register" render={ (props) => <RegisterControl {...props} setUserInfo={this.setUserInfo}/> } />
             <Route path="/login" render={ (props) => <Login {...props} setUserInfo={this.props.setUserInfo}/> } />
           </Switch>
-          <LateRestaurantsList userName={this.state.userName}/>
         </div>
       </main>
     );
@@ -75,12 +75,3 @@ class App extends Component {
 }
 
 export default App;
-            // {!this.state.isRegistered ? <RegisterControl props={this.props}/> : null}
-            // {!this.state.loggedIn ? <Login props={this.props}/> : null}
-
-          // <Switch>
-          //   <Route path="/home" onClick={this.showList} />
-          //   <Route path="/restaurantList" component={LateRestaurantsList}/>
-          //   <Route path="/register" render={ (props) => <RegisterControl {...props} setUserInfo={this.setUserInfo}/> } />
-          //   <Route path="/login" render={ (props) => <Login {...props} setUserInfo={this.props.setUserInfo}/> } />
-          // </Switch>

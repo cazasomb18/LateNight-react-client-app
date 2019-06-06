@@ -12,23 +12,19 @@ const RestaurantComment = (props) => {
 	const restaurantList = userData.map((data, i) => {
 		
 		const thisCommentList = userComments.map((comment, i) => {
-			// move comment list rendering stuff to here 
-			// need some conditional return — only if the rest. id of the comment matches the 
-			// current restaurant id in outer loop
 			if (comment.restaurant_id[0] === data._id){
-
 				return(
 						<ul key={`comment-${i}`}>
 							<p> Comments: {comment.commentBody}</p>
+							<button onClick={props.deleteComment}>DELETE</button>
 						</ul>
 				);
 			}
 		})
-
 		return (
 
 			<div key={`restaurant-${i}`}>
-				<h3>Restaurant: {data.name}</h3>
+				<h2>Restaurant: {data.name}</h2>
 				<h6>Google ID: {data.place_id}</h6><br/>
 				<h3> Comments: </h3>
 				{thisCommentList}

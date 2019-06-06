@@ -4,9 +4,9 @@ import RestaurantComment from '../RestaurantComment';
 ////// here we want the functionality to edit, or delete comments/////
 
 class Dashboard extends Component {
-  constructor(){
+  constructor(props){
   console.log('constructor');
-  super();
+  super(props);
   this.state = {
     restaurants: [],
     show: false,
@@ -21,11 +21,11 @@ class Dashboard extends Component {
       console.log(restaurant);
       if(restaurant != null) {
         this.setState({
-          userRestaurants: [...restaurant.data]
+          userRestaurants: [...restaurant.data],
         })
       } else if(restaurant === null) {
         this.setState({
-          userRestaurants: []
+          userRestaurants: [],
         })
       }
     })
@@ -90,7 +90,7 @@ class Dashboard extends Component {
   }
   editRestaurantComment = async (e) => {
     try{
-      const editedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/:place_id/edit/:comment_id', {
+      const editedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/' + this.state.userRestaurants.data.place_id + '/edit/' + this.state.userRestaurants.foundComments._id +'/', {
 
         method: 'PUT',
         credentials: 'include',
@@ -106,18 +106,9 @@ class Dashboard extends Component {
       console.error(err);
     }
   }
-  // handleEdit = async (e)  => {
-  //   e.preventDefault()
-  //   try{
-  //     await this.editRestaurantComment();
-
-  //   }catch(err){
-  //     console.error(err)
-  //   }   
-  // }
   deleteRestaurantComment = async (e) => {
     try{
-      const deletedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/:place_id/:comment_id', {
+      const deletedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/' + this.state.userRestaurants.data.place_id + '/'+ this.state.userRestaurants.foundComments._id + '/', {
         method: 'DELETE',
         credentials: 'include',
         body: JSON.stringify(this.state),
@@ -131,26 +122,27 @@ class Dashboard extends Component {
       console.error(err)
     }
   }
-  // handleDelete = async (e) => {
-  //   try{
-  //     await this.deleteRestaurantComment();
-
-  //   }catch(err){
-  //     console.error(err)
-  //   }
-  // }
   render(){
+    console.log(this.state);
+    console.log(this.props);
     console.log(this.state.userRestaurants);
     return(
       <div>
-        <h1>This is the user dashboard</h1>
+        <h1>Welcome to your dashboard</h1>
           {
             this.state.show === true ? 
             <div>
-                <p>THIS IS WHERE USERS CAN EDIT/DELETE THEIR COMMENTS</p>
+              <button type='button' onClick={this.hideModal}>
+                Hide Dashboard
+              </button>
+              <button onClick={this.getUserComments}>
+                Show User Data
+              </button>
+                <h4>Here you can manage all of your created data</h4>
                 <RestaurantComment 
                   userData={this.state.userRestaurants.data}
                   userComments={this.state.userRestaurants.foundComments}
+                  deleteComment={this.state.deleteComment}
                 />
                 <form>
                   Edit Comment: 
@@ -166,37 +158,26 @@ class Dashboard extends Component {
                     onSubmit={this.handleEdit} 
                     value='EDIT'
                   />
-                  <input 
-                    type='submit'
-                    onSubmit={this.handleDelete}
-                    value='DELETE'
-                  />
+
                 </form>
               
-
-              <button type='button' onClick={this.hideModal}>
-                Hide Dashboard
-              </button>
             </div>
             : 
             <div>
-
               <button type='button' onClick={this.showModal}>
                 Show Dashboard
               </button>
             </div>
-
           }
       <RenderListComponent restaurants={this.state.restaurants}/>
-      <button onClick={this.getUserComments}>Show User Data</button>
       </div>
       )
   }
 
 };
 
-export default Dashboard
+export default Dashboard;
 
+// .forEach((i) => [i])
 
-// delete={this.state.deleteComment}
-// <RestaurantComment userComments={this.props.userComments}/>
+// .forEach((i) => [i])
