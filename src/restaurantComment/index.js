@@ -15,7 +15,7 @@ const RestaurantComment = (props) => {
 			if (comment.restaurant_id[0] === data._id){
 				return(
 						<ul key={`comment-${i}`}>
-							<p> Comments: {comment.commentBody}</p>
+							<p> {comment.commentBody}</p>
 							<button onClick={props.deleteComment}>DELETE</button>
 						</ul>
 				);
@@ -25,7 +25,7 @@ const RestaurantComment = (props) => {
 			<div key={`restaurant-${i}`}>
 				<h2>Restaurant: {data.name}</h2>
 				<h6>Google ID: {data.place_id}</h6><br/>
-				<h3> Comments: </h3>
+				<h3> Comments made by: {data.userName} </h3>
 				{thisCommentList}
 			</div>
 		);
@@ -38,14 +38,3 @@ const RestaurantComment = (props) => {
 };
 
 export default RestaurantComment;
-	// const commentList = userComments.map((comment, i) => {
-	// 	return(
-	// 		<li key={i}>
-	// 			<p>Comment: {comment.commentBody}</p>
-	// 			<p>Posted By: {comment.commentAuthor}</p>
-	// 		</li>
-	// 	);
-	// })
-				// < button onClick={props.delete}>Delete Comment</button><br/>
-				// <p>ID: {data.restaurant.id}</p>
-				// <p>Restaurant: {data.restaurant_name}</p>

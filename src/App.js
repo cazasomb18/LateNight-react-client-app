@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-// import { Route, Switch} from 'react-router-dom';
-// import RegisterControl from './RegisterControl';
-// import Login from './Login';
 import Header from './Header';
 import AppTitle from './AppTitle';
 import LateRestaurantsList from './LateRestaurantsList';
@@ -51,10 +48,8 @@ class App extends Component {
       [e.currentTarget.name]: e.currentTarget.value 
     })
   }
-  ////////// CONDITIONAL RENDERING LOGIC FOR RESTAURANTS LIST RELATED TO LOGIN STATE////////
   render(){
-
-    console.log(this.state);
+    console.log("APP STATE IN RENDER(): ", this.state);
     return (
       <main>
         <div>
@@ -77,11 +72,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-
-          // < Switch>
-          //   < Route path="/register" render={ (props) => <RegisterControl {...props} setUserInfo={props}/> } />
-          //   < Route path="/login" render={ (props) => <Login {...props} setUserInfo={props}/> } />
-          // < /Switch>

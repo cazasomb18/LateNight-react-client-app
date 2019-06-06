@@ -88,7 +88,7 @@ class RenderListComponent extends React.Component{
 		if (!this.state.addingComment) {
 			return (
 				<div className='renderList'>
-					<h4>This is the RenderList Component that renders API data</h4> 
+					<h4>LATENIGHTBYTES LIST IS HERE</h4> 
 					<ul>
 					{renderList}
 					</ul>
@@ -109,12 +109,6 @@ class RenderListComponent extends React.Component{
 		}
 	}
 }
-
-
-
-
-
-
 
 
 

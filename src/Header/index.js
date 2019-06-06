@@ -98,15 +98,14 @@ class Header extends React.Component {
     return(
     	<div>
     		<div>
-    		  <Collapsible trigger="ABOUT LATENIGHTBYTES ==> CLICK TO EXPAND">
-    		  	<h1></h1>
+    		  <Collapsible trigger="ABOUT LATENIGHTBYTES ==> CLICK TO EXPAND/CONTRACT">
+    		  	<h3>HERE IS WHERE YOU WILL WRITE THE USER STORIES</h3>
     		  	<p>USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
     		  	<p>USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
     		  	<p>USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
     		  	<p>USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
-
     		  </Collapsible>
-		      <Collapsible trigger="CLICK TO REGISTER ==> CLICK TO EXPAND">
+		      <Collapsible trigger="REGISTRATION ==> CLICK TO EXPAND/CONTRACT">
 				<div className="registerForm">
 				{ this.state.isRegistered === false ?
 				    <div>
@@ -131,7 +130,7 @@ class Header extends React.Component {
 		      </Collapsible>
 			<div>
     		</div>
-		      <Collapsible trigger="LOGIN/LOGOUT ==> CLICK TO EXPAND">
+		      <Collapsible trigger="LOGIN/LOGOUT ==> CLICK TO EXPAND/CONTRACT">
 			    <div className="loginForm">
 		      { this.state.loggedIn === false ? 
 		      	<div>	
@@ -160,29 +159,3 @@ class Header extends React.Component {
 };
  
 export default Header;
-
-
-// { !this.state.loggedIn ? <input type="submit" value="Login!"/> : <input type="submit" value="Logout!"/>}
-
-
-
-
-
-
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-
-// const Header = () => {
-
-// 	return (
-// 		<header> 
-// 			<div className="header header-expand-lg header-dark bg-dark">
-// 				<Link to='/register'><h2 className=" register register-expand-md register-light bg-dark">Register</h2> </Link> <br/>
-// 				<Link to='/login'><h2 className=" login login-expand-md login-light bg-dark">Login / Logout</h2> </Link> <br/>
-// 			</div>
-// 		</header>
-
-// 		)
-// }
-
-// export default Header;

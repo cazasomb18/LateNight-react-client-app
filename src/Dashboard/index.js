@@ -17,8 +17,6 @@ class Dashboard extends Component {
   }
   componentDidMount(){
     console.log(this.state);
-    if (this.state.show === false){
-
     this.getUserComments().then(restaurant => {
       console.log(restaurant);
       if(restaurant != null) {
@@ -27,15 +25,10 @@ class Dashboard extends Component {
         })
       } else if(restaurant === null) {
         this.setState({
-          userRestaurants: [],
+          userRestaurants: []
         })
       }
     })
-    } else {
-      this.setState({
-        restaurants: []
-      })
-    }
   }
   getUserComments = async (e) => {
     try{
@@ -54,6 +47,7 @@ class Dashboard extends Component {
       console.error(err)
     }
   }
+  //// THIS MOTHER FUCKING THING ^^^ ISN'T RETURNING DATA SPECIFIC TO A USER... WHY?!?! ////
   showModal = () => {
     this.setState({
       show: true
@@ -63,15 +57,6 @@ class Dashboard extends Component {
     this.setState({
       show: false
     });
-  }
-  handlePost = async (e) =>{
-    e.preventDefault();
-    try{
-      await this.postRestaurantComments();
-
-    }catch(err){
-      console.error(err);
-    }
   }
   postRestaurantComments = async (e)  => {
     e.preventDefault();
