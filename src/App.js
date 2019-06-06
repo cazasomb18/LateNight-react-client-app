@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { Route, Switch} from 'react-router-dom';
-import RegisterControl from './RegisterControl';
-import Login from './Login';
+// import { Route, Switch} from 'react-router-dom';
+// import RegisterControl from './RegisterControl';
+// import Login from './Login';
 import Header from './Header';
-import AppTitle from './TitleHeader';
+import AppTitle from './AppTitle';
 import LateRestaurantsList from './LateRestaurantsList';
 import Dashboard from './Dashboard';
 
 class App extends Component {
   constructor(props){
-    console.log('constructor',);
+    console.log('APP CONSTRUCTOR',);
     super(props);
     this.state = ({
       loggedIn: false,
@@ -23,15 +23,15 @@ class App extends Component {
       showDash: false
 
     })
+    console.log('APP STATE BEFORE CDM: ', this.state);
   }
   setUserInfo = (userInfo) => {
     if (this.state.loggedIn === true){
       this.setState({
         loggedIn: true,
         isRegistered: true,
-        showList: false
+        showList: false,
       })
-    console.log("APP State before cdm: ", this.state);
     }
   }
   componentDidMount () {
@@ -44,12 +44,10 @@ class App extends Component {
         showList: true
       })
     }
-
   }
   handleChange = (e) => {
     e.preventDefault();
     this.setState({
-
       [e.currentTarget.name]: e.currentTarget.value 
     })
   }
@@ -60,14 +58,18 @@ class App extends Component {
     return (
       <main>
         <div>
-          <AppTitle userName={this.props.userName}/>
+          <AppTitle userName={this.state.userName}/>
           <Header/>
-          <LateRestaurantsList userName={this.props.userName}/>
-          <Dashboard/>
-          <Switch>
-            <Route path="/register" render={ (props) => <RegisterControl {...props} setUserInfo={this.setUserInfo}/> } />
-            <Route path="/login" render={ (props) => <Login {...props} setUserInfo={this.props.setUserInfo}/> } />
-          </Switch>
+      { !this.state.loggedIn === true ?
+        <div>
+          <Dashboard userName={this.state.userName}/>
+          <LateRestaurantsList userName={this.state.userName}/>
+        </div>
+        :
+        <div>
+          <h3>PLEASE LOGIN</h3>
+        </div>
+      }
         </div>
       </main>
     );
@@ -75,3 +77,11 @@ class App extends Component {
 }
 
 export default App;
+
+
+
+
+          // < Switch>
+          //   < Route path="/register" render={ (props) => <RegisterControl {...props} setUserInfo={props}/> } />
+          //   < Route path="/login" render={ (props) => <Login {...props} setUserInfo={props}/> } />
+          // < /Switch>

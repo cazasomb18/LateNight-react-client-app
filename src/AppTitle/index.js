@@ -1,10 +1,11 @@
 import React from 'react';
 
 const AppTitle = (props) => {
+	console.log("APPTITLE PROPS: ", props);
 	return (
 		<div>
 	        <h1 className="AppTitle">
-	        Late Night Bytes
+	        Late Night Bytes {props.userName}
 	        </h1>
 		</div>
 	)

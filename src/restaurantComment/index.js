@@ -22,15 +22,13 @@ const RestaurantComment = (props) => {
 			}
 		})
 		return (
-
 			<div key={`restaurant-${i}`}>
 				<h2>Restaurant: {data.name}</h2>
 				<h6>Google ID: {data.place_id}</h6><br/>
 				<h3> Comments: </h3>
 				{thisCommentList}
 			</div>
-		)
-
+		);
 	})
 	return(
 		<div>	

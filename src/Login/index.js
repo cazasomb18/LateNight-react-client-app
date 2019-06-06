@@ -6,7 +6,6 @@ class Login extends Component {
     this.state = {
       userName: '',
       password: ''
- 
     }
   }
   handleChange = (e) => {
@@ -57,7 +56,7 @@ class Login extends Component {
           loggedIn: false
         })
         console.log("App state: ", this.state);
-        console.log("Props: ", this.props);
+        // console.log("Props: ", this.props);
         console.log(parsedResponse.loggedout);
       }
     }catch(err){

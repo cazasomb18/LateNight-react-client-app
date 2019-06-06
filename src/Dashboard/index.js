@@ -11,12 +11,14 @@ class Dashboard extends Component {
     restaurants: [],
     show: false,
     userComments: [],
-    userRestaurants: [],
-    deleteComment: this.deleteRestaurantComment
+    userRestaurants: []
+    // deleteComment: this.deleteRestaurantComment
     }
   }
   componentDidMount(){
     console.log(this.state);
+    if (this.state.show === false){
+
     this.getUserComments().then(restaurant => {
       console.log(restaurant);
       if(restaurant != null) {
@@ -29,6 +31,11 @@ class Dashboard extends Component {
         })
       }
     })
+    } else {
+      this.setState({
+        restaurants: []
+      })
+    }
   }
   getUserComments = async (e) => {
     try{
@@ -108,6 +115,7 @@ class Dashboard extends Component {
   }
   deleteRestaurantComment = async (e) => {
     try{
+      /// i tried mapping the two data objects and inserting the iterable index before the array in each piece of data.. react didn't like it///
       const deletedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/' + this.state.userRestaurants.data.place_id + '/'+ this.state.userRestaurants.foundComments._id + '/', {
         method: 'DELETE',
         credentials: 'include',
@@ -128,16 +136,14 @@ class Dashboard extends Component {
     console.log(this.state.userRestaurants);
     return(
       <div>
-        <h1>Welcome to your dashboard</h1>
           {
             this.state.show === true ? 
             <div>
+              <h1>Welcome to your dashboard</h1>
               <button type='button' onClick={this.hideModal}>
                 Hide Dashboard
               </button>
-              <button onClick={this.getUserComments}>
-                Show User Data
-              </button>
+                <button onClick={this.getUserComments}>Show User Data</button>
                 <h4>Here you can manage all of your created data</h4>
                 <RestaurantComment 
                   userData={this.state.userRestaurants.data}
@@ -161,13 +167,16 @@ class Dashboard extends Component {
 
                 </form>
               
+
             </div>
             : 
             <div>
+
               <button type='button' onClick={this.showModal}>
                 Show Dashboard
               </button>
             </div>
+
           }
       <RenderListComponent restaurants={this.state.restaurants}/>
       </div>

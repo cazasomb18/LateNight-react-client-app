@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-// import { Route, Redirect } from 'react-router-dom';
-// import Login from '../Login';
-
 
 class RegisterControl extends Component {
-constructor(props) {
+	constructor(props) {
 	super();
 	this.state = {
 		userName: '',
@@ -13,7 +10,6 @@ constructor(props) {
 	console.log(this.state);
 	console.log(this.props);
 	}
-
 	handleChange = (e) => {
 		e.preventDefault();
 		this.setState({
@@ -44,7 +40,6 @@ constructor(props) {
 			console.error(err)
 		}
 	}
-
 	render(){
 	if (this.state.isRegistered === false) {
 		return (
