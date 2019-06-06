@@ -49,9 +49,6 @@ class Header extends React.Component {
      		console.log('parsedResponse: ', parsedResponse);
      		if (parsedResponse.success === true) {
      			this.props.setUserInfo(parsedResponse)
-     			// call this.props.setUserInfo
-          		// and bc the login is successful, then you should  
-          		// invoke this.props.setUserInfo(), passing in the parsedResponse.data 
      		}
     	}catch(err){
       		console.error(err);
@@ -79,8 +76,6 @@ class Header extends React.Component {
 	render() {
 		console.log("here is state");
 		console.log(this.state);
-		// console.log(this.state.lat);
-		// console.log(this.state.lng);
     return(
     	<div>
 		  <Collapsible trigger="ABOUT LATENIGHTBYTES ==> CLICK TO EXPAND/CONTRACT">

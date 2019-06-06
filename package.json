@@ -2,6 +2,7 @@
   "name": "latenight-react-client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://maps.googleapis.com/maps/api/place/nearbysearch/",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "react": "^16.8.6",

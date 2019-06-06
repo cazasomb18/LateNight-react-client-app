@@ -66,7 +66,7 @@ class App extends Component {
     return (
       <main>
         <div>
-          { this.state.lat == '' ? null : <p> {this.state.lat + ", " + this.state.lng} </p> }
+          { this.state.lat === '' ? null : <h5> {this.state.lat + ", " + this.state.lng} </h5> }
           <AppTitle userName={this.state.userName}/>
           <Header setUserInfo={this.setUserInfo} loggedIn={this.state.loggedIn} logOutReactApp={this.logOutReactApp}/>
       { this.state.loggedIn ?

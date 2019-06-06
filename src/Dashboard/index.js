@@ -36,25 +36,6 @@ class Dashboard extends Component {
       }
     })
   }
-  // process.env.REACT_APP_BACK_END_URL
-  // process.env.REACT_APP_GEO_LOC_URL + this.state.lat + '/' + this.state.lng + '&radius=2000&type=restaurant&keyword=open&keyword=late&key=' + process.env.REACT_APP_API_KEY, 
-  // sendUserLocation = async (e) => {
-  //   try{
-  //     const coordinates = {this.state.lat, this.state.lng};
-  //     const postLocation = await fetch( process.env.REACT_APP_BACK_END_URL + 'auth/location/', {
-  //       method: 'POST',
-  //       credentials: 'include',
-  //       body: JSON.stringify(coordinates),
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       }
-  //     })
-  //     const parsedLocation = await postLocation.json();
-  //     console.log(parsedLocation);
-  //   }catch(err){
-  //     console.error(err);
-  //   }
-  // }
   getUserComments = async (e) => {
     try{
       const userRestaurantsResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/usercomments/', {
