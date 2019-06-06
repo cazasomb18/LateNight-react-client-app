@@ -19,9 +19,6 @@ class RenderListComponent extends React.Component{
 	      [e.currentTarget.name]: e.target.value
 	    })
 	}
-	getUserComments = (e) => {
-
-	}
   	postRestaurantComments = async (e)  => {
 	e.preventDefault();
 	console.log(this.state);

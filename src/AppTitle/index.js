@@ -5,7 +5,7 @@ const AppTitle = (props) => {
 	return (
 		<div>
 	        <h1 className="AppTitle">
-	        Late Night Bytes {props.userName}
+	        Late Night Bytes
 	        </h1>
 		</div>
 	)

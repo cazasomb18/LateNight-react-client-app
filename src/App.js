@@ -17,31 +17,44 @@ class App extends Component {
       restaurants: [],
       comments: [],
       showList: false,
-      showDash: false
-
+      showDash: false,
+      lat: '',
+      lng: ''
     })
-    console.log('APP STATE BEFORE CDM: ', this.state);
   }
-  setUserInfo = (userInfo) => {
-    if (this.state.loggedIn === true){
-      this.setState({
-        loggedIn: true,
-        isRegistered: true,
-        showList: false,
-      })
-    }
+
+  setUserInfo = (loginRegisterResponse) => {
+    console.log(loginRegisterResponse);
+    this.setState({
+      userName: loginRegisterResponse.data.userName,
+      loggedIn: true,
+      showList: true
+    })
   }
+
   componentDidMount () {
-    //// INITIAL DOM RENDERING ///
-    console.log('cdm: ');
-    console.log('STATE: ', this.state);
-    console.log('PROPS: ', this.props);
-    if (this.state.loggedIn === true){
-      this.setState({
-        showList: true
-      })
-    }
+    console.log('cdm: in App');
+
+    navigator.geolocation.getCurrentPosition((data) => {
+       const latLong = data
+       console.log(latLong);   
+       this.setState({
+          lat: data.coords.latitude,
+          lng: data.coords.longitude
+       })
+    })
   }
+  logOutReactApp = () => {
+    this.setState({
+      loggedIn: false,
+      userName: '',
+      restaurants: [],
+      comments: [],
+      showDash: false,
+      showList: false
+    })
+  }
+
   handleChange = (e) => {
     e.preventDefault();
     this.setState({
@@ -53,12 +66,21 @@ class App extends Component {
     return (
       <main>
         <div>
+          { this.state.lat == '' ? null : <p> {this.state.lat + ", " + this.state.lng} </p> }
           <AppTitle userName={this.state.userName}/>
-          <Header/>
-      { !this.state.loggedIn === true ?
+          <Header setUserInfo={this.setUserInfo} loggedIn={this.state.loggedIn} logOutReactApp={this.logOutReactApp}/>
+      { this.state.loggedIn ?
         <div>
-          <Dashboard userName={this.state.userName}/>
-          <LateRestaurantsList userName={this.state.userName}/>
+          <Dashboard 
+            userName={this.state.userName} 
+            latitude={this.state.lat}
+            longitude={this.state.lng}
+          />
+          <LateRestaurantsList 
+            userName={this.state.userName} 
+            latitude={this.state.lat} 
+            longitude={this.state.lng}
+          />
         </div>
         :
         <div>

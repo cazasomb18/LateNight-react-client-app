@@ -5,14 +5,17 @@ import RestaurantComment from '../RestaurantComment';
 
 class Dashboard extends Component {
   constructor(props){
-  console.log('constructor');
-  super(props);
-  this.state = {
-    restaurants: [],
-    show: false,
-    userComments: [],
-    userRestaurants: []
-    // deleteComment: this.deleteRestaurantComment
+    console.log('constructor');
+    super(props);
+    this.state = {
+      restaurants: [],
+      show: false,
+      userComments: [],
+      userRestaurants: [],
+      lat: '',
+      lng: '',
+      userName: '',
+      deleteComment: this.deleteRestaurantComment
     }
   }
   componentDidMount(){
@@ -22,6 +25,9 @@ class Dashboard extends Component {
       if(restaurant != null) {
         this.setState({
           userRestaurants: [...restaurant.data],
+          lat: this.props.latitude,
+          lng: this.props.longitude,
+          userName: this.props.userName
         })
       } else if(restaurant === null) {
         this.setState({
@@ -30,9 +36,28 @@ class Dashboard extends Component {
       }
     })
   }
+  // process.env.REACT_APP_BACK_END_URL
+  // process.env.REACT_APP_GEO_LOC_URL + this.state.lat + '/' + this.state.lng + '&radius=2000&type=restaurant&keyword=open&keyword=late&key=' + process.env.REACT_APP_API_KEY, 
+  // sendUserLocation = async (e) => {
+  //   try{
+  //     const coordinates = {this.state.lat, this.state.lng};
+  //     const postLocation = await fetch( process.env.REACT_APP_BACK_END_URL + 'auth/location/', {
+  //       method: 'POST',
+  //       credentials: 'include',
+  //       body: JSON.stringify(coordinates),
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       }
+  //     })
+  //     const parsedLocation = await postLocation.json();
+  //     console.log(parsedLocation);
+  //   }catch(err){
+  //     console.error(err);
+  //   }
+  // }
   getUserComments = async (e) => {
     try{
-      const userRestaurantsResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/usercomments', {
+      const userRestaurantsResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/usercomments/', {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -48,6 +73,7 @@ class Dashboard extends Component {
     }
   }
   //// THIS MOTHER FUCKING THING ^^^ ISN'T RETURNING DATA SPECIFIC TO A USER... WHY?!?! ////
+  /// SEEMS TO BE WORKING NOW --- NOT SURE WHY AT ALL... BUT I POM'd IT ////
   showModal = () => {
     this.setState({
       show: true

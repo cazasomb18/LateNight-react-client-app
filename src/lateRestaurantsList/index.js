@@ -5,26 +5,13 @@ import RenderList from '../RenderList';
 
 class LateRestaurantsList extends React.Component {
 	constructor(props){
-		super();
+		super(props);
 		this.state = {
 			restaurants: [],
 			showList: false,
-			isOpen: false
-		}
-	}
-	componentDidMount(){
-		console.log("cdm - LateRestaurantsList Component: ", this.state, this.props);
+			isOpen: false		}
 	}
 
-	handleClickRestaurants = async (e) => {
-		e.preventDefault();
-		try{
-			await this.getRestaurants();
-
-		} catch(err){
-			console.error(err);
-		}
-	}
 	getRestaurants = async (e) => {
 		e.preventDefault();
 		try {
@@ -35,9 +22,8 @@ class LateRestaurantsList extends React.Component {
 					'Content-Type': ['Access-Control-Allow-Origin', 'Access-Control-Allow-Methods', 'Access-Control-Allow-Headers']
 				}
 			})
-			console.log(getRestaurantsResponse);
 			const parsedResponse = await getRestaurantsResponse.json();
-			console.log(parsedResponse) // object
+			console.log(parsedResponse)
 			const response = parsedResponse.allRestaurants.results;
 			this.setState({
 				restaurants: response,

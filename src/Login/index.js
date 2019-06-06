@@ -8,6 +8,8 @@ class Login extends Component {
       password: ''
     }
   }
+  componentDidMount(){
+  }
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value});
   }

@@ -3,23 +3,18 @@ import Collapsible from 'react-collapsible';
  
 class Header extends React.Component {
 	constructor(props){
-	super();
-  	this.state = {
-  		userName: '',
-  		password: '',
-  		loggedIn: false,
-  		isRegistered: false
+		super();
+	  	this.state = {
+	  		userName: '',
+	  		password: ''	  		
   		}
 	}
-  	componentDidMount(){
 
-  	}
 	handleChange = (e) => {
     	this.setState({[e.target.name]: e.target.value});
   	}
 	handleRegister = async (e) => {
 		e.preventDefault();
-		console.log(this.state);
 		try{			
 			const registerResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/register/', {
 				method: 'POST',
@@ -27,14 +22,12 @@ class Header extends React.Component {
 				body: JSON.stringify(this.state),
 				headers: {
 					'Content-Type': 'application/json'
-				}})
-			console.log(registerResponse);
+				}
+			})
 			const parsedResponse = await registerResponse.json();
 			console.log("parsedResponse: ", parsedResponse);
 			if (parsedResponse.registered === true) {
-				this.setState({
-					isRegistered: true
-				})
+				this.props.setUserInfo(parsedResponse);
 			}
 		}catch(err){
 			console.log(err);
@@ -52,20 +45,14 @@ class Header extends React.Component {
      	    		'Content-Type': 'application/json'
      	  		}	
  	  		})
-     		console.log(loginResponse);
      		const parsedResponse = await loginResponse.json();
      		console.log('parsedResponse: ', parsedResponse);
      		if (parsedResponse.success === true) {
-     	  		this.setState({
-     	    		loggedIn: true,
-     	    		isRegistered: true
-     	  		})
-     	  	console.log("App state: ", this.state);
-     	  	console.log("Props: ", this.props);
-     	  	console.log(parsedResponse.success);
-     		}
+     			this.props.setUserInfo(parsedResponse)
+     			// call this.props.setUserInfo
           		// and bc the login is successful, then you should  
           		// invoke this.props.setUserInfo(), passing in the parsedResponse.data 
+     		}
     	}catch(err){
       		console.error(err);
     	}
@@ -83,79 +70,93 @@ class Header extends React.Component {
   	   		const parsedResponse = await logoutResponse.json();
   	   		console.log('logout response: ', parsedResponse);
   	   		if (parsedResponse.loggedout === true) {
-  	     		this.setState({
-  	       			loggedIn: false
-  	     		})
-  	     	console.log("App state: ", this.state);
-  	     	// console.log("Props: ", this.props);
-  	     	console.log(parsedResponse.loggedout);
+  	   			this.props.logOutReactApp()
   	   		}
   		}catch(err){
   	 		console.error(err)
   	 	}
 	}
 	render() {
+		console.log("here is state");
+		console.log(this.state);
+		// console.log(this.state.lat);
+		// console.log(this.state.lng);
     return(
     	<div>
-    		<div>
-    		  <Collapsible trigger="ABOUT LATENIGHTBYTES ==> CLICK TO EXPAND/CONTRACT">
-    		  	<h3>HERE IS WHERE YOU WILL WRITE THE USER STORIES</h3>
-    		  	<p>USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
-    		  	<p>USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
-    		  	<p>USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
-    		  	<p>USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
-    		  </Collapsible>
-		      <Collapsible trigger="REGISTRATION ==> CLICK TO EXPAND/CONTRACT">
-				<div className="registerForm">
-				{ this.state.isRegistered === false ?
-				    <div>
-						<h1 className='registerTitle'>Register for LateNight Bytes</h1><br/>
-						<p>CREATE AN ACCOUNT!</p>
-						<form onSubmit={this.handleRegister}>
-							<h4 >Username:</h4>
-							<input type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
-							<h4 >Password:</h4>
-							<input type="password" name="password" placeholder="********" onChange={this.handleChange}/><br/>
-							<h4 >Email:</h4>
-							<input type="email" name="email" placeholder="email" onChange={this.handleChange}/><br/>
-							<input type="submit" value="Register!"/>
-						</form>
-				    </div>
-					: 
-					<div>
-						<h4>Thanks for Registering {this.state.userName}!!!</h4>
+		  <Collapsible trigger="ABOUT LATENIGHTBYTES ==> CLICK TO EXPAND/CONTRACT">
+		  	<h3>HERE IS WHERE YOU WILL WRITE THE USER STORIES</h3>
+		  	<p>USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
+		  	<p>USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
+		  	<p>USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
+		  	<p>USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
+		  </Collapsible>
+
+	   	{ 
+	   		this.props.loggedIn
+	   		? 
+	      	<div>
+	      		<h4>Welcome to LateNightBytes {this.state.userName}!!!</h4>
+	      		<button onClick={this.logOut}>Logout!</button>
+	      	</div>
+	   		:
+
+		   	<div>    				
+	    		<div>
+			      <Collapsible trigger="REGISTRATION ==> CLICK TO EXPAND/CONTRACT">
+					<div className="registerForm">
+					    <div>
+							<h1 className='registerTitle'>Register for LateNight Bytes</h1><br/>
+							<p>CREATE AN ACCOUNT!</p>
+							<form onSubmit={this.handleRegister}>
+								<h4 >Username:</h4>
+								<input type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
+								<h4 >Password:</h4>
+								<input type="password" name="password" placeholder="********" onChange={this.handleChange}/><br/>
+								<h4 >Email:</h4>
+								<input type="email" name="email" placeholder="email" onChange={this.handleChange}/><br/>
+								<input type="submit" value="Register!"/>
+							</form>
+					    </div>
+						
+					
 					</div>
-				}
+			      </Collapsible>
+				<div>
+
+
+	    		</div>
+			      <Collapsible trigger="LOGIN/LOGOUT ==> CLICK TO EXPAND/CONTRACT">
+				    <div className="loginForm">
+			       
+				      	<div>	
+					      <h1 className='loginTitle'>Login for LateNight Bytes</h1><br/>
+					      <p>LOGIN TO LATENIGHTBYTES!</p>
+					        <form onSubmit={this.handleLogin}>
+					          <h4 >Username:</h4>
+					          <input type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
+					          <h4 >Password:</h4>
+					          <input type="password" name="password" placeholder="password" onChange={this.handleChange}/><br/>
+					          <input type="submit" value="Login!"/>
+					        </form>
+				      	</div>
+
+				    </div>
+			      </Collapsible>
 				</div>
-		      </Collapsible>
-			<div>
-    		</div>
-		      <Collapsible trigger="LOGIN/LOGOUT ==> CLICK TO EXPAND/CONTRACT">
-			    <div className="loginForm">
-		      { this.state.loggedIn === false ? 
-		      	<div>	
-			      <h1 className='loginTitle'>Login for LateNight Bytes</h1><br/>
-			      <p>LOGIN TO LATENIGHTBYTES!</p>
-			        <form onSubmit={this.handleLogin}>
-			          <h4 >Username:</h4>
-			          <input type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
-			          <h4 >Password:</h4>
-			          <input type="password" name="password" placeholder="password" onChange={this.handleChange}/><br/>
-			          <input type="submit" value="Login!"/>
-			        </form>
-		      	</div>
-		      	:
-			      	<div>
-			      		<h4>Welcome to LateNightBytes {this.state.userName}!!!</h4>
-			      		<button onClick={this.logOut}>Logout!</button>
-			      	</div>
-  			  }
-			    </div>
-		      </Collapsible>
+
+
 			</div>
+	   	}
+
+
+
     	</div>
     );
   }
+
+  				// 		<div>
+						// 	<h4>Thanks for Registering {this.state.userName}!!!</h4>
+						// </div>
 };
  
 export default Header;
