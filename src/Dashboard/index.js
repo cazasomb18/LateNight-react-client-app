@@ -10,33 +10,15 @@ class Dashboard extends Component {
     this.state = {
       restaurants: [],
       show: false,
-      userComments: [],
-      userRestaurants: [],
-      lat: '',
-      lng: '',
-      userName: '',
-      deleteComment: this.deleteRestaurantComment
+      userRestaurants: []
     }
   }
   componentDidMount(){
-    console.log(this.state);
-    this.getUserComments().then(restaurant => {
-      console.log(restaurant);
-      if(restaurant != null) {
-        this.setState({
-          userRestaurants: [...restaurant.data],
-          lat: this.props.latitude,
-          lng: this.props.longitude,
-          userName: this.props.userName
-        })
-      } else if(restaurant === null) {
-        this.setState({
-          userRestaurants: []
-        })
-      }
-    })
+    // console.log(this.state);
+    this.getUserRestaurantInfo()
   }
-  getUserComments = async (e) => {
+
+  getUserRestaurantInfo = async (e) => {
     try{
       const userRestaurantsResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/usercomments/', {
         method: 'GET',
@@ -46,20 +28,22 @@ class Dashboard extends Component {
         }
       })
       const parsedUserRestaurantsResponse = await userRestaurantsResponse.json();
+
       this.setState({
         userRestaurants: parsedUserRestaurantsResponse
       })
+
     }catch(err){
       console.error(err)
     }
   }
-  //// THIS MOTHER FUCKING THING ^^^ ISN'T RETURNING DATA SPECIFIC TO A USER... WHY?!?! ////
-  /// SEEMS TO BE WORKING NOW --- NOT SURE WHY AT ALL... BUT I POM'd IT ////
+
   showModal = () => {
     this.setState({
       show: true
     });
   }
+
   hideModal = () => {
     this.setState({
       show: false
@@ -77,13 +61,13 @@ class Dashboard extends Component {
           }
         })
         const commentResponse = await postComments.json();
-        console.log(commentResponse);
+        // console.log(commentResponse);
         this.setState({
           comments: JSON.stringify(commentResponse)
         })
-        console.log('these are the comments: ', commentResponse);
-        console.log("this is the comment response: ", commentResponse);
-    }catch(err){
+        // console.log('these are the comments: ', commentResponse);
+        // console.log("this is the comment response: ", commentResponse);
+      }catch(err){
         console.error(err)
       }
   }
@@ -105,33 +89,38 @@ class Dashboard extends Component {
       console.error(err);
     }
   }
-  deleteRestaurantComment = async (e) => {
-    try{
-      /// i tried mapping the two data objects and inserting the iterable index before the array in each piece of data.. react didn't like it///
-      const deletedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/' + this.state.userRestaurants.data.place_id + '/'+ this.state.userRestaurants.foundComments._id + '/', {
-        method: 'DELETE',
-        credentials: 'include',
-        body: JSON.stringify(this.state),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      const deletedCommentResponse = await deletedComment.json();
-      console.log('deleted comment response: ', deletedCommentResponse);
-    }catch(err){
-      console.error(err)
-    }
-  }
+  // deleteRestaurantComment = async (e) => {
+  //   try{
+  //     const restaurantIndex = this.state.userRestaurants.data.forEach((i) => [i]);
+  //     const commentIndex = this.state.userComments.foundComments.forEach((i) => [i]);
+  //     ///storing index of comment and restaurant index in order to select right value///
+  //     // commentIndex = await this.state.userComments.foundComents.forEach((i) => [i]);
+  //     const deletedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/' + this.state.userRestaurants.data.restaurantIndex.place_id + '/' + this.state.userRestaurants.foundComments.commentIndex._id + '/', {
+  //       method: 'DELETE',
+  //       credentials: 'include',
+  //       body: JSON.stringify(deletedComment),
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       }
+  //     })
+  //     const deletedCommentResponse = await deletedComment.json();
+  //     console.log('deleted comment response: ', deletedCommentResponse);
+  //   }catch(err){
+  //     console.error(err)
+  //   }
+  // }
   render(){
+    console.log("here is this.state in render() in Dashboard");
     console.log(this.state);
-    console.log(this.props);
-    console.log(this.state.userRestaurants);
+    // console.log(this.props);
+    // console.log(this.state.userRestaurants);
+    // console.log(this.state.userComments);
     return(
       <div>
           {
             this.state.show === true ? 
             <div>
-              <h1>Welcome to your dashboard</h1>
+              <h1>This is {this.props.userName}'s Dashboard</h1>
               <button type='button' onClick={this.hideModal}>
                 Hide Dashboard
               </button>
@@ -140,7 +129,8 @@ class Dashboard extends Component {
                 <RestaurantComment 
                   userData={this.state.userRestaurants.data}
                   userComments={this.state.userRestaurants.foundComments}
-                  deleteComment={this.state.deleteComment}
+                  deleteComment={this.deleteRestaurantComment}
+                  getUserRestaurantInfo={this.getUserRestaurantInfo}
                 />
                 <form>
                   Edit Comment: 
@@ -174,11 +164,6 @@ class Dashboard extends Component {
       </div>
       )
   }
-
 };
 
 export default Dashboard;
-
-// .forEach((i) => [i])
-
-// .forEach((i) => [i])

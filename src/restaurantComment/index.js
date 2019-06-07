@@ -1,38 +1,62 @@
 import React from 'react'
 
 const RestaurantComment = (props) => {
-	console.log(props);
-	console.log(props.userData);
-	console.log(props.userComments);
+
 	const userData = props.userData;
 	const userComments = props.userComments;
-	console.log(userData);
-	console.log(userComments);
 
-	const restaurantList = userData.map((data, i) => {
+
+	const deleteRestaurantComment = async (restaurantPlaceId, commentId) => {
+	    try{
+			
+	      	const deletedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/' + restaurantPlaceId + '/' + commentId, {
+	        	method: 'DELETE',
+	        	credentials: 'include'
+		    		
+		      })
+		      const deletedCommentResponse = await deletedComment.json();
+			  props.getUserRestaurantInfo()
+	    }catch(err){
+	 		console.error(err)
+		}
+	}
+
+
+	const restaurantList = userData.map((restaurant, i) => {
 		
-		const thisCommentList = userComments.map((comment, i) => {
-			if (comment.restaurant_id[0] === data._id){
+		const thisCommentList = userComments.map((comment, j) => {
+			if (comment.restaurant_id[0] === restaurant._id){
 				return(
-						<ul key={`comment-${i}`}>
+						<ul key={`comment-${j}`}>
 							<p> {comment.commentBody}</p>
-							<button onClick={props.deleteComment}>DELETE</button>
+							<form onSubmit={
+								(e) => { 
+									e.preventDefault(); 
+									// console.log('click', comment, j, restaurant, i) 
+									deleteRestaurantComment(restaurant.place_id, comment._id)
+								} 
+							}>
+								<button>Delete Comment</button>
+							</form>
 						</ul>
 				);
 			}
 		})
 		return (
 			<div key={`restaurant-${i}`}>
-				<h2>Restaurant: {data.name}</h2>
-				<h6>Google ID: {data.place_id}</h6><br/>
-				<h3> Comments made by: {data.userName} </h3>
-				{thisCommentList}
+				<h2>Restaurant: {restaurant.name}</h2><br/>
+				<h6>Google ID: {restaurant.place_id}</h6><br/>
+				<h3> Comments made by: {restaurant.userName} </h3><br/>
+					{thisCommentList}<br/>
+
 			</div>
 		);
 	})
+
+
 	return(
-		<div>	
-		{restaurantList}
+		<div>
+			{restaurantList}
 		</div>
 	)
 };

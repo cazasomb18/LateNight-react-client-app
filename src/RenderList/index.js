@@ -48,14 +48,6 @@ class RenderListComponent extends React.Component{
         console.error(err)
       	}
   	}
-	handlePost = async (e) => {
-		try{
-			console.log(this.state.targetRestaurant);
-	  		await this.postRestaurantComments();
-	  	}catch(err){
-	  		console.error(err)
-	  	}
-  	}
 	addCommentView = async (e) => {
 		e.preventDefault();
 		this.setState({

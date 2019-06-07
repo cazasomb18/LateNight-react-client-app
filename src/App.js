@@ -8,7 +8,7 @@ import Dashboard from './Dashboard';
 
 class App extends Component {
   constructor(props){
-    console.log('APP CONSTRUCTOR',);
+    // console.log('APP CONSTRUCTOR',);
     super(props);
     this.state = ({
       loggedIn: false,
@@ -24,7 +24,7 @@ class App extends Component {
   }
 
   setUserInfo = (loginRegisterResponse) => {
-    console.log(loginRegisterResponse);
+    // console.log(loginRegisterResponse);
     this.setState({
       userName: loginRegisterResponse.data.userName,
       loggedIn: true,
@@ -66,7 +66,7 @@ class App extends Component {
     return (
       <main>
         <div>
-          { this.state.lat === '' ? null : <h5> {this.state.lat + ", " + this.state.lng} </h5> }
+          { this.state.lat === '' ? null : <h6> {this.state.lat + ", " + this.state.lng} </h6> }
           <AppTitle userName={this.state.userName}/>
           <Header setUserInfo={this.setUserInfo} loggedIn={this.state.loggedIn} logOutReactApp={this.logOutReactApp}/>
       { this.state.loggedIn ?
