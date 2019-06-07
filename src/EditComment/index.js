@@ -42,7 +42,3 @@ class EditComment extends React.Component{
 		)
 	}
 };
-				///add logic where the user will be able to fucking see their 
-				///comments and fucking edit them lol... what the fuck ever...
-				/// will probably need a form and the userName to retrieve their posts
-				/// and edit them

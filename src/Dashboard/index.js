@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import RenderListComponent from '../RenderList';
+import RenderList from '../RenderList';
 import RestaurantComment from '../RestaurantComment';
-////// here we want the functionality to edit, or delete comments/////
 
 class Dashboard extends Component {
   constructor(props){
@@ -85,7 +84,6 @@ class Dashboard extends Component {
                 <RestaurantComment 
                   userData={this.state.userRestaurants.data}
                   userComments={this.state.userRestaurants.foundComments}
-                  deleteComment={this.deleteRestaurantComment}
                   getUserRestaurantInfo={this.getUserRestaurantInfo}
                 />
                 <form>
@@ -99,7 +97,7 @@ class Dashboard extends Component {
                   
                   <input 
                     type='submit' 
-                    onSubmit={this.handleEdit} 
+                    onSubmit={this.editRestaurantComment}
                     value='EDIT'
                   />
 
@@ -116,7 +114,6 @@ class Dashboard extends Component {
             </div>
 
           }
-      <RenderListComponent restaurants={this.state.restaurants}/>
       </div>
       )
   }

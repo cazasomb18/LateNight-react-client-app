@@ -13,7 +13,7 @@ const AppTitle = (props) => {
 		return (
 			<div>
 				<h1>
-					Welcome to LateNightBytes {props.userName}
+					Welcome Back {props.userName}!
 				</h1>
 			</div>
 		)

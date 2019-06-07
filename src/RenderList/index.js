@@ -1,8 +1,6 @@
 import React from 'react';
 
-///has to be a smart component??
-
-class RenderListComponent extends React.Component{
+class RenderList extends React.Component {
 	constructor(){
 		super();
 		this.state = {
@@ -14,53 +12,62 @@ class RenderListComponent extends React.Component{
 	componentDidMount(){
 		console.log('renderList state/props: ', this.state, this.props);
 	}
+
 	handleChange = (e) => {
-    this.setState({
+	    this.setState({
 	      [e.currentTarget.name]: e.target.value
 	    })
 	}
+
   	postRestaurantComments = async (e)  => {
-	e.preventDefault();
-	console.log(this.state);
-	try{
-        const postComments = await fetch(process.env.REACT_APP_BACK_END_URL + 'restaurants/' + this.state.targetRestaurant.place_id + '/comment', {
-          method: 'POST',
-          credentials: 'include',
-          body: JSON.stringify({
-          	commentAuthor: this.props.userName,
-          	commentBody: this.state.commentInput,
-          	restaurant_name: this.state.targetRestaurant.name,
-          	name: this.state.targetRestaurant.name,
-          	address: this.state.targetRestaurant.vicinity,
-          	place_id: this.state.targetRestaurant.place_id
-          }),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-        const commentResponse = await postComments.json();
-        console.log(commentResponse);
-        console.log("this is the comment response: ", commentResponse);
-        await this.setState({
-          commentInput: JSON.stringify(commentResponse)
-        })
-    }catch(err){
-        console.error(err)
+		e.preventDefault();
+		console.log("P R C");
+		try{
+	        const postComments = await fetch(process.env.REACT_APP_BACK_END_URL + 'restaurants/' + this.state.targetRestaurant.place_id + '/comment', {
+	          method: 'POST',
+	          credentials: 'include',
+	          body: JSON.stringify({
+	          	commentAuthor: this.props.userName,
+	          	commentBody: this.state.commentInput,
+	          	restaurant_name: this.state.targetRestaurant.name,
+	          	name: this.state.targetRestaurant.name,
+	          	address: this.state.targetRestaurant.vicinity,
+	          	place_id: this.state.targetRestaurant.place_id
+	          }),
+	          headers: {
+	            'Content-Type': 'application/json'
+	          }
+	        })
+	        const commentResponse = await postComments.json();
+	        console.log(commentResponse);
+	        console.log("this is the comment response: ", commentResponse);
+	        await this.setState({
+	          commentInput: JSON.stringify(commentResponse)
+	        })
+	        if (commentResponse.ok) {
+	        	console.log("we're about to run showDashAndHideList in postRestaurantComments");
+	        	console.log("props:");
+	        	console.log(this.props);
+	        	this.props.showDashAndHideList();
+	        }
+	    }catch(err){
+	        console.error(err)
       	}
   	}
 	addCommentView = async (e) => {
 		e.preventDefault();
 		this.setState({
-				addingComment: true,
-				targetRestaurant: this.props.restaurants[e.currentTarget.id]
-			});
+			addingComment: true,
+			targetRestaurant: this.props.restaurants[e.currentTarget.id]
+		});
 
 	}
 	render(){ 
-		console.log(this.props);
-		console.log(this.state);
+		// console.log("here is props, we are looking for get user getUserRestaurantInfo");
+		// console.log(this.props);
+		// console.log(this.state);
 		const restaurants = this.props.restaurants;
-		console.log(restaurants);
+		// console.log(restaurants);
 		const renderList = restaurants.map((restaurant, i) => {
 		return(
 			<li key={i}>
@@ -106,4 +113,4 @@ class RenderListComponent extends React.Component{
 
 
 
-export default RenderListComponent;
+export default RenderList;

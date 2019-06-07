@@ -30,6 +30,22 @@ class App extends Component {
     })
   }
 
+  showDashAndHideList = () => {
+    console.log("showDashAndHideList");
+    this.setState({
+      showDash: true,
+      showList: false
+    })
+  }
+
+  showListAndHideDash = () => {
+    console.log("showDashAndHideList");
+    this.setState({
+      showDash: false,
+      showList: true
+    })
+  }
+
   componentDidMount () {
 
     navigator.geolocation.getCurrentPosition((data) => {       
@@ -49,7 +65,6 @@ class App extends Component {
       showList: false
     })
   }
-
   handleChange = (e) => {
     e.preventDefault();
     this.setState({
@@ -61,26 +76,54 @@ class App extends Component {
       <main>
         <div>
           { this.state.lat === '' ? null : <h6> {this.state.lat + ", " + this.state.lng} </h6> }
-          <AppTitle userName={this.state.userName}/>
-          <Header setUserInfo={this.setUserInfo} loggedIn={this.state.loggedIn} logOutReactApp={this.logOutReactApp}/>
-      { this.state.loggedIn ?
-        <div>
-          <Dashboard 
-            userName={this.state.userName} 
-            latitude={this.state.lat}
-            longitude={this.state.lng}
-          />
-          <LateRestaurantsList 
-            userName={this.state.userName} 
-            latitude={this.state.lat} 
-            longitude={this.state.lng}
-          />
-        </div>
-        :
-        <div>
-          <h3>PLEASE LOGIN</h3>
-        </div>
-      }
+          <AppTitle 
+            userName={this.state.userName}/>
+          <Header 
+            setUserInfo={this.setUserInfo} 
+            loggedIn={this.state.loggedIn} 
+            logOutReactApp={this.logOutReactApp}/>
+        { 
+
+
+          this.state.loggedIn ?
+
+          <div>
+
+            {
+              this.state.showDash 
+              ?
+              <Dashboard 
+                userName={this.state.userName} 
+                latitude={this.state.lat}
+                longitude={this.state.lng}
+              />
+              :
+              null
+            }
+
+            {
+              this.state.showList
+              ?
+              <LateRestaurantsList 
+                userName={this.state.userName} 
+                latitude={this.state.lat} 
+                longitude={this.state.lng}
+                showDashAndHideList={this.showDashAndHideList}
+              />
+              :
+              null
+            }
+          </div>
+
+
+
+          :
+          <div>
+            <h3>LateNight food is just a LOGIN away!</h3>
+          </div>
+
+
+        }
         </div>
       </main>
     );
