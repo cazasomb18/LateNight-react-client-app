@@ -49,28 +49,7 @@ class Dashboard extends Component {
       show: false
     });
   }
-  postRestaurantComments = async (e)  => {
-    e.preventDefault();
-    try{
-        const postComments = await fetch(process.env.REACT_APP_BACK_END_URL + 'restaurants/:place_id/comment', {
-          method: 'POST',
-          credentials: 'include',
-          body: JSON.stringify(postComments),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-        const commentResponse = await postComments.json();
-        // console.log(commentResponse);
-        this.setState({
-          comments: JSON.stringify(commentResponse)
-        })
-        // console.log('these are the comments: ', commentResponse);
-        // console.log("this is the comment response: ", commentResponse);
-      }catch(err){
-        console.error(err)
-      }
-  }
+
   editRestaurantComment = async (e) => {
     try{
       const editedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/' + this.state.userRestaurants.data.place_id + '/edit/' + this.state.userRestaurants.foundComments._id +'/', {
@@ -89,32 +68,9 @@ class Dashboard extends Component {
       console.error(err);
     }
   }
-  // deleteRestaurantComment = async (e) => {
-  //   try{
-  //     const restaurantIndex = this.state.userRestaurants.data.forEach((i) => [i]);
-  //     const commentIndex = this.state.userComments.foundComments.forEach((i) => [i]);
-  //     ///storing index of comment and restaurant index in order to select right value///
-  //     // commentIndex = await this.state.userComments.foundComents.forEach((i) => [i]);
-  //     const deletedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/' + this.state.userRestaurants.data.restaurantIndex.place_id + '/' + this.state.userRestaurants.foundComments.commentIndex._id + '/', {
-  //       method: 'DELETE',
-  //       credentials: 'include',
-  //       body: JSON.stringify(deletedComment),
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       }
-  //     })
-  //     const deletedCommentResponse = await deletedComment.json();
-  //     console.log('deleted comment response: ', deletedCommentResponse);
-  //   }catch(err){
-  //     console.error(err)
-  //   }
-  // }
+
   render(){
-    console.log("here is this.state in render() in Dashboard");
-    console.log(this.state);
-    // console.log(this.props);
-    // console.log(this.state.userRestaurants);
-    // console.log(this.state.userComments);
+
     return(
       <div>
           {

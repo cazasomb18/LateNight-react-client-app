@@ -40,10 +40,10 @@ class RenderListComponent extends React.Component{
         })
         const commentResponse = await postComments.json();
         console.log(commentResponse);
+        console.log("this is the comment response: ", commentResponse);
         await this.setState({
           commentInput: JSON.stringify(commentResponse)
         })
-        console.log("this is the comment response: ", commentResponse);
     }catch(err){
         console.error(err)
       	}

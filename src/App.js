@@ -8,7 +8,6 @@ import Dashboard from './Dashboard';
 
 class App extends Component {
   constructor(props){
-    // console.log('APP CONSTRUCTOR',);
     super(props);
     this.state = ({
       loggedIn: false,
@@ -24,7 +23,6 @@ class App extends Component {
   }
 
   setUserInfo = (loginRegisterResponse) => {
-    // console.log(loginRegisterResponse);
     this.setState({
       userName: loginRegisterResponse.data.userName,
       loggedIn: true,
@@ -33,11 +31,8 @@ class App extends Component {
   }
 
   componentDidMount () {
-    console.log('cdm: in App');
 
-    navigator.geolocation.getCurrentPosition((data) => {
-       const latLong = data
-       console.log(latLong);   
+    navigator.geolocation.getCurrentPosition((data) => {       
        this.setState({
           lat: data.coords.latitude,
           lng: data.coords.longitude
@@ -62,7 +57,6 @@ class App extends Component {
     })
   }
   render(){
-    console.log("APP STATE IN RENDER(): ", this.state);
     return (
       <main>
         <div>

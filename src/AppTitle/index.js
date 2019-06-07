@@ -1,7 +1,6 @@
 import React from 'react';
 
 const AppTitle = (props) => {
-	console.log("APPTITLE PROPS: ", props);
 	if (props.userName === ''){	
 		return (
 			<div>
