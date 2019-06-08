@@ -39,7 +39,7 @@ class App extends Component {
   }
 
   showListAndHideDash = () => {
-    console.log("showDashAndHideList");
+    console.log("showListAndHideDash");
     this.setState({
       showDash: false,
       showList: true
@@ -82,48 +82,32 @@ class App extends Component {
             setUserInfo={this.setUserInfo} 
             loggedIn={this.state.loggedIn} 
             logOutReactApp={this.logOutReactApp}/>
-        { 
-
-
+        {
           this.state.loggedIn ?
 
-          <div>
 
-            {
-              this.state.showDash 
-              ?
+          <div>
               <Dashboard 
                 userName={this.state.userName} 
                 latitude={this.state.lat}
                 longitude={this.state.lng}
+                showDashAndHideList={this.showDashAndHideList}
+                showListAndHideDash={this.showListAndHideDash}
               />
-              :
-              null
-            }
 
-            {
-              this.state.showList
-              ?
               <LateRestaurantsList 
                 userName={this.state.userName} 
                 latitude={this.state.lat} 
                 longitude={this.state.lng}
+                showListAndHideDash={this.showListAndHideDash}
                 showDashAndHideList={this.showDashAndHideList}
               />
-              :
-              null
-            }
+              
           </div>
-
-
-
-          :
-          <div>
-            <h3>LateNight food is just a LOGIN away!</h3>
-          </div>
-
-
+          : null
         }
+
+
         </div>
       </main>
     );

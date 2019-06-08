@@ -13,7 +13,8 @@ class Dashboard extends Component {
     }
   }
   componentDidMount(){
-    // console.log(this.state);
+    console.log('STATE IN CDM: IN DASHBOARD', this.state);
+    console.log('PROPS IN CDM: IN DASHBOARD', this.props);
     this.getUserRestaurantInfo()
   }
 
@@ -37,10 +38,16 @@ class Dashboard extends Component {
     }
   }
 
-  showModal = () => {
-    this.setState({
-      show: true
-    });
+  toggleModal = () => {
+    if(!this.show) {
+      this.setState({
+        show: true
+      })
+    } else {
+      this.setState({
+        show: false
+      });
+    }
   }
 
   hideModal = () => {
@@ -75,12 +82,12 @@ class Dashboard extends Component {
           {
             this.state.show === true ? 
             <div>
-              <h1>This is {this.props.userName}'s Dashboard</h1>
+              <h1>Welcome to your Dashboard, {this.props.userName}</h1>
               <button type='button' onClick={this.hideModal}>
-                Hide Dashboard
+                Hide {this.props.userName}'s Dashboard
               </button>
-                <button onClick={this.getUserComments}>Show User Data</button>
-                <h4>Here you can manage all of your created data</h4>
+                <button onClick={this.getUserComments}>Refresh {this.props.userName}'s Data</button>
+                <h4>Hi {this.props.userName}, here you can manage all of your created data</h4>
                 <RestaurantComment 
                   userData={this.state.userRestaurants.data}
                   userComments={this.state.userRestaurants.foundComments}
@@ -108,8 +115,8 @@ class Dashboard extends Component {
             : 
             <div>
 
-              <button type='button' onClick={this.showModal}>
-                Show Dashboard
+              <button type='button' onClick={this.toggleModal}>
+                Show {this.props.userName}'s Dashboard
               </button>
             </div>
 

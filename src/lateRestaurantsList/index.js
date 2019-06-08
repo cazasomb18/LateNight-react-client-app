@@ -8,7 +8,7 @@ class LateRestaurantsList extends React.Component {
 		this.state = {
 			restaurants: [],
 			showList: false,
-			isOpen: false	
+			isOpen: false
 		}
 	}
 	getRestaurants = async (e) => {
@@ -37,23 +37,43 @@ class LateRestaurantsList extends React.Component {
 	}
 	toggleModal = () => {
 		this.setState({
-			isOpen: false
+			isOpen: false,
+			showList: false
 	    })
 	}
 	render(){
-		// console.log("this.state in render() in LateRestaurantList: ", this.state);
-		// console.log("this.props in render() in LateRestaurantList: ", this.props);
+		console.log("this.state in render() in LateRestaurantList: ", this.state);
+		console.log("this.props in render() in LateRestaurantList: ", this.props);
 		return(
 			<div>
 			{
-				!this.state.showList ?
-				<form onSubmit={this.getRestaurants}>
-					<h4 >ARE YOU HUNGRY?!</h4>
-					<input type="submit" value="Find Late Bytes"/>
-				</form>
-				: null
+				!this.state.showList && !this.state.isOpen ?
+				<div>
+					<form onSubmit={this.getRestaurants}>
+						<h4 >ARE YOU HUNGRY?!</h4>
+						<input type="submit" value="Find Late Bytes"/>
+					</form>
+
+				</div>
+
+				: 
+
+				<div>
+					<button type="button" onClick={this.toggleModal}>
+						Close List
+					</button>
+					<RenderList 
+						showListAndHideDash={this.props.showListAndHideDash} 
+						showDashAndHideList={this.props.showDashAndHideList} 
+						restaurants={this.state.restaurants} 
+					/>
+					<button type="button" onClick={this.toggleModal}>
+						Close List
+					</button>
+				</div>	
+			
 			}
-				{this.state.showList ? <RenderList showDashAndHideList={this.props.showDashAndHideList} restaurants={this.state.restaurants}/> : null}
+
 			</div>
 		);
 	}

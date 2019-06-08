@@ -6,7 +6,7 @@ class Header extends React.Component {
 		super();
 	  	this.state = {
 	  		userName: '',
-	  		password: ''	  		
+	  		password: ''	
   		}
 	}
 
@@ -30,7 +30,6 @@ class Header extends React.Component {
 				this.props.setUserInfo(parsedResponse);
 			}
 		}catch(err){
-			// console.log(err);
 			console.error(err)
 		}
 	}
@@ -90,7 +89,7 @@ class Header extends React.Component {
 		   		this.props.loggedIn
 		   		? 
 		      	<div>
-		      		<h4>Welcome to LateNightBytes {this.state.userName}!!!</h4>
+		      		<h4>Welcome back {this.state.userName}!!!</h4>
 		      		<button onClick={this.logOut}>Logout!</button>
 		      	</div>
 		   		:
@@ -138,7 +137,6 @@ class Header extends React.Component {
 					    </div>
 				      </Collapsible>
 					</div>
-
 
 				</div>
 		   	}
