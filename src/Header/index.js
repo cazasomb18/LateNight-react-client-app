@@ -73,11 +73,10 @@ class Header extends React.Component {
   	 	}
 	}
 	render() {
-		// console.log("here is state");
-		// console.log(this.state);
+
 	    return(
 	    	<div>
-			  <Collapsible trigger="ABOUT LATENIGHTBYTES ==> CLICK TO EXPAND/CONTRACT">
+			  <Collapsible trigger="ABOUT LATENIGHTBYTES CLICK TO EXPAND/CONTRACT">
 			  	<h3>HERE IS WHERE YOU WILL WRITE THE USER STORIES</h3>
 			  	<p>USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
 			  	<p>USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
@@ -96,7 +95,7 @@ class Header extends React.Component {
 
 			   	<div>    				
 		    		<div>
-				      <Collapsible trigger="REGISTRATION ==> CLICK TO EXPAND/CONTRACT">
+				      <Collapsible trigger="REGISTRATION CLICK TO EXPAND/CONTRACT">
 						<div className="registerForm">
 						    <div>
 								<h1 className='registerTitle'>Register for LateNight Bytes</h1><br/>
@@ -119,7 +118,7 @@ class Header extends React.Component {
 
 
 		    		</div>
-				      <Collapsible trigger="LOGIN/LOGOUT ==> CLICK TO EXPAND/CONTRACT">
+				      <Collapsible trigger="LOGIN/LOGOUT CLICK TO EXPAND/CONTRACT">
 					    <div className="loginForm">
 				       
 					      	<div>	

@@ -102,9 +102,14 @@ class App extends Component {
                 showListAndHideDash={this.showListAndHideDash}
                 showDashAndHideList={this.showDashAndHideList}
               />
-              
+
           </div>
-          : null
+          : 
+          <div>
+            <h4>
+              Please Login
+            </h4>
+          </div>
         }
 
 

@@ -19,6 +19,9 @@ class Dashboard extends Component {
   }
 
   getUserRestaurantInfo = async (e) => {
+
+    console.log("get user restaurant info being called")
+
     try{
       const userRestaurantsResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/usercomments/', {
         method: 'GET',
@@ -37,6 +40,29 @@ class Dashboard extends Component {
       console.error(err)
     }
   }
+
+  // editComments = async (e) => {
+  //   try{
+  //     const placeId = this.props.place_id;
+  //     const commentId = this.props.comment_id;
+  //     const editCommentResponse = await fetch(REACT_APP_BACK_END_URL + 'restaurants/'+ placeId + '/edit/' + commentId, {
+
+  //       method: 'PUT',
+  //       credentials: 'include',
+  //       body: JSON.stringify(this.state),
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       }
+  //     }
+  //     const parsedCommentResponse = await JSON.stringify.editCommentResponse;
+  //     if (parsedCommentResponse.userName === this.props.userName){
+
+  //     }
+  //   }catch(err){
+  //     console.log(err);
+  //     console.error(err);
+
+  // }
 
   toggleModal = () => {
     if(!this.show) {
@@ -86,7 +112,7 @@ class Dashboard extends Component {
               <button type='button' onClick={this.hideModal}>
                 Hide {this.props.userName}'s Dashboard
               </button>
-                <button onClick={this.getUserComments}>Refresh {this.props.userName}'s Data</button>
+                <button onClick={this.getUserRestaurantInfo}>Refresh {this.props.userName}'s Data</button>
                 <h4>Hi {this.props.userName}, here you can manage all of your created data</h4>
                 <RestaurantComment 
                   userData={this.state.userRestaurants.data}

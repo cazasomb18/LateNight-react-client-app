@@ -49,9 +49,9 @@ class RenderList extends React.Component {
 	        	console.log("props:");
 	        	console.log(this.props);
 	        	this.props.showDashAndHideList();
-	        } else {
+	        } /*else {
 	        	this.props.showListAndHideDash();
-	        }
+	        }*/
 	    }catch(err){
 	        console.error(err)
       	}

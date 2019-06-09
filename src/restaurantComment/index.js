@@ -4,7 +4,7 @@ const RestaurantComment = (props) => {
 
 	console.log(props);
 	const userData = props.userData;
-	const userComments = props.userComments;
+	// const userComments = props.userComments;
 
 
 	const deleteRestaurantComment = async (restaurantPlaceId, commentId) => {
@@ -22,7 +22,13 @@ const RestaurantComment = (props) => {
 	      	console.log(deletedComment)
 
 		      const deletedCommentResponse = await deletedComment.json();
+		      
+		      console.log("parsed deleted comment response: ")
 		      console.log(deletedCommentResponse);
+
+		      console.log("original raw response:")
+		      console.log(deletedComment)
+
 		      if (deletedComment.ok) {
 		      	console.log("are we doing this");
 		      	props.getUserRestaurantInfo();
@@ -34,10 +40,18 @@ const RestaurantComment = (props) => {
 	}
 
 
-	const restaurantList = userData.map((restaurant, i) => {
+	const filteredRestaurantList = userData.filter((restaurant) => {
+		if (restaurant.comments.length < 1) {
+			return false
+		} else {
+			return true 
+		}
+	})
+
+	const restaurantList = filteredRestaurantList.map((restaurant, i) => {
 		
 
-		const thisCommentListWithNulls = userComments.map((comment, j) => {
+		const thisCommentListWithNulls = restaurant.comments.map((comment, j) => {
 			if (comment.restaurant_id[0] === restaurant._id){
 				return(
 					<ul key={`comment-${j}`}>
@@ -46,6 +60,7 @@ const RestaurantComment = (props) => {
 							(e) => { 
 								e.preventDefault();
 								deleteRestaurantComment(restaurant.place_id, comment._id);
+								props.getUserRestaurantInfo();
 							} 
 						}>
 							<button>Delete Comment</button>
@@ -59,20 +74,19 @@ const RestaurantComment = (props) => {
 		})
 		const thisCommentList = thisCommentListWithNulls.filter((e) => e !== null )
 		console.log(thisCommentList);
-		return (
-
-			<div key={`restaurant-${i}`}>
-				<h2>Restaurant: {restaurant.name}</h2><br/>
-				<h6>Google ID: {restaurant.place_id}</h6><br/>
-				<h3> Comments made by: {restaurant.userName} </h3><br/>
-					{thisCommentList}
-				<br/>
-			</div>
-		);
+			return (
+				<div key={`restaurant-${i}`}>
+					<h2>Restaurant: {restaurant.name}</h2><br/>
+					<h6>Google ID: {restaurant.place_id}</h6><br/>
+					<h3> Comments made by: {restaurant.userName} </h3><br/>
+						{thisCommentList.length < 1 ? <h1> No user data </h1> : thisCommentList}
+					<br/>
+				</div>
+			);
 	})
 
 
-	return(
+	return (
 		<div>
 			{restaurantList}
 		</div>
