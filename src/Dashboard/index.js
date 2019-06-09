@@ -83,6 +83,9 @@ class Dashboard extends Component {
   }
 
   editRestaurantComment = async (e) => {
+
+    e.preventDefault()
+
     try{
       const editedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/' + this.state.userRestaurants.data.place_id + '/edit/' + this.state.userRestaurants.foundComments._id +'/', {
 
@@ -97,11 +100,15 @@ class Dashboard extends Component {
       console.log('edited comment response: ', editCommentResponse);
 
     }catch(err){
+      console.log(err);
       console.error(err);
     }
   }
 
   render(){
+    console.log('STATE IN CDM: IN DASHBOARD RENDER', this.state);
+    console.log('PROPS IN CDM: IN DASHBOARD RENDER', this.props);
+
 
     return(
       <div>
@@ -118,24 +125,8 @@ class Dashboard extends Component {
                   userData={this.state.userRestaurants.data}
                   userComments={this.state.userRestaurants.foundComments}
                   getUserRestaurantInfo={this.getUserRestaurantInfo}
-                />
-                <form>
-                  Edit Comment: 
-                  <input
-                    type='text' 
-                    name='comment' 
-                    onChange={this.handleChange} 
-                    value={this.state.comment}
-                  />
-                  
-                  <input 
-                    type='submit' 
-                    onSubmit={this.editRestaurantComment}
-                    value='EDIT'
-                  />
-
-                </form>
-              
+                  editRestaurantComment={this.editRestaurantComment}
+                />              
 
             </div>
             : 

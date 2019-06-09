@@ -1,23 +1,32 @@
-import React { Component } from 'react';
+import React, { Component } from 'react';
 
 //// comment will be edited on mongoDB////
 
 class EditComment extends React.Component{
 	constructor(props){
-	super();
-	this.state = {
-		comment_id:
-		place_id:
-		userName:
+		super();
+		this.state = {
+			placeId: props.commentToEdit.restaurant_id[0],
+			commentId: props.commentToEdit._id,
+			commentBody: props.commentToEdit.commentBody
 		}
 	}
 	componentDidMount(){
+		console.log(this.state);
 
 	}
+	handleChange = (e) => {
+	    e.preventDefault();
+	    this.setState({
+	      [e.currentTarget.name]: e.currentTarget.value 
+	    })
+  	}
 	editComments = async (e) => {
+
+		e.preventDefault()
+
 		try{
-			const ':place_id' = this.props.place_id;
-			const editCommentResponse = await fetch(REACT_APP_BACK_END_URL + 'restaurants/:place_id/edit/:comment_id', {
+			const editCommentResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/' + this.state.placeId + '/edit/' + this.state.commentId, {
 
 				method: 'PUT',
 				credentials: 'include',
@@ -25,20 +34,28 @@ class EditComment extends React.Component{
 				headers: {
 					'Content-Type': 'application/json'
 				}
-			}
-			if (parsedCommentResponse.userName === this.state.userName){
-			}
-			const parsedCommentResponse = await JSON.stringify.editCommentResponse;
+			})
+			const parsedCommentResponse = await editCommentResponse.json();
 		}catch(err){
-			console.log(err);
 			console.error(err);
-
+		}
 	}
 	render(){
+
+		console.log("EDIT COMMENT PROPS");
+		console.log(this.props);
+
+		//FORM LINKED UP TO A NEW BODY W/ SUBMIT AND FETCH CALL
+
 		return(
 			<div>
-				<h1>THIS IS THE EDIT COMMENT DESTRUCTURED COMPONENT</h1>
+				<form onSubmit={this.editComments}>
+					<input type='text' value={this.state.commentBody} onChange={this.handleChange} name="commentBody" />
+					<input type='submit' value='EDIT'/>
+				</form>
 			</div>
 		)
 	}
 };
+
+export default EditComment
