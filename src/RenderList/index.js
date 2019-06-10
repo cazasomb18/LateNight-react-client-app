@@ -94,7 +94,7 @@ class RenderList extends React.Component {
 			)
 		} else {
 			return (
-				<div>
+				<div className="form">
 					<form className="form" onSubmit={this.postRestaurantComments}>
 						Name:<input className="field" readOnly name="name" value={this.state.targetRestaurant.name}></input><br/>
 						Address: <input className="field" readOnly name="address" value={this.state.targetRestaurant.vicinity}></input><br/>

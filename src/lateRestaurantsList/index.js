@@ -14,8 +14,6 @@ class LateRestaurantsList extends React.Component {
 	getRestaurants = async (e) => {
 		e.preventDefault();
 		try {
-			const geoLocURL = process.env.REACT_APP_GEO_URL + this.props.latitude + ',' + this.props.longitude + process.env.REACT_APP_GEO_FIELDS + process.env.REACT_APP_API_KEY;
-			// console.log(geoLocURL);
 			const getRestaurantsResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'restaurants/nearby?searchTerm=' + this.props.latitude + ',' + this.props.longitude, {
 				method: 'GET',
 				credentials: 'include',

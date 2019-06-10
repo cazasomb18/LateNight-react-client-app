@@ -45,8 +45,6 @@ class EditComment extends React.Component{
 		console.log("EDIT COMMENT PROPS");
 		console.log(this.props);
 
-		//FORM LINKED UP TO A NEW BODY W/ SUBMIT AND FETCH CALL
-
 		return(
 			<div>
 				<form className="form" onSubmit={this.editComments}>

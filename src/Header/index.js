@@ -130,10 +130,6 @@ class Header extends React.Component {
 	    	</div>
 	    );
  	 }
-
-  				// 		<div>
-						// 	<h4>Thanks for Registering {this.state.userName}!!!</h4>
-						// </div>
 };
  
 export default Header;
