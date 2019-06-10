@@ -41,29 +41,6 @@ class Dashboard extends Component {
     }
   }
 
-  // editComments = async (e) => {
-  //   try{
-  //     const placeId = this.props.place_id;
-  //     const commentId = this.props.comment_id;
-  //     const editCommentResponse = await fetch(REACT_APP_BACK_END_URL + 'restaurants/'+ placeId + '/edit/' + commentId, {
-
-  //       method: 'PUT',
-  //       credentials: 'include',
-  //       body: JSON.stringify(this.state),
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       }
-  //     }
-  //     const parsedCommentResponse = await JSON.stringify.editCommentResponse;
-  //     if (parsedCommentResponse.userName === this.props.userName){
-
-  //     }
-  //   }catch(err){
-  //     console.log(err);
-  //     console.error(err);
-
-  // }
-
   toggleModal = () => {
     if(!this.show) {
       this.setState({
@@ -115,12 +92,12 @@ class Dashboard extends Component {
           {
             this.state.show === true ? 
             <div>
-              <h1>Welcome to your Dashboard, {this.props.userName}</h1>
-              <button type='button' onClick={this.hideModal}>
+              <h1 className="title">Welcome to your Dashboard, {this.props.userName}</h1>
+              <button className="field" type='button' onClick={this.hideModal}>
                 Hide {this.props.userName}'s Dashboard
               </button>
-                <button onClick={this.getUserRestaurantInfo}>Refresh {this.props.userName}'s Data</button>
-                <h4>Hi {this.props.userName}, here you can manage all of your created data</h4>
+                <button className="field" onClick={this.getUserRestaurantInfo}>Refresh {this.props.userName}'s Data</button>
+                <h4 className="subTitle">Hi {this.props.userName}, here you can manage all of your created data</h4>
                 <RestaurantComment 
                   userData={this.state.userRestaurants.data}
                   userComments={this.state.userRestaurants.foundComments}
@@ -132,7 +109,7 @@ class Dashboard extends Component {
             : 
             <div>
 
-              <button type='button' onClick={this.toggleModal}>
+              <button className="field" type='button' onClick={this.toggleModal}>
                 Show {this.props.userName}'s Dashboard
               </button>
             </div>

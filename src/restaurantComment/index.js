@@ -106,16 +106,16 @@ class RestaurantComment extends Component {
 					return(
 						<ul key={`comment-${j}`}>
 							<p> {comment.commentBody}</p>
-							<form onSubmit={
+							<form className="form" onSubmit={
 								(e) => { 
 									e.preventDefault();
 									deleteRestaurantComment(restaurant.place_id, comment._id);
 									this.props.getUserRestaurantInfo();
 								} 
 							}>
-							<button>Delete Comment</button>
+							<button className="field">Delete Comment</button>
 							</form>
-							{ !this.state.commentToEdit ? <button data-restaurant-id={comment.restaurant_id[0]} data-comment-id={comment._id} onClick={this.setCommentToEdit}> Edit Comment </button> : <EditComment clearCommentToEdit={this.clearCommentToEdit} commentToEdit={this.state.commentToEdit} />}
+							{ !this.state.commentToEdit ? <button className="field" data-restaurant-id={comment.restaurant_id[0]} data-comment-id={comment._id} onClick={this.setCommentToEdit}> Edit Comment </button> : <EditComment clearCommentToEdit={this.clearCommentToEdit} commentToEdit={this.state.commentToEdit} />}
 						</ul>
 					);
 				} 
@@ -126,10 +126,10 @@ class RestaurantComment extends Component {
 			const thisCommentList = thisCommentListWithNulls.filter((e) => e !== null )
 			console.log(thisCommentList);
 				return (
-					<div key={`restaurant-${i}`}>
-						<h2>Restaurant: {restaurant.name}</h2><br/>
-						<h6>Google ID: {restaurant.place_id}</h6><br/>
-						<h3> Comments made by: {restaurant.userName} </h3><br/>
+					<div className="form" key={`restaurant-${i}`}>
+						<h2 className="title">Restaurant: {restaurant.name}</h2><br/>
+						<h6 className="subTitle">Google ID: {restaurant.place_id}</h6><br/>
+						<h3 className="subTitle"> Comments made by: {restaurant.userName} </h3><br/>
 							{thisCommentList.length < 1 ? <h1> No user data </h1> : thisCommentList}
 						<br/>
 					</div>

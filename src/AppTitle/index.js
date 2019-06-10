@@ -3,7 +3,7 @@ import React from 'react';
 const AppTitle = (props) => {
 	if (props.userName === ''){	
 		return (
-			<div>
+			<div className="form">
 		        <h1 className="appTitle">
 		        LateNightBytes
 		        </h1>
@@ -11,8 +11,8 @@ const AppTitle = (props) => {
 		)
 	} else {
 		return (
-			<div>
-				<h1>
+			<div className="form">
+				<h1 className="appTitle">
 					Welcome Back to LateNightBytes, {props.userName}!
 				</h1>
 			</div>

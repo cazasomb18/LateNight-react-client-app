@@ -73,11 +73,11 @@ class RenderList extends React.Component {
 		const renderList = restaurants.map((restaurant, i) => {
 		return(
 			<li key={i}>
-				<form>
+				<form className="form">
 					Name: {restaurant.name}<br/>
 					Address: {restaurant.vicinity}<br/>
 					ID: {restaurant.place_id}<br/>
-					<button id={i} onClick={this.addCommentView}>Add Comment </button> 
+					<button className="field" id={i} onClick={this.addCommentView}>Add Comment </button> 
 				</form>
 			</li>
 		)
@@ -85,9 +85,9 @@ class RenderList extends React.Component {
 
 		if (!this.state.addingComment) {
 			return (
-				<div className='renderList'>
-					<h4>LATENIGHTBYTES LIST IS HERE</h4> 
-					<ul>
+				<div className="form">
+					<h4 className="subTitle">LATENIGHTBYTES LIST IS HERE</h4> 
+					<ul className="form">
 					{renderList}
 					</ul>
 				</div>
@@ -95,12 +95,12 @@ class RenderList extends React.Component {
 		} else {
 			return (
 				<div>
-					<form onSubmit={this.postRestaurantComments}>
-						Name:<input readOnly name="name" value={this.state.targetRestaurant.name}></input><br/>
-						Address: <input readOnly name="address" value={this.state.targetRestaurant.vicinity}></input><br/>
-						ID: <input readOnly name="place_id" value={this.state.targetRestaurant.place_id}></input><br/>
-						<textarea onChange={this.handleChange} name='commentInput'/>
-						<input type='submit' value='comment'/>
+					<form className="form" onSubmit={this.postRestaurantComments}>
+						Name:<input className="field" readOnly name="name" value={this.state.targetRestaurant.name}></input><br/>
+						Address: <input className="field" readOnly name="address" value={this.state.targetRestaurant.vicinity}></input><br/>
+						ID: <input className="field" className="field" readOnly name="place_id" value={this.state.targetRestaurant.place_id}></input><br/>
+						<textarea className="field" onChange={this.handleChange} name='commentInput'/>
+						<input className="field" type='submit' value='comment'/>
 					</form>
 				</div>
 			)

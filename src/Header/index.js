@@ -75,65 +75,49 @@ class Header extends React.Component {
 	render() {
 
 	    return(
-	    	<div>
-			  <Collapsible trigger="ABOUT LATENIGHTBYTES CLICK TO EXPAND/CONTRACT">
-			  	<h3>HERE IS WHERE YOU WILL WRITE THE USER STORIES</h3>
-			  	<p>USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
-			  	<p>USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
-			  	<p>USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
-			  	<p>USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
+	    	<div className="form">
+			  <Collapsible className="title" trigger="ABOUT LATE NIGHT BYTES">
+			  	<h3 className="title">HERE IS WHERE YOU WILL WRITE THE USER STORIES</h3>
+			  	<p className="subTitle">USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
+			  	<p className="subTitle">USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
+			  	<p className="subTitle">USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
+			  	<p className="subTitle">USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
 			  </Collapsible>
 
 		   	{ 
 		   		this.props.loggedIn
 		   		? 
-		      	<div>
-		      		<h4>Welcome back {this.state.userName}!!!</h4>
-		      		<button onClick={this.logOut}>Logout!</button>
+		      	<div className="form">
+		      		<h4 className="title">Welcome back {this.state.userName}!!!</h4>
+		      		<button className="field" onClick={this.logOut}>Logout!</button>
 		      	</div>
 		   		:
 
-			   	<div>    				
-		    		<div>
-				      <Collapsible trigger="REGISTRATION CLICK TO EXPAND/CONTRACT">
-						<div className="registerForm">
-						    <div>
-								<h1 className='registerTitle'>Register for LateNight Bytes</h1><br/>
-								<p>CREATE AN ACCOUNT!</p>
-								<form onSubmit={this.handleRegister}>
-									<h4 >Username:</h4>
-									<input type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
-									<h4 >Password:</h4>
-									<input type="password" name="password" placeholder="********" onChange={this.handleChange}/><br/>
-									<h4 >Email:</h4>
-									<input type="email" name="email" placeholder="email" onChange={this.handleChange}/><br/>
-									<input type="submit" value="Register!"/>
+			   	<div className="form">    				
+		    		<div className="form">
+				      <Collapsible className="title" trigger="REGISTRATION">
+								<h1 className="title">Register for LateNight Bytes</h1><br/>
+								<h3 className="subTitle">CREATE AN ACCOUNT!</h3>
+								<form className="form" onSubmit={this.handleRegister}>
+									<input className="field" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
+									<input className="field" type="password" name="password" placeholder="password" onChange={this.handleChange}/><br/>
+									<input className="field" type="email" name="email" placeholder="email" onChange={this.handleChange}/><br/>
+									<input className="field" type="submit" value="Register!"/>
 								</form>
-						    </div>
-							
-						
-						</div>
+
 				      </Collapsible>
 					<div>
 
 
 		    		</div>
-				      <Collapsible trigger="LOGIN/LOGOUT CLICK TO EXPAND/CONTRACT">
-					    <div className="loginForm">
-				       
-					      	<div>	
-						      <h1 className='loginTitle'>Login for LateNight Bytes</h1><br/>
-						      <p>LOGIN TO LATENIGHTBYTES!</p>
-						        <form onSubmit={this.handleLogin}>
-						          <h4 >Username:</h4>
-						          <input type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
-						          <h4 >Password:</h4>
-						          <input type="password" name="password" placeholder="password" onChange={this.handleChange}/><br/>
-						          <input type="submit" value="Login!"/>
+				      <Collapsible className="title" trigger="LOGIN/LOGOUT">	
+						      <h1 className="title">Login for LateNight Bytes</h1><br/>
+						      <h3 className="subTitle">LOGIN TO LATENIGHTBYTES!</h3>
+						        <form className="form" onSubmit={this.handleLogin}>
+						          <input className="field" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
+						          <input className="field" type="password" name="password" placeholder="password" onChange={this.handleChange}/><br/>
+						          <input className="field" type="submit" value="Login!"/>
 						        </form>
-					      	</div>
-
-					    </div>
 				      </Collapsible>
 					</div>
 

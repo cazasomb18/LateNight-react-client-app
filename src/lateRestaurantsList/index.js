@@ -49,9 +49,9 @@ class LateRestaurantsList extends React.Component {
 			{
 				!this.state.showList && !this.state.isOpen ?
 				<div>
-					<form onSubmit={this.getRestaurants}>
-						<h4 >ARE YOU HUNGRY?!</h4>
-						<input type="submit" value="Find Late Bytes"/>
+					<form className="form" onSubmit={this.getRestaurants}>
+						<h4 className="field" >ARE YOU HUNGRY?!</h4>
+						<input className="field" type="submit" value="Find Late Bytes"/>
 					</form>
 
 				</div>
@@ -59,7 +59,7 @@ class LateRestaurantsList extends React.Component {
 				: 
 
 				<div>
-					<button type="button" onClick={this.toggleModal}>
+					<button className="field" type="button" onClick={this.toggleModal}>
 						Close List
 					</button>
 					<RenderList 
@@ -67,7 +67,7 @@ class LateRestaurantsList extends React.Component {
 						showDashAndHideList={this.props.showDashAndHideList} 
 						restaurants={this.state.restaurants} 
 					/>
-					<button type="button" onClick={this.toggleModal}>
+					<button className="field" type="button" onClick={this.toggleModal}>
 						Close List
 					</button>
 				</div>	

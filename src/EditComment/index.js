@@ -49,9 +49,9 @@ class EditComment extends React.Component{
 
 		return(
 			<div>
-				<form onSubmit={this.editComments}>
-					<input type='text' value={this.state.commentBody} onChange={this.handleChange} name="commentBody" />
-					<input type='submit' value='EDIT'/>
+				<form className="form" onSubmit={this.editComments}>
+					<input className="field" type='text' value={this.state.commentBody} onChange={this.handleChange} name="commentBody" />
+					<input className="field" type='submit' value='EDIT'/>
 				</form>
 			</div>
 		)

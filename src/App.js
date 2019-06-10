@@ -75,7 +75,7 @@ class App extends Component {
     return (
       <main>
         <div>
-          { this.state.lat === '' ? null : <h6> {this.state.lat + ", " + this.state.lng} </h6> }
+          { this.state.lat === '' ? null : <h6 className="coordinates" > {this.state.lat + ", " + this.state.lng} </h6> }
           <AppTitle 
             userName={this.state.userName}/>
           <Header 
@@ -106,7 +106,7 @@ class App extends Component {
           </div>
           : 
           <div>
-            <h4>
+            <h4 className="subTitle">
               Please Login
             </h4>
           </div>
