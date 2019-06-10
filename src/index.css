@@ -38,6 +38,7 @@ button:hover {
 	border-radius: 4px;
 	position: relative;
 	transition: 0.3s all;
+	border: 1px solid rgba(255,133,43,1);
 }
 
 .form {
@@ -55,7 +56,12 @@ button:hover {
 	text-transform: underline;
 }
 
-
+.userStory {
+	font-family: "Monaco";
+	color: rgba(179,76,0,1);
+	background-color: rgba(28,232,196,1);
+	margin: 0 auto;
+}
 
 .title {
 	font-family: "Monaco";
