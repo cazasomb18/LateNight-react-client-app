@@ -5,6 +5,7 @@
   "proxy": "https://maps.googleapis.com/maps/api/place/nearbysearch/",
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "google-maps-react": "^2.0.2",
     "react": "^16.8.6",
     "react-collapsible": "^2.6.0",
     "react-dom": "^16.8.6",

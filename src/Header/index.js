@@ -76,7 +76,7 @@ class Header extends React.Component {
 
 	    return(
 	    	<div className="form">
-			  <Collapsible className="title" trigger="ABOUT LATE NIGHT BYTES">
+			  <Collapsible className="title" className="collapsible" trigger="ABOUT LATE NIGHT BYTES">
 			  	<h3 className="title">What is Late Night Bytes?</h3>
 			  	<p className="userStory">Late Night Bytes consumes google maps and places api to find late night food in your area.</p>
 			  	<p className="userStory">Make sure you agree to share your location, Late Night Bytes is dependent up on this to <br/> return the restaurants that match your location, sound good?  GREAT! </p>
@@ -96,7 +96,7 @@ class Header extends React.Component {
 	   		:
 
 		   	<div className="form">    				
-		      <Collapsible className="title" trigger="REGISTRATION">
+		      <Collapsible className="title" className="collapsible" trigger="REGISTRATION">
 						<h1 className="title">Register for LateNight Bytes</h1><br/>
 						<h3 className="subTitle">CREATE AN ACCOUNT!</h3>
 						<form className="form" onSubmit={this.handleRegister}>
@@ -110,7 +110,7 @@ class Header extends React.Component {
 
 
     		</div>
-		      <Collapsible className="title" trigger="LOGIN/LOGOUT">	
+		      <Collapsible className="title" className="collapsible" trigger="LOGIN/LOGOUT">	
 				      <h1 className="title">Login for LateNight Bytes</h1><br/>
 				      <h3 className="subTitle">LOGIN TO LATENIGHTBYTES!</h3>
 				        <form className="form" onSubmit={this.handleLogin}>

@@ -5,6 +5,8 @@ import Header from './Header';
 import AppTitle from './AppTitle';
 import LateRestaurantsList from './LateRestaurantsList';
 import Dashboard from './Dashboard';
+import MapContainer from './Map';
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 class App extends Component {
   constructor(props){
@@ -120,3 +122,4 @@ class App extends Component {
 }
 
 export default App;
+              // < MapContainer/>

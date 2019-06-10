@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-//// comment will be edited on mongoDB////
-
 class EditComment extends React.Component{
 	constructor(props){
 		super();

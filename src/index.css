@@ -22,7 +22,19 @@ div {
 
 button:hover {
 	background-color: rgba(255,133,43,0.45);
-	box-shadow: 0px 4px 20px 0px rgba(179,76,0,0.05);
+	box-shadow: 0px 4px 20px 0px rgba(179,76,0,0.1);
+}
+
+.collapsible {
+	font-family: "Monaco";
+	color: rgba(179,76,0,1);
+	background-color: rgba(28,232,196,1);
+	margin: 0 auto;
+	font-weight: 800;
+}
+
+.collapsible:hover {
+	color: rgba(255,0,0,1);
 }
 
 .header{
@@ -38,7 +50,7 @@ button:hover {
 	border-radius: 4px;
 	position: relative;
 	transition: 0.3s all;
-	border: 1px solid rgba(255,133,43,1);
+	border: 2px solid rgba(255,133,43,1);
 }
 
 .form {

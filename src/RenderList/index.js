@@ -86,7 +86,7 @@ class RenderList extends React.Component {
 		if (!this.state.addingComment) {
 			return (
 				<div className="form">
-					<h4 className="subTitle">LATENIGHTBYTES LIST IS HERE</h4> 
+					<h4 className="subTitle">LATE NIGHT BYTES LIST</h4> 
 					<ul className="form">
 					{renderList}
 					</ul>
