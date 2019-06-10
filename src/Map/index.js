@@ -3,8 +3,8 @@ import GoogleMapsReact from 'google-maps-react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 const style = {
-  width: '25%',
-  height: '25%'
+  width: '35%',
+  height: '35%'
 }
 
 class MapContainer extends Component {
@@ -16,11 +16,27 @@ class MapContainer extends Component {
       geometry: []
     })
   }
+  componentDidMount(){
+    console.log('this.state in MAP CDM: ', this.state);
+    console.log('this.props in MAP CDM: ', this.props);
+  }
+  getMapData = async (e) => {
+    const mapData = await fetch(process.env.REACT_APP_GOOGLE_MAPS_URL + process.env.REACT_APP_API_KEY, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application.json()'
+      }
+
+    })
+    const parsedMapData = await mapData.json();
+  }
   render(){
+    console.log(this.parsedMapData);
     return(
     <div>
-      <Map 
-        google={this.props.google}
+      <Map
+        google={this.parsedMapData}
         style={style}
         center={{
           lat: 41.87,
@@ -30,11 +46,6 @@ class MapContainer extends Component {
         onClick={this.onMapClicked}>
 
         <Marker onClick={this.onMarkerClick} name={'Current Location'}/>
-
-        <InfoWindow onClose={this.onInfoWindowClose}>
-          <div>
-          </div>
-        </InfoWindow>
       </Map>
     </div>
       );

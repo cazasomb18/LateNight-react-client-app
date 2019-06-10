@@ -10,7 +10,7 @@ class RenderList extends React.Component {
 		}
 	}
 	componentDidMount(){
-		console.log('renderList state/props: ', this.state, this.props);
+		// console.log('renderList state/props: ', this.state, this.props);
 	}
 
 	handleChange = (e) => {
@@ -65,11 +65,11 @@ class RenderList extends React.Component {
 
 	}
 	render(){ 
-		console.log("here is props, we are looking for get user getUserRestaurantInfo");
-		console.log(this.props);
-		console.log(this.state);
+		// console.log("here is props, we are looking for get user getUserRestaurantInfo");
+		// console.log(this.props);
+		// console.log(this.state);
 		const restaurants = this.props.restaurants;
-		console.log(restaurants);
+		// console.log(restaurants);
 		const renderList = restaurants.map((restaurant, i) => {
 		return(
 			<li key={i}>

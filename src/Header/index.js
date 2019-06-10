@@ -25,7 +25,7 @@ class Header extends React.Component {
 				}
 			})
 			const parsedResponse = await registerResponse.json();
-			console.log("parsedResponse: ", parsedResponse);
+			// console.log("parsedResponse: ", parsedResponse);
 			if (parsedResponse.registered === true) {
 				this.props.setUserInfo(parsedResponse);
 			}
@@ -106,13 +106,10 @@ class Header extends React.Component {
 							<input className="field" type="submit" value="Register!"/>
 						</form>
 		      </Collapsible>
-			<div>
 
-
-    		</div>
 		      <Collapsible className="title" className="collapsible" trigger="LOGIN/LOGOUT">	
-				      <h1 className="title">Login for LateNight Bytes</h1><br/>
-				      <h3 className="subTitle">LOGIN TO LATENIGHTBYTES!</h3>
+				      <h1 className="title">Login for Late Night Bytes</h1><br/>
+				      <h3 className="subTitle">LOGIN!</h3>
 				        <form className="form" onSubmit={this.handleLogin}>
 				          <input className="field" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
 				          <input className="field" type="password" name="password" placeholder="password" onChange={this.handleChange}/><br/>

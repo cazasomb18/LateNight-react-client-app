@@ -9,9 +9,9 @@ class RestaurantComment extends Component {
 		}
 	}
 	setCommentToEdit = (e) => {
-		console.log("set comment to edit triggered")
-		console.log("restaurant ID: ", e.currentTarget.dataset.restaurantId)
-		console.log("comment ID: ", e.currentTarget.dataset.commentId)
+		// console.log("set comment to edit triggered")
+		// console.log("restaurant ID: ", e.currentTarget.dataset.restaurantId)
+		// console.log("comment ID: ", e.currentTarget.dataset.commentId)
 
 		const restaurantId = e.currentTarget.dataset.restaurantId;
 		const commentId = e.currentTarget.dataset.commentId;
@@ -23,8 +23,8 @@ class RestaurantComment extends Component {
 				return false
 			}
 		})
-		console.log('this is the found restaurant')
-		console.log(foundRestaurant)
+		// console.log('this is the found restaurant')
+		// console.log(foundRestaurant)
 
 		const foundComment = foundRestaurant.comments.find((comment) => {
 			if (comment._id === commentId) {
@@ -100,8 +100,8 @@ class RestaurantComment extends Component {
 			const thisCommentListWithNulls = restaurant.comments.map((comment, j) => {
 				if (comment.restaurant_id[0] === restaurant._id){
 
-					console.log("comment:")
-					console.log(comment)
+					// console.log("comment:")
+					// console.log(comment)
 
 					return(
 						<ul key={`comment-${j}`}>
@@ -124,7 +124,7 @@ class RestaurantComment extends Component {
 				}
 			})
 			const thisCommentList = thisCommentListWithNulls.filter((e) => e !== null )
-			console.log(thisCommentList);
+			// console.log(thisCommentList);
 				return (
 					<div className="form" key={`restaurant-${i}`}>
 						<h2 className="title">Restaurant: {restaurant.name}</h2><br/>

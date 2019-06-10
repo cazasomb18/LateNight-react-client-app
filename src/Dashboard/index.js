@@ -93,10 +93,10 @@ class Dashboard extends Component {
             this.state.show === true ? 
             <div>
               <h1 className="title">Welcome to your Dashboard, {this.props.userName}</h1>
-              <button className="field" type='button' onClick={this.hideModal}>
+              <button className="dashboardField" type='button' onClick={this.hideModal}>
                 Hide {this.props.userName}'s Dashboard
               </button>
-                <button className="field" onClick={this.getUserRestaurantInfo}>Refresh {this.props.userName}'s Dashboard</button>
+                <button className="dashboardField" onClick={this.getUserRestaurantInfo}>Refresh {this.props.userName}'s Dashboard</button>
                 <h4 className="subTitle">Hi {this.props.userName}, here you can manage all of your created data</h4>
                 <RestaurantComment 
                   userData={this.state.userRestaurants.data}
@@ -109,7 +109,7 @@ class Dashboard extends Component {
             : 
             <div>
 
-              <button className="field" type='button' onClick={this.toggleModal}>
+              <button className="dashboardField" type='button' onClick={this.toggleModal}>
                 Show {this.props.userName}'s Dashboard
               </button>
             </div>
