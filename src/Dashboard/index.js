@@ -88,7 +88,7 @@ class Dashboard extends Component {
 
 
     return(
-      <div>
+      <div className="form">
           {
             this.state.show === true ? 
             <div>
@@ -96,7 +96,7 @@ class Dashboard extends Component {
               <button className="field" type='button' onClick={this.hideModal}>
                 Hide {this.props.userName}'s Dashboard
               </button>
-                <button className="field" onClick={this.getUserRestaurantInfo}>Refresh {this.props.userName}'s Data</button>
+                <button className="field" onClick={this.getUserRestaurantInfo}>Refresh {this.props.userName}'s Dashboard</button>
                 <h4 className="subTitle">Hi {this.props.userName}, here you can manage all of your created data</h4>
                 <RestaurantComment 
                   userData={this.state.userRestaurants.data}

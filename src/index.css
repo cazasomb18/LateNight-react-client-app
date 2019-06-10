@@ -52,16 +52,20 @@ button:hover {
 	color: rgba(179,76,0,1);
 	background-color: rgba(28,232,196,1);
 	margin: 0 auto;
+	text-transform: underline;
 }
+
+
 
 .title {
 	font-family: "Monaco";
 	color: rgba(179,76,0,1);
 	background-color: rgba(28,232,196,1);
 	margin: 0 auto;
+	font-weight: 800;
 }
 
-.subTitle{
+.subTitle {
 	font-family: "Monaco";
 	color: rgba(255,133,43,1);
 	background-color: rgba(28,232,196,1);
@@ -80,6 +84,3 @@ button:hover {
 .coordinates:hover {
 	color: rgba(255,0,0,1);
 }
-
-
-/*classes we will need to create: forms, fields, buttons, list headers*/

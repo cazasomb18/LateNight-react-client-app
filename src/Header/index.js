@@ -77,11 +77,12 @@ class Header extends React.Component {
 	    return(
 	    	<div className="form">
 			  <Collapsible className="title" trigger="ABOUT LATE NIGHT BYTES">
-			  	<h3 className="title">HERE IS WHERE YOU WILL WRITE THE USER STORIES</h3>
-			  	<p className="subTitle">USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
-			  	<p className="subTitle">USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
-			  	<p className="subTitle">USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
-			  	<p className="subTitle">USER STORIES WILL GO HERE USER STORIES WILL GO HERE USER STORIES WILL GO HERE </p>
+			  	<h3 className="title">What is Late Night Bytes?</h3>
+			  	<p className="subTitle">Late Night Bytes consumes google maps and places api to find late night food in your area.</p>
+			  	<p className="subTitle">Create an account by clicking the 'REGISTER' drop down menu and you will be logged in. </p>
+			  	<p className="subTitle">After you're logged in, try the 'FIND LATE BYTES' button, it will <br/>show you all the restaurants in your area!</p>
+			  	<p className="subTitle">If you see something you like on the list, go ahead and leave a comment, <br/>this information will be stored in your dashboard. </p>
+			  	<p className="subTitle">Your dashboard is your private information, and no one else can access it.  <br/>This a good way to keep track of your favorite late night bytes! </p>
 			  </Collapsible>
 
 		   	{ 
