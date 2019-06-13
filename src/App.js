@@ -15,7 +15,7 @@ class App extends Component {
       loggedIn: false,
       isRegistered: false,
       userName: '',
-      restaurants: [],
+      restaurants: [this.props.restaurants],
       comments: [],
       showList: false,
       showDash: false,
@@ -75,7 +75,7 @@ class App extends Component {
   }
   render(){
     console.log('STATE IN APP RENDER(): ', this.state);
-    console.log('PROPS IN APP RENDER(): ', this.props);
+    // console.log('PROPS IN APP RENDER(): ', this.props);
     return (
       <main>
         <div>
@@ -107,7 +107,6 @@ class App extends Component {
                 showDashAndHideList={this.showDashAndHideList}
               />
 
-
           </div>
           : 
           <div>
@@ -125,5 +124,8 @@ class App extends Component {
 }
 
 export default App;
+
               // < MapContainer
+              //   latitude={this.state.lat}
+              //   longitude={this.state.lng}
               // />

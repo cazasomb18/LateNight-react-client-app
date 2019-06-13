@@ -1,10 +1,13 @@
 import React from 'react';
 import RenderList from '../RenderList';
+import MapContainer from '../Map';
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 
 class LateRestaurantsList extends React.Component {
 	constructor(props){
 		super(props);
+		this.getRestaurants.bind(this);
 		this.state = {
 			restaurants: [],
 			showList: false,
@@ -27,6 +30,7 @@ class LateRestaurantsList extends React.Component {
 			// console.log(response);
 			this.setState({
 				restaurants: response,
+				isOpen: true,
 				showList: true
 			})
 		} catch(err) {
@@ -63,12 +67,20 @@ class LateRestaurantsList extends React.Component {
 					<RenderList 
 						showListAndHideDash={this.props.showListAndHideDash} 
 						showDashAndHideList={this.props.showDashAndHideList} 
-						restaurants={this.state.restaurants} 
+						restaurants={this.state.restaurants}
 					/>
+
+					<MapContainer
+                		latitude={this.props.latitude}
+                		longitude={this.props.longitude}
+                		restaurants={this.state.restaurants}
+              		/>
+
 					<button className="field" type="button" onClick={this.toggleModal}>
 						Close List
 					</button>
 				</div>	
+
 			
 			}
 

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import RenderList from '../RenderList';
 import RestaurantComment from '../RestaurantComment';
 
 class Dashboard extends Component {
   constructor(props){
-    console.log('constructor');
+    // console.log('constructor');
     super(props);
     this.state = {
       restaurants: [],
@@ -13,15 +12,14 @@ class Dashboard extends Component {
     }
   }
   componentDidMount(){
-    console.log('STATE IN CDM: IN DASHBOARD', this.state);
-    console.log('PROPS IN CDM: IN DASHBOARD', this.props);
+    // console.log('STATE IN CDM: IN DASHBOARD', this.state);
+    // console.log('PROPS IN CDM: IN DASHBOARD', this.props);
     this.getUserRestaurantInfo()
   }
 
   getUserRestaurantInfo = async (e) => {
 
-    console.log("get user restaurant info being called")
-
+    /// THIS FETCH CALL RETURNS ALL THE DATA ASSOCIATED WITH THE LOGGED IN USER////
     try{
       const userRestaurantsResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/usercomments/', {
         method: 'GET',
@@ -83,15 +81,15 @@ class Dashboard extends Component {
   }
 
   render(){
-    console.log('STATE IN CDM: IN DASHBOARD RENDER', this.state);
-    console.log('PROPS IN CDM: IN DASHBOARD RENDER', this.props);
+    // console.log('STATE IN CDM: IN DASHBOARD RENDER', this.state);
+    // console.log('PROPS IN CDM: IN DASHBOARD RENDER', this.props);
 
 
     return(
-      <div className="form">
+      <div>
           {
             this.state.show === true ? 
-            <div>
+            <div className="dashboardFieldContainer">
               <h1 className="title">Welcome to your Dashboard, {this.props.userName}</h1>
               <button className="dashboardField" type='button' onClick={this.hideModal}>
                 Hide {this.props.userName}'s Dashboard
@@ -107,7 +105,7 @@ class Dashboard extends Component {
 
             </div>
             : 
-            <div>
+            <div className="dashboardFieldContainer">
 
               <button className="dashboardField" type='button' onClick={this.toggleModal}>
                 Show {this.props.userName}'s Dashboard

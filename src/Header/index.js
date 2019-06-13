@@ -75,15 +75,15 @@ class Header extends React.Component {
 	render() {
 
 	    return(
-	    	<div className="form">
-			  <Collapsible className="title" className="collapsible" trigger="ABOUT LATE NIGHT BYTES">
+	    	<div className="userStoryContainer">
+			  <Collapsible className="title" trigger="ABOUT LATE NIGHT BYTES">
 			  	<h3 className="title">What is Late Night Bytes?</h3>
-			  	<p className="userStory">Late Night Bytes consumes google maps and places api to find late night food in your area.</p>
-			  	<p className="userStory">Make sure you agree to share your location, Late Night Bytes is dependent up on this to <br/> return the restaurants that match your location, sound good?  GREAT! </p>
-			  	<p className="userStory">Create an account by clicking the 'REGISTER' drop down menu and you will be logged in. </p>
-			  	<p className="userStory">After you're logged in, try the 'FIND LATE BYTES' button, it will <br/>show you all the restaurants in your area!</p>
-			  	<p className="userStory">If you see something you like on the list, go ahead and leave a comment, <br/>this information will be stored in your dashboard. </p>
-			  	<p className="userStory">Your dashboard is your private information, and no one else can access it.  <br/>This a good way to keep track of your favorite late night bytes! </p>
+			  	<p className="userStoryPTag">Late Night Bytes consumes google maps and places api to find late night food in your area.</p>
+			  	<p className="userStoryPTag">Make sure you agree to share your location, Late Night Bytes is dependent up on this to return the restaurants that match your location, sound good?  GREAT! </p>
+			  	<p className="userStoryPTag">Create an account by clicking the 'REGISTER' drop down menu and you will be logged in. </p>
+			  	<p className="userStoryPTag">After you're logged in, try the 'FIND LATE BYTES' button, it will show you all the restaurants in your area!</p>
+			  	<p className="userStoryPTag">If you see something you like on the list, go ahead and leave a comment, this information will be stored in your dashboard. </p>
+			  	<p className="userStoryPTag">Your dashboard is your private information, and no one else can access it. This a good way to keep track of your favorite late night bytes! </p>
 			  </Collapsible>
 
 	   	{ 
@@ -96,7 +96,7 @@ class Header extends React.Component {
 	   		:
 
 		   	<div className="form">    				
-		      <Collapsible className="title" className="collapsible" trigger="REGISTRATION">
+		      <Collapsible className="title" trigger="REGISTRATION">
 						<h1 className="title">Register for LateNight Bytes</h1><br/>
 						<h3 className="subTitle">CREATE AN ACCOUNT!</h3>
 						<form className="form" onSubmit={this.handleRegister}>
@@ -107,7 +107,7 @@ class Header extends React.Component {
 						</form>
 		      </Collapsible>
 
-		      <Collapsible className="title" className="collapsible" trigger="LOGIN/LOGOUT">	
+		      <Collapsible className="title" trigger="LOGIN/LOGOUT">	
 				      <h1 className="title">Login for Late Night Bytes</h1><br/>
 				      <h3 className="subTitle">LOGIN!</h3>
 				        <form className="form" onSubmit={this.handleLogin}>
@@ -116,7 +116,7 @@ class Header extends React.Component {
 				          <input className="field" type="submit" value="Login!"/>
 				        </form>
 		      </Collapsible>
-		</div>
+			</div>
 		   	}
 
 

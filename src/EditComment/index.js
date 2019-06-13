@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 class EditComment extends React.Component{
 	constructor(props){
@@ -34,14 +34,15 @@ class EditComment extends React.Component{
 				}
 			})
 			const parsedCommentResponse = await editCommentResponse.json();
+			// console.log(parsedCommentResponse);
 		}catch(err){
 			console.error(err);
 		}
 	}
 	render(){
 
-		console.log("EDIT COMMENT PROPS");
-		console.log(this.props);
+		// console.log("EDIT COMMENT PROPS");
+		// console.log(this.props);
 
 		return(
 			<div>

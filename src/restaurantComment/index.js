@@ -45,11 +45,11 @@ class RestaurantComment extends Component {
 		})
 	}
 	render(){
-		console.log("restaurant comment props:")
-		console.log(this.props);
+		// console.log("restaurant comment props:")
+		// console.log(this.props);
 
-		console.log("restaurant comment state:")
-		console.log(this.state)
+		// console.log("restaurant comment state:")
+		// console.log(this.state)
 
 		const userData = this.props.userData;
 
@@ -93,15 +93,12 @@ class RestaurantComment extends Component {
 				return true 
 			}
 		})
-
+//// NESTED MAP - ONE RETURNS THE RESTAURANT INFO, OTHER RETURNS THE COMMENT INTO /////
 		const restaurantList = filteredRestaurantList.map((restaurant, i) => {
 			
 
 			const thisCommentListWithNulls = restaurant.comments.map((comment, j) => {
 				if (comment.restaurant_id[0] === restaurant._id){
-
-					// console.log("comment:")
-					// console.log(comment)
 
 					return(
 						<ul key={`comment-${j}`}>
@@ -123,8 +120,8 @@ class RestaurantComment extends Component {
 					return null 
 				}
 			})
+			/// FILTERS OUT NULL COMMENT ARRAYS FROM DATA USER'S DATA OBJECT ///
 			const thisCommentList = thisCommentListWithNulls.filter((e) => e !== null )
-			// console.log(thisCommentList);
 				return (
 					<div className="form" key={`restaurant-${i}`}>
 						<h2 className="title">Restaurant: {restaurant.name}</h2><br/>
@@ -138,7 +135,7 @@ class RestaurantComment extends Component {
 
 
 		return (
-			<div>
+			<div className="form">
 				{restaurantList}
 			</div>
 		)
