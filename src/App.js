@@ -124,8 +124,3 @@ class App extends Component {
 }
 
 export default App;
-
-              // < MapContainer
-              //   latitude={this.state.lat}
-              //   longitude={this.state.lng}
-              // />

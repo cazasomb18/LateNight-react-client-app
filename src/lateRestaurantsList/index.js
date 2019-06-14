@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import RenderList from '../RenderList';
 import MapContainer from '../Map';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
