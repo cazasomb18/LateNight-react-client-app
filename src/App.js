@@ -74,7 +74,7 @@ class App extends Component {
     })
   }
   render(){
-    console.log('STATE IN APP RENDER(): ', this.state);
+    // console.log('STATE IN APP RENDER(): ', this.state);
     // console.log('PROPS IN APP RENDER(): ', this.props);
     return (
       <main>
