@@ -37,5 +37,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "###### (may possibly change the name to \"Blacked Out Bytes\")",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cazasomb18/LateNight-react-client-app.git"
+  },
+  "author": "Clayton Smith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cazasomb18/LateNight-react-client-app/issues"
+  },
+  "homepage": "https://github.com/cazasomb18/LateNight-react-client-app#readme"
 }

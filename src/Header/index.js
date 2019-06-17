@@ -16,7 +16,7 @@ class Header extends React.Component {
 	handleRegister = async (e) => {
 		e.preventDefault();
 		try{			
-			const registerResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/register/', {
+			const registerResponse = await fetch(process.env.REACT_APP_PYTHON_BACKEND_URL + 'auth/register/', {
 				method: 'POST',
 				credentials: 'include',
 				body: JSON.stringify(this.state),
@@ -36,26 +36,28 @@ class Header extends React.Component {
   	handleLogin = async (e) => {
     	e.preventDefault();
     	try{
-     		const loginResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/login/', {
+     		const loginResponse = await fetch(process.env.REACT_APP_PYTHON_BACKEND_URL + 'auth/login/', {
      	  		method: 'POST',
-     	 		credentials: 'include', 
+     	 		credentials: 'include',
      	  		body: JSON.stringify(this.state),
      	  		headers: {
      	    		'Content-Type': 'application/json'
-     	  		}	
+     	  		}
  	  		})
      		const parsedResponse = await loginResponse.json();
-     		// console.log('parsedResponse: ', parsedResponse);
-     		if (parsedResponse.success === true) {
-     			this.props.setUserInfo(parsedResponse)
-     		}
+     		console.log('parsedResponse: ', parsedResponse);
+ 			// if (parsedResponse.success === true) {
+			this.props.setUserInfo(parsedResponse);
+     		// } else {
+     			// console.log('no success message');
+     		// }
     	}catch(err){
       		console.error(err);
     	}
   	}
   	logOut = async (e) => {
   		try{
-  	   		const logoutResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/logout/', {
+  	   		const logoutResponse = await fetch(process.env.REACT_APP_PYTHON_BACKEND_URL + 'auth/logout/', {
   	     		method: 'GET',
   	     		credentials: 'include',
   	     		headers: {
