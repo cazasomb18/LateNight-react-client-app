@@ -14,29 +14,29 @@ class LateRestaurantsList extends React.Component {
 			isOpen: false
 		}
 	}
-	getRestaurants = async (e) => {
-		e.preventDefault();
-		try {
-			const getRestaurantsResponse = await fetch(process.env.REACT_APP_PYTHON_BACKEND_URL + 'restaurants/', {
-				method: 'GET',
-				credentials: 'include',
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			})
-			const parsedResponse = await getRestaurantsResponse.json();
-			console.log(parsedResponse)
-			const response = parsedResponse;
-			// console.log(response);
-			this.setState({
-				restaurants: response,
-				isOpen: true,
-				showList: true
-			})
-		} catch(err) {
-			console.error(err);
-		}
-	}
+    getRestaurants = async (e) => {
+        e.preventDefault();
+        try {
+            const getRestaurantsResponse = await fetch(process.env.REACT_APP_PYTHON_BACKEND_URL + 'restaurants/nearby?searchTerm=' + this.props.latitude + ',' + this.props.longitude, {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            const parsedResponse = await getRestaurantsResponse.json();
+            // console.log(parsedResponse)
+            const response = parsedResponse.data.results;
+            // console.log(response);
+            this.setState({
+                restaurants: response,
+                isOpen: true,
+                showList: true
+            })
+        } catch(err) {
+            console.error(err);
+        }
+    }
 	toggleModal = () => {
 		this.setState({
 			isOpen: false,

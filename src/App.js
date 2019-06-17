@@ -26,8 +26,7 @@ class App extends Component {
 
   setUserInfo = (loginRegisterResponse) => {
     this.setState({
-      userName: loginRegisterResponse.userName,
-      // express userName: loginRegisterResponse.data.userName,
+      userName: loginRegisterResponse.data.userName,
       loggedIn: true,
       showList: true
     })

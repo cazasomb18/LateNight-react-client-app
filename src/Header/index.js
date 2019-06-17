@@ -25,10 +25,10 @@ class Header extends React.Component {
 				}
 			})
 			const parsedResponse = await registerResponse.json();
-			// console.log("parsedResponse: ", parsedResponse);
-			// if (parsedResponse.registered === true) {
-			this.props.setUserInfo(parsedResponse);
-			// }
+			console.log("parsedResponse: ", parsedResponse);
+			if (parsedResponse.registered === true) {
+				this.props.setUserInfo(parsedResponse);
+			}
 		}catch(err){
 			console.error(err)
 		}
@@ -46,11 +46,9 @@ class Header extends React.Component {
  	  		})
      		const parsedResponse = await loginResponse.json();
      		console.log('parsedResponse: ', parsedResponse);
- 			// if (parsedResponse.success === true) {
-			this.props.setUserInfo(parsedResponse);
-     		// } else {
-     			// console.log('no success message');
-     		// }
+ 			if (parsedResponse.success === true) {
+				this.props.setUserInfo(parsedResponse);
+     		}
     	}catch(err){
       		console.error(err);
     	}
@@ -64,7 +62,6 @@ class Header extends React.Component {
   	       			'Content-Type': 'application.json'
   	     		}
   	     	})
-  	   		// console.log(logoutResponse);
   	   		const parsedResponse = await logoutResponse.json();
   	   		console.log('logout response: ', parsedResponse);
   	   		if (parsedResponse.loggedout === true) {

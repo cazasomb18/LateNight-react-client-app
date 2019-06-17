@@ -6,6 +6,11 @@ const style = {
   width: '75%',
   height: '75%'
 }
+const infoWindow = {
+  card: {
+    maxWidth: 200,
+  }
+}
 
 class MapContainer extends Component {
   constructor(props){
@@ -21,16 +26,14 @@ class MapContainer extends Component {
     }
   }
   componentDidMount(){
-    this.mapData();
     this.setState({
       lat: this.props.latitude,
       lng: this.props.longitude,
       geometry: [{...this.props.restaurants}]
     })
-    this.mapData();
-    console.log('this.state in MAP CDM: ', this.state);
-    console.log('this.props in MAP CDM: ', this.props);
-    console.log('props.google.maps in MAP CDM: ', this.props.google.maps);
+
+    // this.mapData();
+
   }
   getMapData = async (e) => {
     const mapData = await fetch(process.env.REACT_APP_GOOGLE_MAPS_URL + process.env.REACT_APP_API_KEY + this.onMarkerClick, {
@@ -41,7 +44,7 @@ class MapContainer extends Component {
       }
     })
     const parsedMapData = await mapData.json();
-    console.log(parsedMapData);
+    // console.log(parsedMapData);
   }
   // showSearchResultsMarkers = (e) => {
   //   const resultsMarkers = this.state.geometry.map((index, directions) => {
@@ -63,41 +66,40 @@ class MapContainer extends Component {
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
+
     })
   }
   onClose = props => {
     if (this.state.showingInfoWindow){
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-      });
+        this.setState({
+          showingInfoWindow: false,
+          activeMarker: {}
+        });
+      }
     }
-  }
-// mapData = () => {
-//   console.log('this is all the data: ', this.state.geometry);
-//     // return(
-//       this.state.geometry.map((info, i) => {
-//         console.log('this is the info: ', info, i);
-//         // return (info, i)
-//       })
-//     // )
-//   }
-  mapData = () => {
-    // console.log('this is all the data: ', this.state.geometry[0][0]);
-      // return(
-        this.state.geometry.map((info, i) => {
-          console.log('this is the info: ', info, i);
-        // return (info, i)
-      })
 
-  }
+  // mapData = () => {
+  //   console.log('this is all the data: ', this.props.restaurants);
+  //      const markers = this.props.restaurants.map((info, i) => {
+  //         // console.log('this is the info: ', info.geometry.location.lat, i);
+  //         // console.log('this is the info: ', info.geometry.location.lng, i);
+  //         return (           
+  //           <Marker
+  //             name={info.name}
+  //             position={{lat: info.geometry.location.lat,lng: info.geometry.location.lng}}/>
+  //         )
+  //             // onClick={this.onMarkerClick}
+  //     })
+  //   )
+  // }
+
+
+
+
+
+
   render(){
-    // console.log('PROPS IN MAP RENDER(): ', this.props);
-    // console.log('STATE IN MAP RENDER():', this.state);
-    // console.log('THIS.PROPS.GOOGLE.MAPS render(): ', this.props.google.maps);
-    // console.log('this.state.geometry[0] in MAP CDM: ', this.state.geometry[0]);
-    // console.log (this.state.geometry[0].geometry)
-    // this.mapData();
+
     return(
       <div className="MapContainer">  
         <Map 
@@ -110,31 +112,39 @@ class MapContainer extends Component {
           zoom={11}
           onClick={this.mapClicked}
           >
-          <Marker
-            position={{
-              lat: this.props.latitude,
-              lng: this.props.longitude
-            }}
-            onClick={this.onMarkerClick}
-            name={'Current Location'}
-          />
+            <Marker
+              position={{
+                lat: this.props.latitude,
+                lng: this.props.longitude
+              }}
+              onClick={this.onMarkerClick}
+              name={'Current Location'}
+            />
+            {this.props.restaurants.map((info, i) => (
+          
+              <Marker
+                name={info.name}
+                position={{lat: info.geometry.location.lat, 
+                           lng: info.geometry.location.lng
+                         }}
+                key={i}
+                onClick={this.onMarkerClick}
+              />
+            ))}
+            
 
-          <Marker 
-            position={{
-              lat: '',
-              lng: ''
-            }}
-            onClick={this.onMarkerClick} 
-            name={'Current Location'} 
-          />
-
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}
-            onClose={this.onClose}
-          >
-            <h4>????? YOU ARE HERE ????</h4>
-          </InfoWindow>
+            <InfoWindow
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}
+              onClose={this.onClose}
+            >
+             {this.state.showingInfoWindow?
+              <div>
+                <h1>{this.state.activeMarker.name}</h1>
+              </div>
+              :
+              <div></div>}
+            </InfoWindow>
 
         </Map>
       </div>
@@ -147,6 +157,3 @@ export default GoogleApiWrapper(
   apiKey: (process.env.REACT_APP_API_KEY)
   }
 ))(MapContainer);
-
-
-            // {this.state.selectedPlace.name}
