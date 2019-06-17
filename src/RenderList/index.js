@@ -23,7 +23,7 @@ class RenderList extends React.Component {
 		e.preventDefault();
 		console.log("P R C");
 		try{
-	        const postComments = await fetch(process.env.REACT_APP_BACK_END_URL + 'restaurants/' + this.state.targetRestaurant.place_id + '/comment', {
+	        const postComments = await fetch(process.env.REACT_APP_PYTHON_BACKEND_URL + 'restaurants/' + this.state.targetRestaurant.place_id + '/comment', {
 	          method: 'POST',
 	          credentials: 'include',
 	          body: JSON.stringify({
@@ -67,7 +67,7 @@ class RenderList extends React.Component {
 		// console.log(this.props);
 		// console.log(this.state);
 		const restaurants = this.props.restaurants;
-		// console.log(restaurants);
+		console.log(restaurants);
 		const renderList = restaurants.map((restaurant, i) => {
 		return(
 			<li key={i}>

@@ -26,9 +26,9 @@ class Header extends React.Component {
 			})
 			const parsedResponse = await registerResponse.json();
 			// console.log("parsedResponse: ", parsedResponse);
-			if (parsedResponse.registered === true) {
-				this.props.setUserInfo(parsedResponse);
-			}
+			// if (parsedResponse.registered === true) {
+			this.props.setUserInfo(parsedResponse);
+			// }
 		}catch(err){
 			console.error(err)
 		}
@@ -66,7 +66,7 @@ class Header extends React.Component {
   	     	})
   	   		// console.log(logoutResponse);
   	   		const parsedResponse = await logoutResponse.json();
-  	   		// console.log('logout response: ', parsedResponse);
+  	   		console.log('logout response: ', parsedResponse);
   	   		if (parsedResponse.loggedout === true) {
   	   			this.props.logOutReactApp()
   	   		}
