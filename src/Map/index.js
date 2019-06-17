@@ -31,9 +31,6 @@ class MapContainer extends Component {
       lng: this.props.longitude,
       geometry: [{...this.props.restaurants}]
     })
-
-    // this.mapData();
-
   }
   getMapData = async (e) => {
     const mapData = await fetch(process.env.REACT_APP_GOOGLE_MAPS_URL + process.env.REACT_APP_API_KEY + this.onMarkerClick, {
@@ -46,21 +43,6 @@ class MapContainer extends Component {
     const parsedMapData = await mapData.json();
     // console.log(parsedMapData);
   }
-  // showSearchResultsMarkers = (e) => {
-  //   const resultsMarkers = this.state.geometry.map((index, directions) => {
-  //     console.log(index);
-  //     return(
-  //         <Marker 
-  //           position={{
-  //             lat: index[0].geometry.location.lat,
-  //             lng: index[0].geometry.location.lng
-  //           }}
-  //           onClick={this.onMarkerClick}
-  //         />
-  //       )
-  //     }
-  //   ) 
-  // }
   onMarkerClick = (props, marker, e) => {
     this.setState({
       selectedPlace: props,
@@ -76,30 +58,8 @@ class MapContainer extends Component {
           activeMarker: {}
         });
       }
-    }
-
-  // mapData = () => {
-  //   console.log('this is all the data: ', this.props.restaurants);
-  //      const markers = this.props.restaurants.map((info, i) => {
-  //         // console.log('this is the info: ', info.geometry.location.lat, i);
-  //         // console.log('this is the info: ', info.geometry.location.lng, i);
-  //         return (           
-  //           <Marker
-  //             name={info.name}
-  //             position={{lat: info.geometry.location.lat,lng: info.geometry.location.lng}}/>
-  //         )
-  //             // onClick={this.onMarkerClick}
-  //     })
-  //   )
-  // }
-
-
-
-
-
-
+  }
   render(){
-
     return(
       <div className="MapContainer">  
         <Map 

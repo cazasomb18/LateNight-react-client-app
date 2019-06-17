@@ -72,10 +72,9 @@ class Dashboard extends Component {
         }
       })
       const editCommentResponse = await editedComment.json();
-      console.log('edited comment response: ', editCommentResponse);
+      // console.log('edited comment response: ', editCommentResponse);
 
     }catch(err){
-      console.log(err);
       console.error(err);
     }
   }

@@ -45,7 +45,7 @@ class Header extends React.Component {
      	  		}
  	  		})
      		const parsedResponse = await loginResponse.json();
-     		console.log('parsedResponse: ', parsedResponse);
+     		// console.log('parsedResponse: ', parsedResponse);
  			if (parsedResponse.success === true) {
 				this.props.setUserInfo(parsedResponse);
      		}

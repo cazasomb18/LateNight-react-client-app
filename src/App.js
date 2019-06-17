@@ -33,7 +33,7 @@ class App extends Component {
   }
 
   showDashAndHideList = () => {
-    console.log("showDashAndHideList");
+    // console.log("showDashAndHideList");
     this.setState({
       showDash: true,
       showList: false
@@ -41,7 +41,7 @@ class App extends Component {
   }
 
   showListAndHideDash = () => {
-    console.log("showListAndHideDash");
+    // console.log("showListAndHideDash");
     this.setState({
       showDash: false,
       showList: true
@@ -74,8 +74,8 @@ class App extends Component {
     })
   }
   render(){
-    // console.log('STATE IN APP RENDER(): ', this.state);
-    // console.log('PROPS IN APP RENDER(): ', this.props);
+    console.log('STATE IN APP RENDER(): ', this.state);
+    console.log('PROPS IN APP RENDER(): ', this.props);
     return (
       <main>
         <div>

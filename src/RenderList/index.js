@@ -39,14 +39,14 @@ class RenderList extends React.Component {
 	          }
 	        })
 	        const commentResponse = await postComments.json();
-	        console.log(commentResponse);
-	        console.log("this is the comment response: ", commentResponse);
+	        // console.log(commentResponse);
+	        // console.log("this is the comment response: ", commentResponse);
 	        await this.setState({
 	          commentInput: JSON.stringify(commentResponse)
 	        })
 	        if (commentResponse.ok) {
-	        	console.log("we're about to run showDashAndHideList in postRestaurantComments");
-	        	console.log("props:");
+	        	// console.log("we're about to run showDashAndHideList in postRestaurantComments");
+	        	// console.log("props:");
 	        	console.log(this.props);
 	        	this.props.showDashAndHideList();
 	        }

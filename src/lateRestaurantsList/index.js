@@ -44,8 +44,8 @@ class LateRestaurantsList extends React.Component {
 	    })
 	}
 	render(){
-		console.log("this.state in render() in LateRestaurantList: ", this.state);
-		console.log("this.props in render() in LateRestaurantList: ", this.props);
+		// console.log("this.state in render() in LateRestaurantList: ", this.state);
+		// console.log("this.props in render() in LateRestaurantList: ", this.props);
 		return(
 			<div>
 			{
