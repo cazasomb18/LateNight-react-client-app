@@ -9,7 +9,8 @@ const style = {
 
 const infoWindow = {
   card: {
-    maxWidth: 150
+    maxWidth: 150,
+    width: 50
   }
 }
 
@@ -76,7 +77,7 @@ class MapContainer extends Component {
                 name={info.name}
                 address={info.vicinity}
                 icon={info.icon}
-                openNow={info.opening_hours.open_now}
+                openNow={info.opening_hours}
                 position={{lat: info.geometry.location.lat, 
                            lng: info.geometry.location.lng
                          }}
@@ -93,10 +94,10 @@ class MapContainer extends Component {
               <div>
                 <h4>{this.state.activeMarker.name}</h4>
                 <h6>{this.state.activeMarker.address}</h6>
-                {this.state.activeMarker.openNow === true ? 
+                {this.state.activeMarker.openNow.open_now === true ? 
                   <h6>Open Now!!</h6> 
                   : 
-                  null
+                  <h6>Open Late!!</h6>
                 }
               </div>
               :
