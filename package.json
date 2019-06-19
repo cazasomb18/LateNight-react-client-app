@@ -5,6 +5,11 @@
     "node": "10.15.3",
     "npm": "6.9.0"
   },
+  "buildpacks": [
+    {
+      "url": "mars/create-react-app"
+    }
+  ],
   "private": true,
   "proxy": "https://maps.googleapis.com/maps/api/place/nearbysearch/",
   "dependencies": {
