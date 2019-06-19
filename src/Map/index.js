@@ -63,12 +63,11 @@ class MapContainer extends Component {
           onClick={this.mapClicked}
           >
             <Marker
+              name={'Current Location'}
               position={{
                 lat: this.props.latitude,
                 lng: this.props.longitude
               }}
-              onClick={this.onMarkerClick}
-              name={'Current Location'}
             />
             {this.props.restaurants.map((info, i) => (
           
