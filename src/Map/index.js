@@ -9,8 +9,7 @@ const style = {
 
 const infoWindow = {
   card: {
-    maxWidth: 150,
-    width: 50
+    maxWidth: 150
   }
 }
 
