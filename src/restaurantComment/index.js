@@ -67,24 +67,23 @@ class RestaurantComment extends Component {
 		      	console.log("unparsed deleted comment:")
 		      	console.log(deletedComment)
 
-			      const deletedCommentResponse = await deletedComment.json();
-			      
-			      console.log("parsed deleted comment response: ")
-			      console.log(deletedCommentResponse);
+		      	const deletedCommentResponse = await deletedComment.json();
+		      	console.log("parsed deleted comment response: ")
+		      	console.log(deletedCommentResponse);
 
-			      console.log("original raw response:")
-			      console.log(deletedComment)
+		      	console.log("original raw response:")
+		      	console.log(deletedComment)
 
-			      if (deletedComment.ok) {
-			      	console.log("are we doing this");
-			      	this.props.getUserRestaurantInfo();
-			      }
+		      	if (deletedComment.ok) {
+
+		      		console.log("are we doing this");
+		      		this.props.getUserRestaurantInfo();
+		      	}
 
 		    }catch(err){
 		 		console.error(err)
 			}
 		}
-
 
 		const filteredRestaurantList = userData.filter((restaurant) => {
 			if (restaurant.comments.length < 1) {
@@ -102,17 +101,30 @@ class RestaurantComment extends Component {
 
 					return(
 						<ul key={`comment-${j}`}>
-							<p> {comment.commentBody}</p>
+							<p>{comment.commentBody}</p>
 							<form className="form" onSubmit={
 								(e) => { 
 									e.preventDefault();
 									deleteRestaurantComment(restaurant.place_id, comment._id);
 									this.props.getUserRestaurantInfo();
-								} 
+								}
 							}>
 							<button className="field">Delete Comment</button>
 							</form>
-							{ !this.state.commentToEdit ? <button className="field" data-restaurant-id={comment.restaurant_id[0]} data-comment-id={comment._id} onClick={this.setCommentToEdit}> Edit Comment </button> : <EditComment clearCommentToEdit={this.clearCommentToEdit} commentToEdit={this.state.commentToEdit} />}
+							{ !this.state.commentToEdit ? 
+								<button 
+									className="field" 
+									data-restaurant-id={comment.restaurant_id[0]} 
+									data-comment-id={comment._id} 
+									onClick={this.setCommentToEdit}> Edit Comment 
+								</button> 
+								: 
+								<EditComment 
+									clearCommentToEdit={this.clearCommentToEdit} 
+									commentToEdit={this.state.commentToEdit} 
+								/>
+							}
+
 						</ul>
 					);
 				} 

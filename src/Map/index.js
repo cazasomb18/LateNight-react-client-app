@@ -6,9 +6,10 @@ const style = {
   width: '75%',
   height: '75%'
 }
+
 const infoWindow = {
   card: {
-    maxWidth: 200,
+    maxWidth: 150
   }
 }
 
@@ -31,17 +32,6 @@ class MapContainer extends Component {
       lng: this.props.longitude,
       geometry: [{...this.props.restaurants}]
     })
-  }
-  getMapData = async (e) => {
-    const mapData = await fetch(process.env.REACT_APP_GOOGLE_MAPS_URL + process.env.REACT_APP_API_KEY + this.onMarkerClick, {
-      method: 'GET',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application.json'
-      }
-    })
-    const parsedMapData = await mapData.json();
-    // console.log(parsedMapData);
   }
   onMarkerClick = (props, marker, e) => {
     this.setState({
@@ -69,7 +59,7 @@ class MapContainer extends Component {
             lat: this.state.lat,
             lng: this.state.lng
           }}
-          zoom={11}
+          zoom={13}
           onClick={this.mapClicked}
           >
             <Marker
@@ -84,6 +74,9 @@ class MapContainer extends Component {
           
               <Marker
                 name={info.name}
+                address={info.vicinity}
+                icon={info.icon}
+                openNow={info.opening_hours.open_now}
                 position={{lat: info.geometry.location.lat, 
                            lng: info.geometry.location.lng
                          }}
@@ -91,8 +84,6 @@ class MapContainer extends Component {
                 onClick={this.onMarkerClick}
               />
             ))}
-            
-
             <InfoWindow
               marker={this.state.activeMarker}
               visible={this.state.showingInfoWindow}
@@ -100,7 +91,13 @@ class MapContainer extends Component {
             >
              {this.state.showingInfoWindow?
               <div>
-                <h1>{this.state.activeMarker.name}</h1>
+                <h4>{this.state.activeMarker.name}</h4>
+                <h6>{this.state.activeMarker.address}</h6>
+                {this.state.activeMarker.openNow === true ? 
+                  <h6>Open Now!!</h6> 
+                  : 
+                  null
+                }
               </div>
               :
               <div></div>}
