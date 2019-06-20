@@ -21,7 +21,7 @@ class Dashboard extends Component {
 
     /// THIS FETCH CALL RETURNS ALL THE DATA ASSOCIATED WITH THE LOGGED IN USER////
     try{
-      const userRestaurantsResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'auth/usercomments/', {
+      const userRestaurantsResponse = await fetch('https://latenight-backend.herokuapp.com/auth/usercomments/', {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -62,7 +62,7 @@ class Dashboard extends Component {
     e.preventDefault()
 
     try{
-      const editedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/' + this.state.userRestaurants.data.place_id + '/edit/' + this.state.userRestaurants.foundComments._id +'/', {
+      const editedComment = await fetch('https://latenight-backend.herokuapp.com/' + 'comment/restaurants/' + this.state.userRestaurants.data.place_id + '/edit/' + this.state.userRestaurants.foundComments._id +'/', {
 
         method: 'PUT',
         credentials: 'include',

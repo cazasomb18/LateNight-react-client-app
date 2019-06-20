@@ -24,7 +24,7 @@ class EditComment extends React.Component{
 		e.preventDefault()
 
 		try{
-			const editCommentResponse = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/' + this.state.placeId + '/edit/' + this.state.commentId, {
+			const editCommentResponse = await fetch('https://latenight-backend.herokuapp.com/comment/restaurants/' + this.state.placeId + '/edit/' + this.state.commentId, {
 
 				method: 'PUT',
 				credentials: 'include',
