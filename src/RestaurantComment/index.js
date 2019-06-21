@@ -59,7 +59,7 @@ class RestaurantComment extends Component {
 
 		    try{
 				
-		      	const deletedComment = await fetch(process.env.REACT_APP_HEROKU_BACKEND_URL + 'comment/restaurants/' + restaurantPlaceId + '/' + commentId, {
+		      	const deletedComment = await fetch(process.env.REACT_APP_BACK_END_URL + 'comment/restaurants/' + restaurantPlaceId + '/' + commentId, {
 		        	method: 'DELETE',
 		        	credentials: 'include'
 			      })
