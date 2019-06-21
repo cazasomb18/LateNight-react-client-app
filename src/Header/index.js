@@ -16,7 +16,7 @@ class Header extends React.Component {
 	handleRegister = async (e) => {
 		e.preventDefault();
 		try{			
-			const registerResponse = await fetch(process.env.REACT_APP_BACK_END_URL + '/auth/register/', {
+			const registerResponse = await fetch(process.env.REACT_APP_BACK_END_URL + '/auth/register', {
 				method: 'POST',
 				credentials: 'include',
 				body: JSON.stringify(this.state),
