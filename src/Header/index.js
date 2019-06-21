@@ -36,16 +36,16 @@ class Header extends React.Component {
   	handleLogin = async (e) => {
     	e.preventDefault();
     	try{
-     		const loginResponse = await fetch(process.env.REACT_APP_BACK_END_URL + '/auth/login/', {
+     		const loginResponse = await fetch(process.env.REACT_APP_BACK_END_URL + '/auth/login', {
      	  		method: 'POST',
      	 		credentials: 'include',
      	  		body: JSON.stringify(this.state),
      	  		headers: {
-     	    		'Content-Type': 'application/json'
+ 	    			'Content-Type': 'application/json'
      	  		}
  	  		})
      		const parsedResponse = await loginResponse.json();
-     		// console.log('parsedResponse: ', parsedResponse);
+     		console.log('parsedResponse: ', parsedResponse);
  			if (parsedResponse.success === true) {
 				this.props.setUserInfo(parsedResponse);
      		}
