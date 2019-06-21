@@ -23,7 +23,7 @@ class RenderList extends React.Component {
 		e.preventDefault();
 		console.log("P R C");
 		try{
-	        const postComments = await fetch(process.env.REACT_APP_BACK_END_URL + '/' + this.state.targetRestaurant.place_id + '/comment/', {
+	        const postComments = await fetch(process.env.REACT_APP_BACK_END_URL + '/restaurants/' + this.state.targetRestaurant.place_id + '/comment/', {
 	          method: 'POST',
 	          credentials: 'include',
 	          body: JSON.stringify({
