@@ -16,7 +16,7 @@ class Header extends React.Component {
 	handleRegister = async (e) => {
 		e.preventDefault();
 		try{			
-			const registerResponse = await fetch('https://latenight-backend.herokuapp.com/auth/register/', {
+			const registerResponse = await fetch(process.env.REACT_APP_HEROKU_BACKEND_URL + 'auth/register/', {
 				method: 'POST',
 				credentials: 'include',
 				body: JSON.stringify(this.state),
@@ -36,7 +36,7 @@ class Header extends React.Component {
   	handleLogin = async (e) => {
     	e.preventDefault();
     	try{
-     		const loginResponse = await fetch('https://latenight-backend.herokuapp.com/auth/login/', {
+     		const loginResponse = await fetch(process.env.REACT_APP_HEROKU_BACKEND_URL + 'auth/login/', {
      	  		method: 'POST',
      	 		credentials: 'include',
      	  		body: JSON.stringify(this.state),
@@ -55,7 +55,7 @@ class Header extends React.Component {
   	}
   	logOut = async (e) => {
   		try{
-  	   		const logoutResponse = await fetch('https://latenight-backend.herokuapp.com/auth/logout/', {
+  	   		const logoutResponse = await fetch(process.env.REACT_APP_HEROKU_BACKEND_URL + 'auth/logout/', {
   	     		method: 'GET',
   	     		credentials: 'include',
   	     		headers: {

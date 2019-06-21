@@ -16,7 +16,7 @@ class LateRestaurantsList extends React.Component {
     getRestaurants = async (e) => {
         e.preventDefault();
         try {
-            const getRestaurantsResponse = await fetch('https:///restaurants/nearby?searchTerm=' + this.props.latitude + ',' + this.props.longitude, {
+            const getRestaurantsResponse = await fetch(process.env.REACT_APP_HEROKU_BACKEND_URL + 'restaurants/nearby?searchTerm=' + this.props.latitude + ',' + this.props.longitude, {
                 method: 'GET',
                 credentials: 'include',
                 headers: {
