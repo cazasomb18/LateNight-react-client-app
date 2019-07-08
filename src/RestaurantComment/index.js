@@ -86,7 +86,7 @@ class RestaurantComment extends Component {
 		}
 
 		const filteredRestaurantList = userData.filter((restaurant) => {
-			if (restaurant.comments.length < 1) {
+			if (restaurant.comments.length < 0) {
 				return false
 			} else {
 				return true 

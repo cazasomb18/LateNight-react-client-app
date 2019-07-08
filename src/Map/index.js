@@ -7,11 +7,11 @@ const style = {
   height: '75%'
 }
 
-const infoWindow = {
-  card: {
-    maxWidth: 150
-  }
-}
+// const infoWindow = {
+//   card: {
+//     maxWidth: 150
+//   }
+// }
 
 class MapContainer extends Component {
   constructor(props){
@@ -51,7 +51,7 @@ class MapContainer extends Component {
   }
   render(){
     return(
-      <div className="MapContainer">  
+      <div id="mapContainer">
         <Map 
           google={this.props.google}
           style={style}
@@ -70,7 +70,7 @@ class MapContainer extends Component {
               }}
             />
             {this.props.restaurants.map((info, i) => (
-          
+
               <Marker
                 name={info.name}
                 address={info.vicinity}

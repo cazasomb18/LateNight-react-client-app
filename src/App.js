@@ -5,7 +5,7 @@ import Header from './Header';
 import AppTitle from './AppTitle';
 import LateRestaurantsList from './LateRestaurantsList';
 import Dashboard from './Dashboard';
-import MapContainer from './Map';
+import Spinner from 'react-bootstrap/Spinner';
 
 class App extends Component {
   constructor(props){
@@ -78,7 +78,13 @@ class App extends Component {
     return (
       <main>
         <div>
-          { this.state.lat === '' ? null : <h6 className="coordinates" > {this.state.lat + ", " + this.state.lng} </h6> }
+          { this.state.lat === '' ? 
+            <Spinner animation="border" variant="light" role="status">
+              <span className="sr-only">Finding Your Position</span>
+            </Spinner> 
+              : 
+            null
+          }
           <AppTitle 
             userName={this.state.userName}/>
           <Header 

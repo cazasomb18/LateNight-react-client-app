@@ -68,12 +68,14 @@ class LateRestaurantsList extends React.Component {
 						showDashAndHideList={this.props.showDashAndHideList} 
 						restaurants={this.state.restaurants}
 					/>
+					<div id="mapContainer" className="container-fluid">
+						<MapContainer
+	                		latitude={this.props.latitude}
+	                		longitude={this.props.longitude}
+	                		restaurants={this.state.restaurants}
+	              		/>	
+					</div>
 
-					<MapContainer
-                		latitude={this.props.latitude}
-                		longitude={this.props.longitude}
-                		restaurants={this.state.restaurants}
-              		/>
 
 					<button className="field" type="button" onClick={this.toggleModal}>
 						Close List

@@ -1,5 +1,6 @@
 import React from 'react';
 import Collapsible from 'react-collapsible';
+import Card from 'react-bootstrap/Card'
  
 class Header extends React.Component {
 	constructor(props){
@@ -72,31 +73,29 @@ class Header extends React.Component {
   	 	}
 	}
 	render() {
-
 	    return(
-	    	<div className="userStoryContainer">
-			  <Collapsible className="title" trigger="ABOUT LATE NIGHT BYTES">
-			  	<h3 className="title">What is Late Night Bytes?</h3>
-			  	<p className="userStoryPTag">Late Night Bytes consumes google maps and places api to find late night food in your area.</p>
-			  	<p className="userStoryPTag">Make sure you agree to share your location, Late Night Bytes is dependent up on this to return the restaurants that match your location, sound good?  GREAT! </p>
-			  	<p className="userStoryPTag">Create an account by clicking the 'REGISTER' drop down menu and you will be logged in. </p>
-			  	<p className="userStoryPTag">After you're logged in, try the 'FIND LATE BYTES' button, it will show you all the restaurants in your area!</p>
-			  	<p className="userStoryPTag">If you see something you like on the list, go ahead and leave a comment, this information will be stored in your dashboard. </p>
-			  	<p className="userStoryPTag">Your dashboard is your private information, and no one else can access it. This a good way to keep track of your favorite late night bytes! </p>
-			  </Collapsible>
+	    	<div className="collapsible">
+				<Collapsible className="title collapsible" trigger="ABOUT LATE NIGHT BYTES">
+					<Card className="bg-dark">
+						<Card.Img src="https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"/>
+						<Card.ImgOverlay>
+							<Card.Text id="userStoryPTag">Late Night Bytes consumes google maps and places api to find late night food in your area. Make sure you agree to share your location, Late Night Bytes is dependent up on this to return the restaurants that match your location, sound good? GREAT! Create an account by clicking the 'REGISTER' drop down menu and you will be logged in. After you're logged in, try the 'FIND LATE BYTES' button, it will show you all the restaurants in your area! If you see something you like on the list, go ahead and leave a comment, this information will be stored in your dashboard. Your dashboard is your private information, and no one else can access it. This a good way to keep track of your favorite late night bytes!</Card.Text>
+						</Card.ImgOverlay>
+					</Card>
+				</Collapsible>
 
 	   	{ 
 	   		this.props.loggedIn
 	   		? 
-	      	<div className="form">
+	      	<div className="form collapsible">
 	      		<h4 className="title">Welcome back {this.state.userName}!!!</h4>
 	      		<button className="field" onClick={this.logOut}>Logout!</button>
 	      	</div>
 	   		:
 
-		   	<div className="form">    				
-		      <Collapsible className="title" trigger="REGISTRATION">
-						<h1 className="title">Register for LateNight Bytes</h1><br/>
+		   	<div className="form collapsible">
+		      <Collapsible className="title collapsible" trigger="REGISTRATION">
+						<h1 className="title">Register for Late Night Bytes</h1><br/>
 						<h3 className="subTitle">CREATE AN ACCOUNT!</h3>
 						<form className="form" onSubmit={this.handleRegister}>
 							<input className="field" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
@@ -106,7 +105,7 @@ class Header extends React.Component {
 						</form>
 		      </Collapsible>
 
-		      <Collapsible className="title" trigger="LOGIN/LOGOUT">	
+		      <Collapsible className="title collapsible" trigger="LOGIN/LOGOUT">
 				      <h1 className="title">Login for Late Night Bytes</h1><br/>
 				      <h3 className="subTitle">LOGIN!</h3>
 				        <form className="form" onSubmit={this.handleLogin}>
