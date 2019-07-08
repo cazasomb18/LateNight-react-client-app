@@ -6,6 +6,7 @@ import AppTitle from './AppTitle';
 import LateRestaurantsList from './LateRestaurantsList';
 import Dashboard from './Dashboard';
 import Spinner from 'react-bootstrap/Spinner';
+import Image from 'react-bootstrap/Image';
 
 class App extends Component {
   constructor(props){
@@ -123,6 +124,7 @@ class App extends Component {
 
 
         </div>
+        <Image src="https://images.unsplash.com/photo-1532768641073-503a250f9754?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" fluid />
       </main>
     );
   }

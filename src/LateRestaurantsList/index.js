@@ -80,8 +80,7 @@ class LateRestaurantsList extends React.Component {
 					<button className="field" type="button" onClick={this.toggleModal}>
 						Close List
 					</button>
-				</div>	
-
+				</div>
 			
 			}
 
