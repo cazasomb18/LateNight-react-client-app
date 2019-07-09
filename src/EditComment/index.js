@@ -10,7 +10,7 @@ class EditComment extends React.Component{
 		}
 	}
 	componentDidMount(){
-		console.log(this.state);
+		// console.log(this.state);
 
 	}
 	handleChange = (e) => {
@@ -41,8 +41,8 @@ class EditComment extends React.Component{
 		}
 	}
 	render(){
-		console.log('EDIT COMMENT STATE: ', this.state);
-		console.log("EDIT COMMENT PROPS: ", this.props);
+		// console.log('EDIT COMMENT STATE: ', this.state);
+		// console.log("EDIT COMMENT PROPS: ", this.props);
 
 		return(
 			<div>

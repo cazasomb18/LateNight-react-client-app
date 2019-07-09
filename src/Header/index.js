@@ -8,12 +8,12 @@ class Header extends React.Component {
 	  	this.state = {
 	  		userName: '',
 	  		password: '',
-	  		loginResponse: [],
-	  		registerResponse: []
+	  		loginResponse: '',
+	  		registerResponse: ''
   		}
 	}
-
 	handleChange = (e) => {
+		e.preventDefault();
     	this.setState({[e.target.name]: e.target.value});
   	}
 	handleRegister = async (e) => {
@@ -28,9 +28,8 @@ class Header extends React.Component {
 				}
 			})
 			const parsedResponse = await registerResponse.json();
-			console.log("parsedResponse: ", parsedResponse);
-			if (parsedResponse.registered === true) {
-				this.props.setUserInfo(parsedResponse);
+			console.log("register parsedResponse: ", parsedResponse);
+			if (parsedResponse.success === false) {
 				this.setState({
 					registerResponse: parsedResponse.data
 				})
@@ -51,13 +50,14 @@ class Header extends React.Component {
      	  		}
  	  		})
      		const parsedResponse = await loginResponse.json();
-     		console.log('parsedResponse: ', parsedResponse);
+     		console.log('login parsedResponse: ', parsedResponse);
  			if (parsedResponse.success === true) {
-				this.props.setUserInfo(parsedResponse);
+				this.props.setUserInfo(parsedResponse.data);
+     		} else {
+				this.setState({
+					loginResponse: parsedResponse.data
+				})
      		}
-			this.setState({
-				loginResponse: [parsedResponse.data]
-			})
     	}catch(err){
       		console.error(err);
     	}
@@ -83,9 +83,10 @@ class Header extends React.Component {
 	render() {
 		console.log("this.state in header render(): ", this.state);
 		console.log("this.props in header render(): ", this.props);
+		console.log("register response whole OBJ: ", this.state.registerResponse);
 	    return(
-	    	<div className="collapsible bg-transparent">
-				<Collapsible className="title collapsible bg-transparent" trigger="ABOUT L/N/B">
+	    	<div id="collapsibleContainer" className="collapsible">
+				<Collapsible className="collapsible title bg-transparent" trigger="ABOUT L.N.B">
 						<Card className="bg-transparent">
 						<Card.Img src="https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"/>
 						<Card.ImgOverlay className="bg-transparent">
@@ -93,20 +94,21 @@ class Header extends React.Component {
 						</Card.ImgOverlay>
 						</Card>
 				</Collapsible>
+				<br/>
 
 	   	{ 
 	   		this.props.loggedIn
-	   		? 
-      		// <h4 className="title">Welcome back {this.state.userName}!!!</h4>
+	   		?
 
-	      	<div id="collapsible bg-transparent">
-	      		<div className="title collapsible bg-transparent" onClick={this.logOut}>Logout!</div>
-	      	</div>
+	      	<div>
+	      	<br/>
+	      		<div className="collapsible title bg-transparent" onClick={this.logOut}>Logout!</div>
+	      	</div> 
 
 	   		:
 
-		   	<div className="form collapsible bg-transparent">
-		      <Collapsible className="title collapsible bg-transparent" trigger="REGISTRATION">
+		   	<div>
+		      <Collapsible className="collapsible title bg-transparent" trigger="REGISTRATION">
 						<h3 className="headerSubTitle subTitle bg-transparent">CREATE AN ACCOUNT!</h3>
 						<form className="form bg-transparent" onSubmit={this.handleRegister}>
 							<input className="field" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
@@ -114,28 +116,39 @@ class Header extends React.Component {
 							<input className="field" type="email" name="email" placeholder="email" onChange={this.handleChange}/><br/>
 							<input className="field " type="submit" value="Register!"/>
 						</form>
-						{
-							!this.state.registerResponse.success ?
-							<div className="text-danger regDiv">{this.state.registerResponse}</div>
-							:
-							null
-						}
 		      </Collapsible>
+		      <br/>
+		      	{
+		      		!this.state.registerResponse.success
+		      			?
+		      				<div className="text-danger">{this.state.registerResponse}</div>
+		      			:
 
-		      <Collapsible className="title collapsible bg-transparent" trigger="LOGIN/LOGOUT">
-				      <h3 className="subTitle">LOGIN!</h3>
-				        <form className="form" onSubmit={this.handleLogin}>
-				          <input className="field" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
-				          <input className="field" type="password" name="password" placeholder="password" onChange={this.handleChange}/><br/>
-				          <input className="field" type="submit" value="Login!"/>
-				        </form>
-				        {
-				        	!this.state.loginResponse.success ?
-				        		<div className="text-danger logDiv">{this.state.loginResponse}</div>
-				        	:
-				        	null
-				        }
+		      		null
+
+		      	}
+
+
+		      <Collapsible className="collapsible title bg-transparent" trigger="LOGIN/LOGOUT">
+			      <h3 className="headerSubTitle subTitle bg-transparent">LOGIN!</h3>
+			        <form className="form bg-transparent" onSubmit={this.handleLogin}>
+			          <input className="field" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
+			          <input className="field" type="password" name="password" placeholder="password" onChange={this.handleChange}/><br/>
+			          <input className="field" type="submit" value="Login!"/>
+			        </form>
 		      </Collapsible>
+		      <br/>
+			        <div className="logDiv">
+			        {
+			        	!this.state.loginResponse.success
+			        		?
+			        			<div className="text-danger">{this.state.loginResponse}</div>
+			        		:
+
+			        	null
+			        }
+			        </div>
+		      <br/>
 			</div>
 		   	}
 

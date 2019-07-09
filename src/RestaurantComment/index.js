@@ -12,8 +12,8 @@ class RestaurantComment extends Component {
 		}
 	}
 	componentDidMount(){
-		console.log("STATE, RestaurantComment, in CDM: ", this.state);
-		console.log("PROPS, RestaurantComment, in CDM: ", this.props);
+		// console.log("STATE, RestaurantComment, in CDM: ", this.state);
+		// console.log("PROPS, RestaurantComment, in CDM: ", this.props);
 	}
 	setCommentToEdit = (e) => {
 		// console.log("set comment to edit triggered")
@@ -53,8 +53,8 @@ class RestaurantComment extends Component {
 	}
 
 	render(){
-		console.log("restaurant comment props: ", this.props)
-		console.log("restaurant comment state: ", this.state)
+		// console.log("restaurant comment props: ", this.props)
+		// console.log("restaurant comment state: ", this.state)
 
 		const userData = this.state.userData;
 
@@ -64,19 +64,19 @@ class RestaurantComment extends Component {
 		        	method: 'DELETE',
 		        	credentials: 'include'
 			      })
-		      	console.log("unparsed deleted comment:")
-		      	console.log(deletedComment);
+		      	// console.log("unparsed deleted comment:")
+		      	// console.log(deletedComment);
 
-		      	const deletedCommentResponse = await deletedComment.json();
-		      	console.log("parsed deleted comment response: ")
-		      	console.log(deletedCommentResponse);
+		      	// const deletedCommentResponse = await deletedComment.json();
+		      	// console.log("parsed deleted comment response: ")
+		      	// console.log(deletedCommentResponse);
 
-		      	console.log("original raw response:")
-		      	console.log(deletedComment)
+		      	// console.log("original raw response:")
+		      	// console.log(deletedComment)
 
 		      	if (deletedComment.ok) {
 
-		      		console.log("are we doing this");
+		      		// console.log("are we doing this");
 		      		this.props.getUserRestaurantInfo();
 		      	}
 

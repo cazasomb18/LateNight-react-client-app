@@ -12,8 +12,8 @@ class Dashboard extends Component {
     }
   }
   componentDidMount(){
-    console.log('STATE IN CDM: IN DASHBOARD', this.state);
-    console.log('PROPS IN CDM: IN DASHBOARD', this.props);
+    // console.log('STATE IN CDM: IN DASHBOARD', this.state);
+    // console.log('PROPS IN CDM: IN DASHBOARD', this.props);
     this.getUserRestaurantInfo();
   }
 
@@ -81,9 +81,9 @@ class Dashboard extends Component {
   }
 
   render(){
-    console.log('STATE IN DASHBOARD RENDER', this.state);
-    console.log('PROPS IN DASHBOARD RENDER', this.props);
-    console.log("this.state.userRestaurants render in Dash: ", this.state.userRestaurants);
+    // console.log('STATE IN DASHBOARD RENDER', this.state);
+    // console.log('PROPS IN DASHBOARD RENDER', this.props);
+    // console.log("this.state.userRestaurants render in Dash: ", this.state.userRestaurants);
 
     return(
       <div>

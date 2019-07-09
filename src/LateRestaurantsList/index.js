@@ -14,8 +14,8 @@ class LateRestaurantsList extends React.Component {
 		}
 	}
 	componentDidMount(){
-		console.log("this.state in CDM LateRestaurantsList: ", this.state);
-		console.log("this.props in CDM LateRestaurantsList: ", this.props);
+		// console.log("this.state in CDM LateRestaurantsList: ", this.state);
+		// console.log("this.props in CDM LateRestaurantsList: ", this.props);
 	}
     getRestaurants = async (e) => {
         e.preventDefault();
@@ -47,8 +47,8 @@ class LateRestaurantsList extends React.Component {
 	    })
 	}
 	render(){
-		console.log("state in render() in LateRestaurantList: ", this.state);
-		console.log("props in render() in LateRestaurantList: ", this.props);
+		// console.log("state in render() in LateRestaurantList: ", this.state);
+		// console.log("props in render() in LateRestaurantList: ", this.props);
 		return(
 			<div>
 			{

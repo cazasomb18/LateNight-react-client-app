@@ -60,7 +60,7 @@ class App extends Component {
     this.setState({
       loggedIn: false,
       userName: '',
-      restaurants: [],
+      // restaurants: [],
       comments: [],
       showDash: false,
       showList: false
@@ -73,8 +73,8 @@ class App extends Component {
     })
   }
   render(){
-    console.log('STATE IN APP RENDER(): ', this.state);
-    console.log('PROPS IN APP RENDER(): ', this.props);
+    // console.log('STATE IN APP RENDER(): ', this.state);
+    // console.log('PROPS IN APP RENDER(): ', this.props);
     return (
       <main>
         <div>
@@ -88,8 +88,7 @@ class App extends Component {
               : 
             null
           }
-          <AppTitle 
-            userName={this.state.userName}/>
+          <AppTitle userName={this.state.userName}/>
           <Header 
             setUserInfo={this.setUserInfo}
             loggedIn={this.state.loggedIn} 
