@@ -52,7 +52,7 @@ class Header extends React.Component {
      		const parsedResponse = await loginResponse.json();
      		console.log('login parsedResponse: ', parsedResponse);
  			if (parsedResponse.success === true) {
-				this.props.setUserInfo(parsedResponse.data);
+				this.props.setUserInfo(parsedResponse);
      		} else {
 				this.setState({
 					loginResponse: parsedResponse.data
@@ -85,7 +85,7 @@ class Header extends React.Component {
 		console.log("this.props in header render(): ", this.props);
 		console.log("register response whole OBJ: ", this.state.registerResponse);
 	    return(
-	    	<div id="collapsibleContainer" className="collapsible">
+	    	<div id="collapsibleContainer" className="collapsible container fluid">
 				<Collapsible className="collapsible title bg-transparent" trigger="ABOUT L.N.B">
 						<Card className="bg-transparent">
 						<Card.Img src="https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"/>

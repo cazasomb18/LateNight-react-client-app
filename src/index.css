@@ -89,10 +89,29 @@ button:hover {
 	margin: 0 auto;
 }
 
+.dashTitle {
+	margin: 1.5em;
+
+}
+
+.dash {
+	display: flex;
+	flex-direction: row;
+	size: 960px;
+	margin: 3em;
+	justify-content: space-between;
+}
+
+.dash button {
+	margin-right: 2.5em;
+
+
+}
+
 .dashboardField {
 	background-color: rgba(179,76,0,1);
 	color: rgba(28,232,196,.9);
-	width: 100%;
+	width: 40%;
 	height: 56px;
 	border-radius: 6px;
 	position: relative;
@@ -110,6 +129,22 @@ button:hover {
 
 .dashboardField:hover {
 	background-color: rgba(255,133,43,0.45);
+}
+
+.dashSubTitle {
+	margin: 1em;
+}
+
+#centerDash {
+	display: flex;
+	margin: 1.5em;
+	justify-content: space-between;
+}
+
+#centerDash button {
+	margin: auto;
+	margin-right: 2.5em;
+
 }
 
 .collapsible {

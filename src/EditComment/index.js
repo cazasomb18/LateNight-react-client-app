@@ -1,4 +1,7 @@
 import React from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 class EditComment extends React.Component{
 	constructor(props){
@@ -45,12 +48,31 @@ class EditComment extends React.Component{
 		// console.log("EDIT COMMENT PROPS: ", this.props);
 
 		return(
-			<div>
+			<Container>
+				<Row>
+					<Col></Col>
+					<Col></Col>
+					<Col></Col>
+				</Row>
+				<Row>
+					<Col></Col>
+					<Col></Col>
+					<Col></Col>
+					<Col></Col>
+				</Row>
+					<Col></Col>
+					<Col></Col>
+					<Col></Col>
+					<Col></Col>
+					<Col></Col>
+				<Row>
+					
+				</Row>
 				<form className="form" onSubmit={this.editComments}>
-					<input className="field" type='text' value={this.state.commentBody} onChange={this.handleChange} name="commentBody"/>
-					<input className="field" type='submit' value='EDIT'/>
+					<input className="field bg-dark" type='text' value={this.state.commentBody} onChange={this.handleChange} name="commentBody"/>
+					<input className="field bg" type='submit' value='EDIT'/>
 				</form>
-			</div>
+			</Container>
 		)
 	}
 };

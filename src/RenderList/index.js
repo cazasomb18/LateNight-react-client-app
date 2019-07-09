@@ -22,8 +22,8 @@ class RenderList extends React.Component {
 	}
 
   	postRestaurantComments = async (e)  => {
-		try{
   		e.preventDefault();
+		try{
 	        const postComments = await fetch(process.env.REACT_APP_BACK_END_URL + '/restaurants/' + this.state.targetRestaurant.place_id + '/comment/', {
 	          method: 'POST',
 	          credentials: 'include',
@@ -71,9 +71,9 @@ class RenderList extends React.Component {
 		return(
 			<form id="lateList" key={i}>
 				<li>
-					<h3 className="ol-subitems">Name: {restaurant.name}</h3><br/>
-					<h3 className="ol-subitems">Address: {restaurant.vicinity}</h3><br/>
-					<h3 className="ol-subitems">Google ID: {restaurant.place_id}</h3><br/>
+					<h3 className="ol-subitems bg-dark">Name: {restaurant.name}</h3><br/>
+					<h3 className="ol-subitems bg-dark">Address: {restaurant.vicinity}</h3><br/>
+					<h3 className="ol-subitems bg-dark">Google ID: {restaurant.place_id}</h3><br/>
 					<button className="field" id={i} onClick={this.addCommentView}>Add Comment</button> 
 				</li>
 				<br/>
@@ -94,10 +94,10 @@ class RenderList extends React.Component {
 			return (
 				<div className="form">
 					<form className="form" onSubmit={this.postRestaurantComments}>
-						Name:<input className="field" readOnly name="name" value={this.state.targetRestaurant.name}></input><br/>
-						Address: <input className="field" readOnly name="address" value={this.state.targetRestaurant.vicinity}></input><br/>
-						ID: <input className="field" readOnly name="place_id" value={this.state.targetRestaurant.place_id}></input><br/>
-						<textarea className="field" onChange={this.handleChange} name='commentInput'/>
+						Name:<input className="field bg-dark" readOnly name="name" value={this.state.targetRestaurant.name}></input><br/>
+						Address: <input className="field bg-dark" readOnly name="address" value={this.state.targetRestaurant.vicinity}></input><br/>
+						ID: <input className="field bg-dark" readOnly name="place_id" value={this.state.targetRestaurant.place_id}></input><br/>
+						<textarea className="field" onChange={this.handleChange} name='commentInput' placeholder="make comment here"/>
 						<input className="field" type='submit' value='POST COMMENT'/>
 					</form>
 				</div>
