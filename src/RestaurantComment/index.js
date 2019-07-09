@@ -1,16 +1,17 @@
-import React, { Component } from 'react'
-import EditComment from '../EditComment'
+import React, { Component } from 'react';
+import EditComment from '../EditComment';
+import Dashboard from '../Dashboard';
 
 class RestaurantComment extends Component {
 	constructor(props){
 		super();
 		this.state = {
 			commentToEdit: null,
-			userData: [...this.props.userData]
+			clearComment: this.clearCommentToEdit,
+			userData: [props.userData]
 		}
 	}
 	componentDidMount(){
-		// const userData = this.props.userData;
 		console.log("STATE, RestaurantComment, in CDM: ", this.state);
 		console.log("PROPS, RestaurantComment, in CDM: ", this.props);
 	}
@@ -22,15 +23,14 @@ class RestaurantComment extends Component {
 		const restaurantId = e.currentTarget.dataset.restaurantId;
 		const commentId = e.currentTarget.dataset.commentId;
 
-		const foundRestaurant = this.props.userData.find((restaurant) => {
+		const foundRestaurant = this.state.userData.find((restaurant) => {
 			if (restaurant._id === restaurantId) {
 				return true
 			} else {
 				return false
 			}
 		})
-		// console.log('this is the found restaurant')
-		// console.log(foundRestaurant)
+
 
 		const foundComment = foundRestaurant.comments.find((comment) => {
 			if (comment._id === commentId) {
@@ -39,21 +39,24 @@ class RestaurantComment extends Component {
 				return false
 			}
 		})
+
+
 		this.setState({
 			commentToEdit: foundComment
 		})
 	}
+
 	clearCommentToEdit = () => {
 		this.setState({
 			commentToEdit: null
 		})
 	}
-	render(){
-		console.log("restaurant comment props:")
-		console.log(this.props);
 
-		console.log("restaurant comment state:")
-		console.log(this.state)
+	render(){
+		console.log("restaurant comment props: ", this.props)
+		console.log("restaurant comment state: ", this.state)
+
+		const userData = this.state.userData;
 
 		const deleteRestaurantComment = async (restaurantPlaceId, commentId) => {
 		    try{				
@@ -62,7 +65,7 @@ class RestaurantComment extends Component {
 		        	credentials: 'include'
 			      })
 		      	console.log("unparsed deleted comment:")
-		      	console.log(deletedComment)
+		      	console.log(deletedComment);
 
 		      	const deletedCommentResponse = await deletedComment.json();
 		      	console.log("parsed deleted comment response: ")
@@ -81,14 +84,15 @@ class RestaurantComment extends Component {
 		 		console.error(err)
 			}
 		}
-		// const userData = this.props.userData;
-		const filteredRestaurantList = this.state.userData.filter((restaurant) => {
-			if (restaurant.comments < 0) {
+
+		const filteredRestaurantList = userData.filter((restaurant) => {
+			if (!restaurant.comments) {
+				// .length < 0) 
 				return false
 			} else {
 				return true 
 			}
-		});
+		})
 //// NESTED MAP - ONE RETURNS THE RESTAURANT INFO, OTHER RETURNS THE COMMENT INFO /////
 		const restaurantList = filteredRestaurantList.map((restaurant, i) => {
 			
@@ -116,10 +120,13 @@ class RestaurantComment extends Component {
 									onClick={this.setCommentToEdit}> Edit Comment 
 								</button> 
 								: 
-								<EditComment 
-									clearCommentToEdit={this.clearCommentToEdit} 
-									commentToEdit={this.state.commentToEdit} 
-								/>
+								<div>
+									<EditComment 
+										clearCommentToEdit={this.props.clearCommentToEdit}
+										commentToEdit={this.props.commentToEdit}
+									/>
+									<Dashboard clearComment={this.props.clearComment}/>
+								</div>
 							}
 
 						</ul>
@@ -134,9 +141,9 @@ class RestaurantComment extends Component {
 				return (
 					<div className="form" key={`restaurant-${i}`}>
 						<h2 className="title">Restaurant: {restaurant.name}</h2><br/>
-						<h3 className="subTitle">Google ID: {restaurant.place_id}</h3><br/>
+						<h3 className="subTitle">ID: {restaurant.place_id}</h3><br/>
 						<h3 className="subTitle">Comments made by: {restaurant.userName}</h3><br/>
-							{thisCommentList.length < 1 ? <h1> No user data </h1> : thisCommentList}
+							{thisCommentList.length < 1 ? null : thisCommentList}
 						<br/>
 					</div>
 				);

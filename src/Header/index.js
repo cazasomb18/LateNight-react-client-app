@@ -8,8 +8,8 @@ class Header extends React.Component {
 	  	this.state = {
 	  		userName: '',
 	  		password: '',
-	  		loginResponse: '',
-	  		registerResponse: ''
+	  		loginResponse: [],
+	  		registerResponse: []
   		}
 	}
 
@@ -56,7 +56,7 @@ class Header extends React.Component {
 				this.props.setUserInfo(parsedResponse);
      		}
 			this.setState({
-				loginResponse: parsedResponse.data
+				loginResponse: [parsedResponse.data]
 			})
     	}catch(err){
       		console.error(err);
@@ -98,8 +98,9 @@ class Header extends React.Component {
 	   		this.props.loggedIn
 	   		? 
       		// <h4 className="title">Welcome back {this.state.userName}!!!</h4>
-	      	<div id="headerDiv" className="form collapsible">
-	      		<button className="field" onClick={this.logOut}>Logout!</button>
+
+	      	<div id="collapsible bg-transparent">
+	      		<div className="title collapsible bg-transparent" onClick={this.logOut}>Logout!</div>
 	      	</div>
 
 	   		:

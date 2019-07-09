@@ -14,7 +14,7 @@ class App extends Component {
       loggedIn: false,
       isRegistered: false,
       userName: '',
-      restaurants: [this.props.restaurants],
+      // restaurants: [],
       comments: [],
       showList: false,
       showDash: false,
@@ -100,7 +100,7 @@ class App extends Component {
 
           <div>
               <Dashboard 
-                userName={this.state.userName} 
+                userName={this.state.userName}
                 latitude={this.state.lat}
                 longitude={this.state.lng}
                 showDashAndHideList={this.showDashAndHideList}

@@ -4,7 +4,7 @@ class EditComment extends React.Component{
 	constructor(props){
 		super();
 		this.state = {
-			placeId: props.commentToEdit.restaurant_id[0],
+			placeId: props.commentToEdit.restaurant_id,
 			commentId: props.commentToEdit._id,
 			commentBody: props.commentToEdit.commentBody
 		}
@@ -35,19 +35,19 @@ class EditComment extends React.Component{
 			})
 			const parsedCommentResponse = await editCommentResponse.json();
 			console.log(parsedCommentResponse);
+			this.props.clearCommentToEdit();
 		}catch(err){
 			console.error(err);
 		}
 	}
 	render(){
-
-		// console.log("EDIT COMMENT PROPS");
-		// console.log(this.props);
+		console.log('EDIT COMMENT STATE: ', this.state);
+		console.log("EDIT COMMENT PROPS: ", this.props);
 
 		return(
 			<div>
 				<form className="form" onSubmit={this.editComments}>
-					<input className="field" type='text' value={this.state.commentBody} onChange={this.handleChange} name="commentBody" />
+					<input className="field" type='text' value={this.state.commentBody} onChange={this.handleChange} name="commentBody"/>
 					<input className="field" type='submit' value='EDIT'/>
 				</form>
 			</div>
