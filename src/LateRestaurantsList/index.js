@@ -13,6 +13,10 @@ class LateRestaurantsList extends React.Component {
 			isOpen: false
 		}
 	}
+	componentDidMount(){
+		console.log("this.state in CDM LateRestaurantsList: ", this.state);
+		console.log("this.props in CDM LateRestaurantsList: ", this.props);
+	}
     getRestaurants = async (e) => {
         e.preventDefault();
         try {
@@ -43,8 +47,8 @@ class LateRestaurantsList extends React.Component {
 	    })
 	}
 	render(){
-		// console.log("this.state in render() in LateRestaurantList: ", this.state);
-		// console.log("this.props in render() in LateRestaurantList: ", this.props);
+		console.log("state in render() in LateRestaurantList: ", this.state);
+		console.log("props in render() in LateRestaurantList: ", this.props);
 		return(
 			<div>
 			{
@@ -64,8 +68,8 @@ class LateRestaurantsList extends React.Component {
 						Close List
 					</button>
 					<RenderList 
-						showListAndHideDash={this.props.showListAndHideDash} 
-						showDashAndHideList={this.props.showDashAndHideList} 
+						showListAndHideDash={this.props.showListAndHideDash}
+						showDashAndHideList={this.props.showDashAndHideList}
 						restaurants={this.state.restaurants}
 					/>
 					<div id="mapContainer" className="container-fluid">

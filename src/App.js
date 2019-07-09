@@ -6,7 +6,6 @@ import AppTitle from './AppTitle';
 import LateRestaurantsList from './LateRestaurantsList';
 import Dashboard from './Dashboard';
 import Spinner from 'react-bootstrap/Spinner';
-import Image from 'react-bootstrap/Image';
 
 class App extends Component {
   constructor(props){
@@ -80,16 +79,19 @@ class App extends Component {
       <main>
         <div>
           { this.state.lat === '' ? 
-            <Spinner animation="border" variant="light" role="status">
-              <span className="sr-only">Finding Your Position</span>
-            </Spinner> 
+            <div id="spinnerContainer">
+              <h3>Locating Your GPS Position...</h3>
+              <Spinner animation="border" variant="light" role="status">
+                <span className="sr-only">Locating Your GPS Position...</span>
+              </Spinner>
+            </div>
               : 
             null
           }
           <AppTitle 
             userName={this.state.userName}/>
           <Header 
-            setUserInfo={this.setUserInfo} 
+            setUserInfo={this.setUserInfo}
             loggedIn={this.state.loggedIn} 
             logOutReactApp={this.logOutReactApp}/>
         {
@@ -116,15 +118,13 @@ class App extends Component {
           </div>
           : 
           <div>
-            <h4 className="subTitle">
+            <h4 className="subTitle bg-transparent">
               Please Login
             </h4>
           </div>
         }
 
-
         </div>
-        <Image src="https://images.unsplash.com/photo-1532768641073-503a250f9754?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" fluid />
       </main>
     );
   }

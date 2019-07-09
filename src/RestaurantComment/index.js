@@ -5,8 +5,14 @@ class RestaurantComment extends Component {
 	constructor(props){
 		super();
 		this.state = {
-			commentToEdit: null
+			commentToEdit: null,
+			userData: [...this.props.userData]
 		}
+	}
+	componentDidMount(){
+		// const userData = this.props.userData;
+		console.log("STATE, RestaurantComment, in CDM: ", this.state);
+		console.log("PROPS, RestaurantComment, in CDM: ", this.props);
 	}
 	setCommentToEdit = (e) => {
 		// console.log("set comment to edit triggered")
@@ -33,11 +39,9 @@ class RestaurantComment extends Component {
 				return false
 			}
 		})
-
 		this.setState({
 			commentToEdit: foundComment
 		})
-
 	}
 	clearCommentToEdit = () => {
 		this.setState({
@@ -45,25 +49,18 @@ class RestaurantComment extends Component {
 		})
 	}
 	render(){
-		// console.log("restaurant comment props:")
-		// console.log(this.props);
+		console.log("restaurant comment props:")
+		console.log(this.props);
 
-		// console.log("restaurant comment state:")
-		// console.log(this.state)
-
-		const userData = this.props.userData;
+		console.log("restaurant comment state:")
+		console.log(this.state)
 
 		const deleteRestaurantComment = async (restaurantPlaceId, commentId) => {
-		    
-		    console.log(this.props)
-
-		    try{
-				
+		    try{				
 		      	const deletedComment = await fetch(process.env.REACT_APP_BACK_END_URL + '/comment/restaurants/' + restaurantPlaceId + '/' + commentId, {
 		        	method: 'DELETE',
 		        	credentials: 'include'
 			      })
-			      
 		      	console.log("unparsed deleted comment:")
 		      	console.log(deletedComment)
 
@@ -84,15 +81,15 @@ class RestaurantComment extends Component {
 		 		console.error(err)
 			}
 		}
-
-		const filteredRestaurantList = userData.filter((restaurant) => {
-			if (restaurant.comments.length < 0) {
+		// const userData = this.props.userData;
+		const filteredRestaurantList = this.state.userData.filter((restaurant) => {
+			if (restaurant.comments < 0) {
 				return false
 			} else {
 				return true 
 			}
-		})
-//// NESTED MAP - ONE RETURNS THE RESTAURANT INFO, OTHER RETURNS THE COMMENT INTO /////
+		});
+//// NESTED MAP - ONE RETURNS THE RESTAURANT INFO, OTHER RETURNS THE COMMENT INFO /////
 		const restaurantList = filteredRestaurantList.map((restaurant, i) => {
 			
 
@@ -133,12 +130,12 @@ class RestaurantComment extends Component {
 				}
 			})
 			/// FILTERS OUT NULL COMMENT ARRAYS FROM DATA USER'S DATA OBJECT ///
-			const thisCommentList = thisCommentListWithNulls.filter((e) => e !== null )
+			const thisCommentList = thisCommentListWithNulls.filter((e) => e !== null)
 				return (
 					<div className="form" key={`restaurant-${i}`}>
 						<h2 className="title">Restaurant: {restaurant.name}</h2><br/>
-						<h6 className="subTitle">Google ID: {restaurant.place_id}</h6><br/>
-						<h3 className="subTitle"> Comments made by: {restaurant.userName} </h3><br/>
+						<h3 className="subTitle">Google ID: {restaurant.place_id}</h3><br/>
+						<h3 className="subTitle">Comments made by: {restaurant.userName}</h3><br/>
 							{thisCommentList.length < 1 ? <h1> No user data </h1> : thisCommentList}
 						<br/>
 					</div>

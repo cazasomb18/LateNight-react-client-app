@@ -1,13 +1,15 @@
 import React from 'react';
 import Collapsible from 'react-collapsible';
-import Card from 'react-bootstrap/Card'
+import Card from 'react-bootstrap/Card';
  
 class Header extends React.Component {
 	constructor(props){
 		super();
 	  	this.state = {
 	  		userName: '',
-	  		password: ''	
+	  		password: '',
+	  		loginResponse: '',
+	  		registerResponse: ''
   		}
 	}
 
@@ -29,13 +31,16 @@ class Header extends React.Component {
 			console.log("parsedResponse: ", parsedResponse);
 			if (parsedResponse.registered === true) {
 				this.props.setUserInfo(parsedResponse);
+				this.setState({
+					registerResponse: parsedResponse.data
+				})
 			}
 		}catch(err){
 			console.error(err)
 		}
 	}
   	handleLogin = async (e) => {
-    	e.preventDefault();
+  		e.preventDefault();
     	try{
      		const loginResponse = await fetch(process.env.REACT_APP_BACK_END_URL + '/auth/login', {
      	  		method: 'POST',
@@ -50,6 +55,9 @@ class Header extends React.Component {
  			if (parsedResponse.success === true) {
 				this.props.setUserInfo(parsedResponse);
      		}
+			this.setState({
+				loginResponse: parsedResponse.data
+			})
     	}catch(err){
       		console.error(err);
     	}
@@ -73,46 +81,59 @@ class Header extends React.Component {
   	 	}
 	}
 	render() {
+		console.log("this.state in header render(): ", this.state);
+		console.log("this.props in header render(): ", this.props);
 	    return(
-	    	<div className="collapsible">
-				<Collapsible className="title collapsible" trigger="ABOUT LATE NIGHT BYTES">
-					<Card className="bg-dark">
+	    	<div className="collapsible bg-transparent">
+				<Collapsible className="title collapsible bg-transparent" trigger="ABOUT L/N/B">
+						<Card className="bg-transparent">
 						<Card.Img src="https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"/>
-						<Card.ImgOverlay>
-							<Card.Text id="userStoryPTag">Late Night Bytes consumes google maps and places api to find late night food in your area. Make sure you agree to share your location, Late Night Bytes is dependent up on this to return the restaurants that match your location, sound good? GREAT! Create an account by clicking the 'REGISTER' drop down menu and you will be logged in. After you're logged in, try the 'FIND LATE BYTES' button, it will show you all the restaurants in your area! If you see something you like on the list, go ahead and leave a comment, this information will be stored in your dashboard. Your dashboard is your private information, and no one else can access it. This a good way to keep track of your favorite late night bytes!</Card.Text>
+						<Card.ImgOverlay className="bg-transparent">
+							<Card.Text id="userStoryPTag" className="bg-transparent">Late Night Bytes consumes google maps and places api to find late night food in your area. Make sure you agree to share your location, Late Night Bytes is dependent up on this to return the restaurants that match your location, sound good? GREAT! Create an account by clicking the 'REGISTER' drop down menu and you will be logged in. After you're logged in, try the 'FIND LATE BYTES' button, it will show you all the restaurants in your area! If you see something you like on the list, go ahead and leave a comment, this information will be stored in your dashboard. Your dashboard is your private information, and no one else can access it. This a good way to keep track of your favorite late night bytes!</Card.Text>
 						</Card.ImgOverlay>
-					</Card>
+						</Card>
 				</Collapsible>
 
 	   	{ 
 	   		this.props.loggedIn
 	   		? 
-	      	<div className="form collapsible">
-	      		<h4 className="title">Welcome back {this.state.userName}!!!</h4>
+      		// <h4 className="title">Welcome back {this.state.userName}!!!</h4>
+	      	<div id="headerDiv" className="form collapsible">
 	      		<button className="field" onClick={this.logOut}>Logout!</button>
 	      	</div>
+
 	   		:
 
-		   	<div className="form collapsible">
-		      <Collapsible className="title collapsible" trigger="REGISTRATION">
-						<h1 className="title">Register for Late Night Bytes</h1><br/>
-						<h3 className="subTitle">CREATE AN ACCOUNT!</h3>
-						<form className="form" onSubmit={this.handleRegister}>
+		   	<div className="form collapsible bg-transparent">
+		      <Collapsible className="title collapsible bg-transparent" trigger="REGISTRATION">
+						<h3 className="headerSubTitle subTitle bg-transparent">CREATE AN ACCOUNT!</h3>
+						<form className="form bg-transparent" onSubmit={this.handleRegister}>
 							<input className="field" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
 							<input className="field" type="password" name="password" placeholder="password" onChange={this.handleChange}/><br/>
 							<input className="field" type="email" name="email" placeholder="email" onChange={this.handleChange}/><br/>
-							<input className="field" type="submit" value="Register!"/>
+							<input className="field " type="submit" value="Register!"/>
 						</form>
+						{
+							!this.state.registerResponse.success ?
+							<div className="text-danger regDiv">{this.state.registerResponse}</div>
+							:
+							null
+						}
 		      </Collapsible>
 
-		      <Collapsible className="title collapsible" trigger="LOGIN/LOGOUT">
-				      <h1 className="title">Login for Late Night Bytes</h1><br/>
+		      <Collapsible className="title collapsible bg-transparent" trigger="LOGIN/LOGOUT">
 				      <h3 className="subTitle">LOGIN!</h3>
 				        <form className="form" onSubmit={this.handleLogin}>
 				          <input className="field" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
 				          <input className="field" type="password" name="password" placeholder="password" onChange={this.handleChange}/><br/>
 				          <input className="field" type="submit" value="Login!"/>
 				        </form>
+				        {
+				        	!this.state.loginResponse.success ?
+				        		<div className="text-danger logDiv">{this.state.loginResponse}</div>
+				        	:
+				        	null
+				        }
 		      </Collapsible>
 			</div>
 		   	}

@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 
 const style = {
   width: '75%',
   height: '75%'
 }
-
-// const infoWindow = {
-//   card: {
-//     maxWidth: 150
-//   }
-// }
 
 class MapContainer extends Component {
   constructor(props){

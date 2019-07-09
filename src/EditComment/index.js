@@ -34,7 +34,7 @@ class EditComment extends React.Component{
 				}
 			})
 			const parsedCommentResponse = await editCommentResponse.json();
-			// console.log(parsedCommentResponse);
+			console.log(parsedCommentResponse);
 		}catch(err){
 			console.error(err);
 		}

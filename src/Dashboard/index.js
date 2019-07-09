@@ -3,8 +3,8 @@ import RestaurantComment from '../RestaurantComment';
 
 class Dashboard extends Component {
   constructor(props){
-    // console.log('constructor');
     super(props);
+    this.getUserRestaurantInfo.bind(this);
     this.state = {
       restaurants: [],
       show: false,
@@ -12,14 +12,13 @@ class Dashboard extends Component {
     }
   }
   componentDidMount(){
-    // console.log('STATE IN CDM: IN DASHBOARD', this.state);
-    // console.log('PROPS IN CDM: IN DASHBOARD', this.props);
-    this.getUserRestaurantInfo()
+    console.log('STATE IN CDM: IN DASHBOARD', this.state);
+    console.log('PROPS IN CDM: IN DASHBOARD', this.props);
   }
 
+  /// THIS FETCH CALL RETURNS ALL THE DATA ASSOCIATED WITH THE LOGGED IN USER////
   getUserRestaurantInfo = async (e) => {
-
-    /// THIS FETCH CALL RETURNS ALL THE DATA ASSOCIATED WITH THE LOGGED IN USER////
+    e.preventDefault();
     try{
       const userRestaurantsResponse = await fetch(process.env.REACT_APP_BACK_END_URL + '/auth/usercomments/', {
         method: 'GET',
@@ -62,7 +61,7 @@ class Dashboard extends Component {
     e.preventDefault()
 
     try{
-      const editedComment = await fetch(process.env.REACT_APP_HEROKU_BACKEND + '/comment/restaurants/' + this.state.userRestaurants.data.place_id + '/edit/' + this.state.userRestaurants.foundComments._id +'/', {
+      const editedComment = await fetch(process.env.REACT_APP_BACK_END_URL + '/comment/restaurants/' + this.state.userRestaurants.data.place_id + '/edit/' + this.state.userRestaurants.foundComments._id + '/', {
 
         method: 'PUT',
         credentials: 'include',
@@ -72,7 +71,8 @@ class Dashboard extends Component {
         }
       })
       const editCommentResponse = await editedComment.json();
-      // console.log('edited comment response: ', editCommentResponse);
+      console.log('edited comment response: ', editCommentResponse);
+      this.props.showDashAndHideList();
 
     }catch(err){
       console.error(err);
@@ -80,9 +80,8 @@ class Dashboard extends Component {
   }
 
   render(){
-    // console.log('STATE IN CDM: IN DASHBOARD RENDER', this.state);
-    // console.log('PROPS IN CDM: IN DASHBOARD RENDER', this.props);
-
+    console.log('STATE IN DASHBOARD RENDER', this.state);
+    console.log('PROPS IN DASHBOARD RENDER', this.props);
 
     return(
       <div>
@@ -91,23 +90,21 @@ class Dashboard extends Component {
             <div className="dashboardFieldContainer">
               <h1 className="title">Welcome to your Dashboard, {this.props.userName}</h1>
               <button className="dashboardField" type='button' onClick={this.hideModal}>
-                Hide {this.props.userName}'s Dashboard
+                Hide Dashboard
               </button>
-                <button className="dashboardField" onClick={this.getUserRestaurantInfo}>Refresh {this.props.userName}'s Dashboard</button>
-                <h4 className="subTitle">Hi {this.props.userName}, here you can manage all of your created data</h4>
+                <button className="dashboardField" onClick={this.getUserRestaurantInfo}>Refresh Dashboard</button>
+                <h4 className="subTitle">Hi {this.props.userName}, here you can manage all of your data!</h4>
                 <RestaurantComment 
                   userData={this.state.userRestaurants.data}
                   userComments={this.state.userRestaurants.foundComments}
                   getUserRestaurantInfo={this.getUserRestaurantInfo}
                   editRestaurantComment={this.editRestaurantComment}
-                />              
-
+                />
             </div>
             : 
             <div className="dashboardFieldContainer">
-
               <button className="dashboardField" type='button' onClick={this.toggleModal}>
-                Show {this.props.userName}'s Dashboard
+                Show Dashboard
               </button>
             </div>
 
