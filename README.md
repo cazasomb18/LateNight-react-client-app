@@ -1,6 +1,4 @@
 ## Late Night Bytes 
-
-###### (may possibly change the name to "Blacked Out Bytes")
  
 #### 1.) The purpose of this app is the use user's current location to find late night kitchens/eateries/restaurants in their area.
  
