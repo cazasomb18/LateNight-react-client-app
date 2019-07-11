@@ -47,16 +47,13 @@ class LateRestaurantsList extends React.Component {
 	    })
 	}
 	render(){
-		// console.log("state in render() in LateRestaurantList: ", this.state);
-		// console.log("props in render() in LateRestaurantList: ", this.props);
 		return(
-			<div>
+			<div id="lateList">
 			{
 				!this.state.showList && !this.state.isOpen ?
-				<div>
-					<form className="form" onSubmit={this.getRestaurants}>
-						<h4 className="field" >ARE YOU HUNGRY?!</h4>
-						<input className="field" type="submit" value="Find Late Bytes"/>
+				<div className="lnbButtonContainer">
+					<form id="bottomE" className="form" onSubmit={this.getRestaurants}>
+						<input className="lnbButton field" type="submit" value="Find Late Bytes"/>
 					</form>
 
 				</div>

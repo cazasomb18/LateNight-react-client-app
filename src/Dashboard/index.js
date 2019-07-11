@@ -12,8 +12,6 @@ class Dashboard extends Component {
     }
   }
   componentDidMount(){
-    // console.log('STATE IN CDM: IN DASHBOARD', this.state);
-    // console.log('PROPS IN CDM: IN DASHBOARD', this.props);
     this.getUserRestaurantInfo();
   }
 
@@ -81,15 +79,12 @@ class Dashboard extends Component {
   }
 
   render(){
-    // console.log('STATE IN DASHBOARD RENDER', this.state);
-    // console.log('PROPS IN DASHBOARD RENDER', this.props);
-    // console.log("this.state.userRestaurants render in Dash: ", this.state.userRestaurants);
-
+    // console.log("THIS.STATE IN DASH render(): ", this.state.userRestaurants);
     return(
       <div>
           {
             this.state.show === true ? 
-            <div className="Container dashboardFieldContainer">
+            <div className="Container dashboardFieldContainer fluid">
               <h1 className="title dashTitle">Welcome to your Dashboard, {this.props.userName}</h1>
               <div className="dash Container fluid">
                 <button className="dashboardField" type='button' onClick={this.hideModal}>
@@ -100,7 +95,7 @@ class Dashboard extends Component {
 
               <h4 className="subTitle dashSubTitle">Hi {this.props.userName}, here you can manage all of your data!</h4>
               <RestaurantComment 
-                userData={this.state.userRestaurants}
+                userData={this.state.userRestaurants.data}
                 userComments={this.state.userRestaurants.foundComments}
                 getUserRestaurantInfo={this.getUserRestaurantInfo}
                 editRestaurantComment={this.editRestaurantComment}

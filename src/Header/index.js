@@ -50,7 +50,7 @@ class Header extends React.Component {
      	  		}
  	  		})
      		const parsedResponse = await loginResponse.json();
-     		console.log('login parsedResponse: ', parsedResponse);
+     		// console.log('login parsedResponse: ', parsedResponse);
  			if (parsedResponse.success === true) {
 				this.props.setUserInfo(parsedResponse);
      		} else {
@@ -81,9 +81,9 @@ class Header extends React.Component {
   	 	}
 	}
 	render() {
-		console.log("this.state in header render(): ", this.state);
-		console.log("this.props in header render(): ", this.props);
-		console.log("register response whole OBJ: ", this.state.registerResponse);
+		// console.log("this.state in header render(): ", this.state);
+		// console.log("this.props in header render(): ", this.props);
+		// console.log("register response whole OBJ: ", this.state.registerResponse);
 	    return(
 	    	<div id="collapsibleContainer" className="collapsible container fluid">
 				<Collapsible className="collapsible title bg-transparent" trigger="ABOUT L.N.B">
@@ -100,14 +100,13 @@ class Header extends React.Component {
 	   		this.props.loggedIn
 	   		?
 
-	      	<div>
-	      	<br/>
+	      	<div id="collapsibleContainer" className="container fluid">
 	      		<div className="collapsible title bg-transparent" onClick={this.logOut}>Logout!</div>
 	      	</div> 
 
 	   		:
 
-		   	<div>
+		   	<div id="collapsibleContainer">
 		      <Collapsible className="collapsible title bg-transparent" trigger="REGISTRATION">
 						<h3 className="headerSubTitle subTitle bg-transparent">CREATE AN ACCOUNT!</h3>
 						<form className="form bg-transparent" onSubmit={this.handleRegister}>
@@ -129,7 +128,7 @@ class Header extends React.Component {
 		      	}
 
 
-		      <Collapsible className="collapsible title bg-transparent" trigger="LOGIN/LOGOUT">
+		      <Collapsible className="collapsible title bg-transparent" trigger="LOGIN">
 			      <h3 className="headerSubTitle subTitle bg-transparent">LOGIN!</h3>
 			        <form className="form bg-transparent" onSubmit={this.handleLogin}>
 			          <input className="field" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>

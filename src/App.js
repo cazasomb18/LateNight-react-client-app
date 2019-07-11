@@ -60,7 +60,6 @@ class App extends Component {
     this.setState({
       loggedIn: false,
       userName: '',
-      // restaurants: [],
       comments: [],
       showDash: false,
       showList: false
@@ -97,24 +96,22 @@ class App extends Component {
           this.state.loggedIn ?
 
 
-          <div>
-              <Dashboard 
-                userName={this.state.userName}
-                latitude={this.state.lat}
-                longitude={this.state.lng}
-                showDashAndHideList={this.showDashAndHideList}
-                showListAndHideDash={this.showListAndHideDash}
-              />
-
-              <LateRestaurantsList 
-                userName={this.state.userName} 
-                latitude={this.state.lat} 
-                longitude={this.state.lng}
-                showListAndHideDash={this.showListAndHideDash}
-                showDashAndHideList={this.showDashAndHideList}
-              />
-
-          </div>
+        <div>
+            <Dashboard 
+              userName={this.state.userName}
+              latitude={this.state.lat}
+              longitude={this.state.lng}
+              showDashAndHideList={this.showDashAndHideList}
+              showListAndHideDash={this.showListAndHideDash}
+            />
+            <LateRestaurantsList 
+              userName={this.state.userName} 
+              latitude={this.state.lat} 
+              longitude={this.state.lng}
+              showListAndHideDash={this.showListAndHideDash}
+              showDashAndHideList={this.showDashAndHideList}
+            />
+        </div>
           : 
           <div>
             <h4 className="subTitle bg-transparent">
