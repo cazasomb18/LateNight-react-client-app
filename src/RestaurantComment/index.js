@@ -113,22 +113,21 @@ class RestaurantComment extends Component {
 							}>
 							<button className="field">Delete Comment</button>
 							</form>
-							{!this.state.commentToEdit ? 
-// { !this.state.commentToEdit ? <button data-restaurant-id={comment.restaurant_id[0]} data-comment-id={comment._id} onClick={this.setCommentToEdit}> Edit Comment </button> : <EditComment clearCommentToEdit={this.clearCommentToEdit} commentToEdit={this.state.commentToEdit} />}
+							{
+								!this.state.commentToEdit ? 
+									
 								<button 
 									className="field" 
 									data-restaurant-id={comment.restaurant_id[0]} 
-									data-comment-id={comment._id}
-									onClick={this.setCommentToEdit}> Edit Comment 
-								</button>
+									data-comment-id={comment._id} 
+									onClick={this.setCommentToEdit}> 
+									Edit Comment
+								</button> 
 								: 
-								<div>
-									<EditComment 
-										clearCommentToEdit={this.clearCommentToEdit}
-										commentToEdit={this.state.commentToEdit}
-									/>
-									<Dashboard clearComment={this.clearCommentToEdit}/>
-								</div>
+								<EditComment 
+									clearCommentToEdit={this.clearCommentToEdit} 
+									commentToEdit={this.state.commentToEdit}
+								/>
 							}
 
 						</ul>

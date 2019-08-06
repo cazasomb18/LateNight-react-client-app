@@ -17,10 +17,7 @@ const AppTitle = (props) => {
 		return (
 			<div id="titleContainer" className="form">
 				<h1 className="appTitle">
-					Hi {props.userName}
-				</h1>
-				<h1 className="appTitle">
-					{arr[randInt]}
+					Hi {props.userName}, {arr[randInt]}
 				</h1>
 			</div>
 		)
@@ -28,3 +25,6 @@ const AppTitle = (props) => {
 };
 
 export default AppTitle;
+				// <h1 className="appTitle">
+				// 	{arr[randInt]}
+				// </h1>

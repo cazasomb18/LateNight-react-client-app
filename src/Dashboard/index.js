@@ -93,7 +93,7 @@ class Dashboard extends Component {
                 <button className="dashboardField" onClick={this.getUserRestaurantInfo}>Refresh Dashboard</button>
               </div>
 
-              <h4 className="subTitle dashSubTitle">Hi {this.props.userName}, here you can manage all of your data!</h4>
+              <h4 className="subTitle dashSubTitle">Here you can manage all of your data.</h4>
               <RestaurantComment 
                 userData={this.state.userRestaurants.data}
                 userComments={this.state.userRestaurants.foundComments}

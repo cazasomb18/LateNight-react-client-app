@@ -31,7 +31,7 @@ class App extends Component {
     })
   }
 
-  showDashAndHideList = () => {
+  showDashAndHideList = (e) => {
     // console.log("showDashAndHideList");
     this.setState({
       showDash: true,
@@ -39,7 +39,7 @@ class App extends Component {
     })
   }
 
-  showListAndHideDash = () => {
+  showListAndHideDash = (e) => {
     // console.log("showListAndHideDash");
     this.setState({
       showDash: false,

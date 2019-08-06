@@ -85,8 +85,8 @@ class Header extends React.Component {
 		// console.log("this.props in header render(): ", this.props);
 		// console.log("register response whole OBJ: ", this.state.registerResponse);
 	    return(
-	    	<div id="collapsibleContainer" className="collapsible container fluid">
-				<Collapsible className="collapsible title bg-transparent" trigger="ABOUT L.N.B">
+	    	<div id="collapsibleContainer" className="collapsible fluid">
+				<Collapsible className="collapsible title bg-transparent" trigger="ABOUT LATE NIGHT BYTES">
 						<Card className="bg-transparent">
 						<Card.Img src="https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"/>
 						<Card.ImgOverlay className="bg-transparent">
@@ -100,15 +100,15 @@ class Header extends React.Component {
 	   		this.props.loggedIn
 	   		?
 
-	      	<div id="collapsibleContainer" className="container fluid">
+	      	<div id="collapsibleContainer" className="collapsible fluid">
 	      		<div className="collapsible title bg-transparent" onClick={this.logOut}>Logout!</div>
 	      	</div> 
 
 	   		:
 
-		   	<div id="collapsibleContainer">
+		   	<div id="collapsibleContainer" className="collapsible fluid">
 		      <Collapsible className="collapsible title bg-transparent" trigger="REGISTRATION">
-						<h3 className="headerSubTitle subTitle bg-transparent">CREATE AN ACCOUNT!</h3>
+						<h3 className="headerSubTitle subTitle bg-transparent">CREATE AN ACCOUNT</h3>
 						<form className="form bg-transparent" onSubmit={this.handleRegister}>
 							<input className="field" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
 							<input className="field" type="password" name="password" placeholder="password" onChange={this.handleChange}/><br/>
@@ -129,7 +129,7 @@ class Header extends React.Component {
 
 
 		      <Collapsible className="collapsible title bg-transparent" trigger="LOGIN">
-			      <h3 className="headerSubTitle subTitle bg-transparent">LOGIN!</h3>
+			      <h3 className="headerSubTitle subTitle bg-transparent">PLEASE LOGIN</h3>
 			        <form className="form bg-transparent" onSubmit={this.handleLogin}>
 			          <input className="field" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
 			          <input className="field" type="password" name="password" placeholder="password" onChange={this.handleChange}/><br/>

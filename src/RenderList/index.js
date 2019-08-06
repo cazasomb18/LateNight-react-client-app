@@ -70,10 +70,10 @@ class RenderList extends React.Component {
 		const renderList = restaurants.map((restaurant, i) => {
 		return(
 			<form id="lateList" key={i}>
+				<h2 className="subTitle">{restaurant.name}</h2>
 				<li>
-					<h3 className="ol-subitems bg-dark">Name: {restaurant.name}</h3><br/>
-					<h3 className="ol-subitems bg-dark">Address: {restaurant.vicinity}</h3><br/>
-					<h3 className="ol-subitems bg-dark">Google ID: {restaurant.place_id}</h3><br/>
+					<h3 className="ol-subitems">Address: {restaurant.vicinity}</h3><br/>
+					<h3 className="ol-subitems">ID: {restaurant.place_id}</h3><br/>
 					<button className="field" id={i} onClick={this.addCommentView}>Add Comment</button> 
 				</li>
 				<br/>
@@ -84,7 +84,7 @@ class RenderList extends React.Component {
 		if (!this.state.addingComment) {
 			return (
 				<div className="form">
-					<h4 className="subTitle text-secondary latelistTitle">LATE NIGHT LIST</h4>
+					<h4 className="title lateListTitle">LATE NIGHT LIST</h4>
 					<ul className="form">
 					{renderList}
 					</ul>

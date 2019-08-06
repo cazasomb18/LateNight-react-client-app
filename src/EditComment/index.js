@@ -9,7 +9,8 @@ class EditComment extends React.Component{
 		this.state = {
 			placeId: props.commentToEdit.restaurant_id[0],
 			commentId: props.commentToEdit._id,
-			commentBody: props.commentToEdit.commentBody
+			commentBody: props.commentToEdit.commentBody,
+			editingComment: false
 		}
 	}
 	componentDidMount(){
@@ -19,8 +20,14 @@ class EditComment extends React.Component{
 	handleChange = (e) => {
 	    e.preventDefault();
 	    this.setState({
-	      [e.currentTarget.name]: e.currentTarget.value 
+	      [e.currentTarget.name]: e.currentTarget.value
 	    })
+  	}
+  	editingCommentView = async (e) => {
+  		e.preventDefault();
+  		this.setState({
+  			editingComment: true
+  		})
   	}
 	editComments = async (e) => {
 
@@ -38,7 +45,7 @@ class EditComment extends React.Component{
 			})
 			const parsedCommentResponse = await editCommentResponse.json();
 			console.log(parsedCommentResponse);
-			// this.props.clearCommentToEdit();
+			this.props.clearCommentToEdit();
 		}catch(err){
 			console.error(err);
 		}
@@ -46,13 +53,20 @@ class EditComment extends React.Component{
 	render(){
 		console.log('EDIT COMMENT STATE: ', this.state);
 		console.log("EDIT COMMENT PROPS: ", this.props);
+		if (!this.state.editingCommentView) {
+			return(
+					<form className="editCommentBorder form" onSubmit={this.editComments}>
+						<input className="field bg-dark" type='text' value={this.state.commentBody} onChange={this.handleChange} onClick={this.editingCommentView} name="commentBody" placeholder={this.state.commentBody}/>
+						<input className="field bg" type='submit' value='EDIT'/>
+					</form>
+			)
 
-		return(
-				<form className="form" onSubmit={this.editComments}>
-					<input className="field bg-dark" type='text' value={this.state.commentBody} onChange={this.handleChange} name="commentBody"/>
-					<input className="field bg" type='submit' value='EDIT'/>
-				</form>
-		)
+		} else {
+			return(
+				null
+			)
+		}
+
 	}
 };
 
