@@ -36,6 +36,7 @@ class LateRestaurantsList extends React.Component {
                 isOpen: true,
                 showList: true
             })
+            this.props.showListAndHideDash();
         } catch(err) {
             console.error(err);
         }
@@ -45,6 +46,7 @@ class LateRestaurantsList extends React.Component {
 			isOpen: false,
 			showList: false
 	    })
+	    this.props.showDashAndHideList();
 	}
 	render(){
 		return(
@@ -69,13 +71,11 @@ class LateRestaurantsList extends React.Component {
 						showDashAndHideList={this.props.showDashAndHideList}
 						restaurants={this.state.restaurants}
 					/>
-					<div id="mapContainer" className="container-fluid">
-						<MapContainer
-	                		latitude={this.props.latitude}
-	                		longitude={this.props.longitude}
-	                		restaurants={this.state.restaurants}
-	              		/>	
-					</div>
+					<MapContainer
+                		latitude={this.props.latitude}
+                		longitude={this.props.longitude}
+                		restaurants={this.state.restaurants}
+              		/>
 
 
 					<button className="field" type="button" onClick={this.toggleModal}>

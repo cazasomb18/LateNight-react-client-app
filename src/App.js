@@ -14,7 +14,6 @@ class App extends Component {
       loggedIn: false,
       isRegistered: false,
       userName: '',
-      // restaurants: [],
       comments: [],
       showList: false,
       showDash: false,
@@ -31,7 +30,7 @@ class App extends Component {
     })
   }
 
-  showDashAndHideList = (e) => {
+  showDashAndHideList = () => {
     // console.log("showDashAndHideList");
     this.setState({
       showDash: true,
@@ -39,7 +38,7 @@ class App extends Component {
     })
   }
 
-  showListAndHideDash = (e) => {
+  showListAndHideDash = () => {
     // console.log("showListAndHideDash");
     this.setState({
       showDash: false,
@@ -48,7 +47,6 @@ class App extends Component {
   }
 
   componentDidMount () {
-
     navigator.geolocation.getCurrentPosition((data) => {       
        this.setState({
           lat: data.coords.latitude,
@@ -81,7 +79,7 @@ class App extends Component {
             <div id="spinnerContainer">
               <h3>Locating Your GPS Position...</h3>
               <Spinner animation="border" variant="light" role="status">
-                <span className="sr-only">Locating Your GPS Position...</span>
+                <span className="sr-only">Locating GPS Position...</span>
               </Spinner>
             </div>
               : 

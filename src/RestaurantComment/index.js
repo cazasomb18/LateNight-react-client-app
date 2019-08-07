@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import EditComment from '../EditComment';
-import Dashboard from '../Dashboard';
+// import Dashboard from '../Dashboard';
 
 class RestaurantComment extends Component {
 	constructor(props){
@@ -30,8 +30,8 @@ class RestaurantComment extends Component {
 				return false
 			}
 		})
-		console.log('this is the found restaurant')
-		console.log(foundRestaurant)
+		// console.log('this is the found restaurant')
+		// console.log(foundRestaurant)
 
 		const foundComment = foundRestaurant.comments.find((comment) => {
 			if (comment._id === commentId) {
@@ -59,7 +59,6 @@ class RestaurantComment extends Component {
 		const userData = this.props.userData;
 
 		const deleteRestaurantComment = async (restaurantPlaceId, commentId) => {
-			console.log(this.props)
 		    try{				
 		      	const deletedComment = await fetch(process.env.REACT_APP_BACK_END_URL + '/comment/restaurants/' + restaurantPlaceId + '/' + commentId, {
 		        	method: 'DELETE',
@@ -68,16 +67,16 @@ class RestaurantComment extends Component {
 		      	// console.log("unparsed deleted comment:")
 		      	// console.log(deletedComment);
 
-		      	const deletedCommentResponse = await deletedComment.json();
-		      	console.log("parsed deleted comment response: ")
-		      	console.log(deletedCommentResponse);
+		      	// const deletedCommentResponse = await deletedComment.json();
+		      	// console.log("parsed deleted comment response: ")
+		      	// console.log(deletedCommentResponse);
 
 		      	// console.log("original raw response:")
 		      	// console.log(deletedComment)
 
 		      	if (deletedComment.ok) {
 
-		      		console.log("are we doing this");
+		      		// console.log("are we doing this");
 		      		this.props.getUserRestaurantInfo();
 		      	}
 
@@ -97,7 +96,7 @@ class RestaurantComment extends Component {
 		// NESTED MAP - THIS ONE RETURNS USER'S THE RESTAURANT INFO
 		const restaurantList = filteredRestaurantList.map((restaurant, i) => {
 			
-
+			//THIS MAP RETURNS USER'S RESTAURANT COMMENTS
 			const thisCommentListWithNulls = restaurant.comments.map((comment, j) => {
 				if (comment.restaurant_id[0] === restaurant._id){
 
@@ -127,6 +126,7 @@ class RestaurantComment extends Component {
 								<EditComment 
 									clearCommentToEdit={this.clearCommentToEdit} 
 									commentToEdit={this.state.commentToEdit}
+									getUserRestaurantInfo={this.props.getUserRestaurantInfo}
 								/>
 							}
 

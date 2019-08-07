@@ -3,7 +3,6 @@
 *::before {
 	margin: 0;
 	padding: 0;
-/*	box-shadow: inherit;*/
 }
 
 html {
@@ -63,10 +62,7 @@ button:hover {
 #titleContainer {
 	margin-bottom: 1.5rem;
 	margin-top: 1.5rem;
-	box-shadow: 0rem 2rem 2rem 0rem rgba(14,14,14,0.6);
 	border-radius: 6px;
-	/*background-color: rgba(28,232,196,.2);*/
-
 }
 
 #headerDiv {
@@ -86,19 +82,17 @@ button:hover {
 	margin-bottom: 3rem;
 	font-family: 'Cedarville Cursive', cursive;
 	font-weight: 800;
-	color: rgba(179,76,0,1);
+	color: rgba(255,133,43,1);
 	margin: 2rem;
 	font-size: 5.6rem;
 	text-align: center;
 }
-
 
 .headerSubTitle {
 	font-family: "Monaco";
 	color: rgba(255,133,43,1);
 	text-align: center;
 }
-
 
 .logDiv {
 	margin: 1rem, 0rem, 1rem, 0rem;
@@ -113,21 +107,19 @@ button:hover {
 }
 
 .dash {
-	display: flex;
-	flex-direction: row;
 	size: 96rem;
 	margin: 3rem;
-	justify-content: space-between;
+	justify-content: center;
 }
 
 .dash button {
-	margin-right: 2.5rem;
+	margin: 0 auto;
 }
 
 .dashboardField {
 	background-color: rgba(179,76,0,1);
 	color: rgba(28,232,196,.9);
-	width: 40%;
+	width: 100%;
 	height: 5.6rem;
 	border-radius: 6px;
 	position: relative;
@@ -151,12 +143,11 @@ button:hover {
 	margin: 1rem;
 }
 
-#centerDash {
+/*#centerDash {
 	display: flex;
-	flex-direction: row;
 	margin: 3rem;
-	justify-content: space-between;
-}
+	justify-content: center;
+}*/
 
 #centerDash button {
 	margin: auto;
@@ -179,7 +170,7 @@ button:hover {
 	text-align: center;
 	font-size: 1.6rem;
 	color: rgba(255,133,43,1);
-	margin: auto;
+	margin: 0 auto;
 }
 
 .collapsible:hover {
@@ -198,7 +189,7 @@ button:hover {
 .field {
 	background-color: rgba(28,232,196,0.3);
 	color: rgba(179,76,0,1);
-	width: 100%;
+	width: stretch;
 	height: 5.6rem;
 	border-radius: 6px;
 	position: relative;
@@ -224,7 +215,6 @@ button:hover {
 }
 
 #userStoryPTag {
-	border-radius: 6px;
 	padding: 2rem;
 	text-align: justify;
 }

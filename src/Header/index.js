@@ -81,9 +81,6 @@ class Header extends React.Component {
   	 	}
 	}
 	render() {
-		// console.log("this.state in header render(): ", this.state);
-		// console.log("this.props in header render(): ", this.props);
-		// console.log("register response whole OBJ: ", this.state.registerResponse);
 	    return(
 	    	<div id="collapsibleContainer" className="collapsible fluid">
 				<Collapsible className="collapsible title bg-transparent" trigger="ABOUT LATE NIGHT BYTES">

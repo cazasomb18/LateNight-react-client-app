@@ -15,6 +15,7 @@ class EditComment extends React.Component{
 	}
 	componentDidMount(){
 		console.log("PROPS in editcomment CDM: ", this.props)
+		console.log("STATE in editcomment CDM: ", this.state)
 
 	}
 	handleChange = (e) => {
@@ -23,16 +24,14 @@ class EditComment extends React.Component{
 	      [e.currentTarget.name]: e.currentTarget.value
 	    })
   	}
-  	editingCommentView = async (e) => {
+  	editingCommentView = (e) => {
   		e.preventDefault();
   		this.setState({
   			editingComment: true
   		})
   	}
 	editComments = async (e) => {
-
 		e.preventDefault()
-
 		try{
 			const editCommentResponse = await fetch(process.env.REACT_APP_BACK_END_URL + '/comment/restaurants/' + this.state.placeId + '/edit/' + this.state.commentId, {
 
@@ -46,6 +45,7 @@ class EditComment extends React.Component{
 			const parsedCommentResponse = await editCommentResponse.json();
 			console.log(parsedCommentResponse);
 			this.props.clearCommentToEdit();
+			this.props.getUserRestaurantInfo();
 		}catch(err){
 			console.error(err);
 		}

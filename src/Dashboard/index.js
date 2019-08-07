@@ -30,6 +30,7 @@ class Dashboard extends Component {
       this.setState({
         userRestaurants: parsedUserRestaurantsResponse
       })
+      this.props.showDashAndHideList();
 
     }catch(err){
       console.error(err)
@@ -46,12 +47,14 @@ class Dashboard extends Component {
         show: false
       })
     }
+    this.getUserRestaurantInfo();
   }
 
   hideModal = () => {
     this.setState({
       show: false
     });
+    this.props.showListAndHideDash();
   }
 
   editRestaurantComment = async (e) => {
@@ -69,9 +72,9 @@ class Dashboard extends Component {
         }
       })
       const editCommentResponse = await editedComment.json();
-      console.log('edited comment response: ', editCommentResponse);
+      // console.log('edited comment response: ', editCommentResponse);
       this.props.clearComment();
-      this.props.showDashAndHideList();
+      // this.props.showDashAndHideList();
 
     }catch(err){
       console.error(err);
@@ -81,16 +84,15 @@ class Dashboard extends Component {
   render(){
     // console.log("THIS.STATE IN DASH render(): ", this.state.userRestaurants);
     return(
-      <div>
+      <div className="dashboardFieldContainer fluid">
           {
             this.state.show === true ? 
-            <div className="Container dashboardFieldContainer fluid">
+            <div className="dashboardFieldContainer fluid">
               <h1 className="title dashTitle">Welcome to your Dashboard, {this.props.userName}</h1>
-              <div className="dash Container fluid">
+              <div className="dash fluid">
                 <button className="dashboardField" type='button' onClick={this.hideModal}>
                   Hide Dashboard
                 </button>
-                <button className="dashboardField" onClick={this.getUserRestaurantInfo}>Refresh Dashboard</button>
               </div>
 
               <h4 className="subTitle dashSubTitle">Here you can manage all of your data.</h4>
