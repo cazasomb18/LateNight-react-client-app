@@ -1,25 +1,52 @@
-*,
-*::after,
-*::before {
-	margin: 0;
+:root {
+	--color-primary: #1CE8C4;
+	--color-primary-light: #1DF5CD;
+	--color-primary-dark: #14A88D;
+
+
+	--color-secondary: #FF6A00;
+	--color-secondary-light: #FF9E00;
+	--color-secondary-dark: #994000;
+
+	--color-white: #fff;
+	--color-white-dark: #fafafa;
+
+	--color-grey: #eee;
+
+	--color-grey-light-1: #ededed;
+	--color-grey-light-2: #e0e0e0;
+	--color-grey-light-3: #c7c7c7;
+
+
+	--color-grey-dark-1: #7A7A7A;
+	--color-grey-dark-2: #6E6E6E;
+	--color-grey-dark-3: #545454;
+
+	--default-shadow: 0rem 1rem 1rem 0rem rgba(14,14,14,0.3);
+}
+
+* {
+	margin: 0 auto;
 	padding: 0;
 }
 
+*,
+*::after,
+*::before {
+	box-sizing: inherit;
+}
+
+
 html {
+	box-sizing: border-box;
 	font-size: 62.5%;
 }
 
 body {
-	background-attachment: fixed;
-	background-color: rgba(28,232,196,0.3);
-	background-image: linear-gradient(
-		to right bottom, 
-		rgba(28,232,196,0.2), 
-		rgba(28,232,196,0.1)), 
-	url("https://images.unsplash.com/photo-1532768641073-503a250f9754?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80");
+	font-family: "Heebo", sans-serif;
+	-webkit-background-image: linear-gradient(to right bottom, var(--color-primary-light), var(--color-primary-dark));
+	background-image: linear-gradient(to right bottom, var(--color-primary-light), var(--color-primary-dark));
 	background-size: cover;
-	background-position: center;
-	position: relative;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -33,64 +60,58 @@ code {
 }
 
 main {
-	display: flex;
-	width: 96rem;
-	text-align: center;
+	height: 800rem;
+	width: 100%;
+	max-width: 100%;
 }
 
 div {
 	display: flex;
-	margin: 0 auto;
-	text-align: center;
+	max-width: 100%;
 	flex-direction: column;
-	width: 96rem;
+}
+
+form {
+	list-style: none;
 }
 
 button:hover {
-	background-color: rgba(255,133,43,0.45);
 	box-shadow: 0rem 1rem 1rem 0rem rgba(179,76,0,0.3);
 }
 
-#spinnerContainer{
-	margin-top: 1.5rem;
+
+#spinnerContainer {
+	margin: 2rem 0;
 }
 
 #spinnerContainer h3 {
-	color: rgba(28,232,196,0.6);
+	color: var(--color-grey);
+	font-family: "Heebo", sans-serif;
+	font-size: 1.5rem;
 }
 
 #titleContainer {
 	margin-bottom: 1.5rem;
 	margin-top: 1.5rem;
-	border-radius: 6px;
 }
 
 #headerDiv {
 	margin: 1rem, 0rem, 1rem, 0rem;
 }
 
-#mapContainer {
-	display: flex;
-}
-
-#mapChild {
-	margin: auto;
-	margin-top: 0.33em;
-}
-
 .appTitle{
 	margin-bottom: 3rem;
 	font-family: 'Cedarville Cursive', cursive;
-	font-weight: 800;
-	color: rgba(255,133,43,1);
+	font-weight: 700;
+	color: var(--color-secondary-dark);
 	margin: 2rem;
-	font-size: 5.6rem;
+	font-size: 6rem;
 	text-align: center;
 }
 
 .headerSubTitle {
-	font-family: "Monaco";
-	color: rgba(255,133,43,1);
+	font-family: "Heebo", sans-serif;
+	color: var(--color-secondary);
 	text-align: center;
 }
 
@@ -106,48 +127,34 @@ button:hover {
 	margin: 1.5rem;
 }
 
-.dash {
-	size: 96rem;
-	margin: 3rem;
-	justify-content: center;
+
+.dashboardFieldContainer {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	margin: 1rem 0;
 }
 
-.dash button {
-	margin: 0 auto;
-}
 
 .dashboardField {
-	background-color: rgba(179,76,0,1);
-	color: rgba(28,232,196,.9);
-	width: 100%;
-	height: 5.6rem;
+	background-color: var(--color-secondary);
+	color: var(--color-primary);
 	border-radius: 6px;
 	position: relative;
 	transition: 0.3s all;
-	border: 2px solid rgba(255,133,43,1);
+	border: 2px solid var(--color-secondary-dark);
 	font-size: 3.2rem;
 	text-align: center;
 }
 
-.dashboardFieldContainer {
-	flex-direction: column;
-	text-align: center;
-	margin: 1rem, 0rem, 1rem, 0rem;
-}
-
 .dashboardField:hover {
-	background-color: rgba(255,133,43,0.45);
+	background-color: var(--color-secondary-dark);
+	border: 2px solid var(--color-secondary-light);
 }
 
 .dashSubTitle {
 	margin: 1rem;
 }
-
-/*#centerDash {
-	display: flex;
-	margin: 3rem;
-	justify-content: center;
-}*/
 
 #centerDash button {
 	margin: auto;
@@ -159,9 +166,10 @@ button:hover {
 }
 
 .collapsible {
-	font-family: "Monaco";
-	color: rgba(179,76,0,1);
-	font-weight: 800;
+	margin: 1.5rem 0;
+	font-family: "Heebo", sans-serif;
+	color: var(--color-secondary);
+	font-weight: 500;
 	font-size: 3.2rem;
 	border-radius: 6px;
 }
@@ -169,12 +177,12 @@ button:hover {
 .collapsible p {
 	text-align: center;
 	font-size: 1.6rem;
-	color: rgba(255,133,43,1);
+	color: var(--color-secondary);
 	margin: 0 auto;
 }
 
 .collapsible:hover {
-	color: rgba(255,133,43,1);
+	color: var(--color-secondary-light);
 }
 
 
@@ -183,45 +191,49 @@ button:hover {
 }
 
 #cardWrapper {
-	background-color: rgba(14,14,14,0.3);
+	background-color: var(--color-grey-light-3);
 }
 
 .field {
-	background-color: rgba(28,232,196,0.3);
-	color: rgba(179,76,0,1);
+	background-color: var(--color-primary-light);
+	color: var(--color-secondary);
 	width: stretch;
 	height: 5.6rem;
 	border-radius: 6px;
 	position: relative;
 	transition: 0.3s all;
-	border: 2px solid rgba(255,133,43,1);
+	border: 2px solid var(--color-secondary-light);
 	font-size: 3.2rem;
 	text-align: center;
 }
 
 .form {
-	color: rgba(179,76,0,1);
-	text-align: center;
-	font-size: 1.5rem;
-	font-weight: bold;
+	color: var(--color-secondary);
+	font-weight: 500;
+}
+
+.form ul {
+	color: var(--color-secondary);
+	font-size: 2rem;
 }
 
 .userStoryContainer {
 	display: flex;
-	font-family: "Monaco";
-	color: rgba(179,76,0,1);
-	background-color: rgba(28,232,196,1);
+	font-family: "Heebo", sans-serif;
 	text-align: center;
+	font-weight: 500;
 }
 
 #userStoryPTag {
-	padding: 2rem;
 	text-align: justify;
+	width: 60rem;
+	color: var(--color-gray-dark-2);
+	padding: 1rem 2.5rem;
 }
 
 .title {
-	font-family: "Monaco";
-	color: rgba(179,76,0,1);
+	font-family: "Heebo", sans-serif;
+	color: var(--color-secondary-dark);
 	font-weight: 800;
 	font-size: 3.2rem;
 	text-align: center;
@@ -229,36 +241,38 @@ button:hover {
 }
 
 .subTitle {
-	font-family: "Monaco";
-	color: rgba(255,133,43,1);
+	font-family: "Heebo", sans-serif;
+	color: var(--color-secondary);
 	text-align: center;
 }
 
+.list-subtitle {
+	font-family: "Heebo", sans-serif;
+	color: var(--color-secondary-dark);
+	text-align: left;
+	font-size: 3rem;
+}
+
 .field:hover {
-  background-color: rgba(255,255,255,0.45);
-  box-shadow: 0rem 1rem 1rem 0rem rgba(14,14,14,0.3);
-}
-
-#lateList {
-	display: flex;
-	flex-direction: column;
-}
-
-#lateList li {
-	margin: 0 auto;
+  background-color: var(--color-white);
+  box-shadow: var(--default-shadow);
 }
 
 .lateListTitle {
 	margin: 3rem;
 }
 
-.ol-subitems h3 {
-	color: rgba(191,161,143,1);
-	font-size: 1.6rem;
+.map-container {
 }
 
-.ol-subitems {
+.ul-subitems h3 {
+}
+
+.ul-subitems * {
+	color: var(--color-grey-light-3);
+	font-size: 1.6rem;
 	text-align: flex-start;
+	text-decoration: none;
 }
 
 #bottomE {
@@ -271,4 +285,10 @@ button:hover {
 
 .lnbButton {
 	margin: auto;
+}
+
+.info-window {
+	width: 20rem;
+	height: 10rem;
+	background-color: var(--color-white-dark);
 }

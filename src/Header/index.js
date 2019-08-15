@@ -83,28 +83,24 @@ class Header extends React.Component {
 	render() {
 	    return(
 	    	<div id="collapsibleContainer" className="collapsible fluid">
-				<Collapsible className="collapsible title bg-transparent" trigger="ABOUT LATE NIGHT BYTES">
+				<Collapsible className="collapsible title bg-transparent" trigger="ABOUT THE APP">
 						<Card className="bg-transparent">
-						<Card.Img src="https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"/>
-						<Card.ImgOverlay className="bg-transparent">
 							<Card.Text id="userStoryPTag" className="bg-transparent">Late Night Bytes consumes google maps and places api to find late night food in your area. Make sure you agree to share your location, Late Night Bytes is dependent up on this to return the restaurants that match your location, sound good? GREAT! Create an account by clicking the 'REGISTER' drop down menu and you will be logged in. After you're logged in, try the 'FIND LATE BYTES' button, it will show you all the restaurants in your area! If you see something you like on the list, go ahead and leave a comment, this information will be stored in your dashboard. Your dashboard is your private information, and no one else can access it. This a good way to keep track of your favorite late night bytes!</Card.Text>
-						</Card.ImgOverlay>
 						</Card>
 				</Collapsible>
-				<br/>
 
 	   	{ 
 	   		this.props.loggedIn
 	   		?
 
-	      	<div id="collapsibleContainer" className="collapsible fluid">
-	      		<div className="collapsible title bg-transparent" onClick={this.logOut}>Logout!</div>
+	      	<div className="collapsible fluid">
+	      		<div className="collapsible title bg-transparent" onClick={this.logOut}>LOGOUT</div>
 	      	</div> 
 
 	   		:
 
-		   	<div id="collapsibleContainer" className="collapsible fluid">
-		      <Collapsible className="collapsible title bg-transparent" trigger="REGISTRATION">
+		   	<div className="collapsible fluid">
+		      <Collapsible className="collapsible title bg-transparent" trigger="REGISTER">
 						<h3 className="headerSubTitle subTitle bg-transparent">CREATE AN ACCOUNT</h3>
 						<form className="form bg-transparent" onSubmit={this.handleRegister}>
 							<input className="field" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
@@ -113,7 +109,6 @@ class Header extends React.Component {
 							<input className="field " type="submit" value="Register!"/>
 						</form>
 		      </Collapsible>
-		      <br/>
 		      	{
 		      		!this.state.registerResponse.success
 		      			?

@@ -50,7 +50,7 @@ class LateRestaurantsList extends React.Component {
 	}
 	render(){
 		return(
-			<div id="lateList">
+			<div className="lateList-container">
 			{
 				!this.state.showList && !this.state.isOpen ?
 				<div className="lnbButtonContainer">

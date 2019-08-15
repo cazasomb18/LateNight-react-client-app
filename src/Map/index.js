@@ -8,7 +8,8 @@ require("dotenv").config();
 
 const style = {
   width: '75%',
-  height: '480px'
+  height: '500px',
+  margin: '100px 0 0 -500px'
 }
 
 class MapContainer extends Component {
@@ -49,9 +50,8 @@ class MapContainer extends Component {
   }
   render(){
     return(
-      <div id="mapContainer">    
+      <div className="map-container">
         <Map 
-          id="mapChild"
           google={this.props.google}
           style={style}
           center={{
@@ -61,7 +61,7 @@ class MapContainer extends Component {
           defaultOptions={{
             styles: styles
           }}
-          zoom={13}
+          zoom={14}
           onClick={this.mapClicked}
           >
             <Marker
@@ -91,7 +91,7 @@ class MapContainer extends Component {
               onClose={this.onClose}
             >
              {this.state.showingInfoWindow ?
-              <div>
+              <div className="info-window">
                 <h4>{this.state.activeMarker.name}</h4>
                 <h6>{this.state.activeMarker.address}</h6>
                 {this.state.activeMarker.openNow.open_now === true ? 

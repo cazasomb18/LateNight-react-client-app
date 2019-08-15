@@ -87,9 +87,9 @@ class Dashboard extends Component {
       <div className="dashboardFieldContainer fluid">
           {
             this.state.show === true ? 
-            <div className="dashboardFieldContainer fluid">
-              <h1 className="title dashTitle">Welcome to your Dashboard, {this.props.userName}</h1>
-              <div className="dash fluid">
+            <div>
+              <h1 className="dashTitle title">Welcome to your Dashboard, {this.props.userName}</h1>
+              <div>
                 <button className="dashboardField" type='button' onClick={this.hideModal}>
                   Hide Dashboard
                 </button>
@@ -105,7 +105,7 @@ class Dashboard extends Component {
 
             </div>
             : 
-            <div id="centerDash"className="Container dashboardFieldContainer">
+            <div>
               <button className="dashboardField" type='button' onClick={this.toggleModal}>
                 Show Dashboard
               </button>
