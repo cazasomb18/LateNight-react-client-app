@@ -60,7 +60,7 @@ code {
 }
 
 main {
-	height: 800rem;
+	height: min-content;
 	width: 100%;
 	max-width: 100%;
 }
