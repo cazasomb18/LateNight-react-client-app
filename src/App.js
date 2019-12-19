@@ -22,30 +22,6 @@ class App extends Component {
     })
   }
 
-  setUserInfo = (loginRegisterResponse) => {
-    this.setState({
-      userName: loginRegisterResponse.data.userName,
-      loggedIn: true,
-      showList: true
-    })
-  }
-
-  showDashAndHideList = () => {
-    // console.log("showDashAndHideList");
-    this.setState({
-      showDash: true,
-      showList: false
-    })
-  }
-
-  showListAndHideDash = () => {
-    // console.log("showListAndHideDash");
-    this.setState({
-      showDash: false,
-      showList: true
-    })
-  }
-
   componentDidMount () {
     navigator.geolocation.getCurrentPosition((data) => {       
        this.setState({
@@ -54,6 +30,31 @@ class App extends Component {
        })
     })
   }
+
+  setUserInfo = (loginRegisterResponse) => {
+    this.setState({
+      userName: loginRegisterResponse.data.userName,
+      loggedIn: true,
+      showList: true
+    })
+  }
+
+  showDashAndHideList = (e) => {
+    console.log("showDashAndHideList");
+    this.setState({
+      showDash: true,
+      showList: false
+    })
+  }
+
+  showListAndHideDash = (e) => {
+    console.log("showListAndHideDash");
+    this.setState({
+      showDash: false,
+      showList: true
+    })
+  }
+
   logOutReactApp = () => {
     this.setState({
       loggedIn: false,
@@ -70,15 +71,13 @@ class App extends Component {
     })
   }
   render(){
-    // console.log('STATE IN APP RENDER(): ', this.state);
-    // console.log('PROPS IN APP RENDER(): ', this.props);
     return (
       <main>
         <div>
-          { this.state.lat === '' ? 
+          { this.state.lat === '' || this.state.lng === '' ? 
             <div id="spinnerContainer">
               <h3>Locating Your GPS Position...</h3>
-              <Spinner animation="border" variant="light" role="status">
+              <Spinner className="spinner" animation="border" variant="light" role="status">
                 <span className="sr-only">Locating GPS Position...</span>
               </Spinner>
             </div>
@@ -86,15 +85,22 @@ class App extends Component {
             null
           }
           <AppTitle userName={this.state.userName}/>
+
           <Header 
             setUserInfo={this.setUserInfo}
             loggedIn={this.state.loggedIn} 
-            logOutReactApp={this.logOutReactApp}/>
+            logOutReactApp={this.logOutReactApp}
+          />
+
         {
           this.state.loggedIn ?
 
 
         <div>
+
+        {
+          this.state.showDash ? 
+
             <Dashboard 
               userName={this.state.userName}
               latitude={this.state.lat}
@@ -102,6 +108,9 @@ class App extends Component {
               showDashAndHideList={this.showDashAndHideList}
               showListAndHideDash={this.showListAndHideDash}
             />
+
+              :
+
             <LateRestaurantsList 
               userName={this.state.userName} 
               latitude={this.state.lat} 
@@ -109,6 +118,8 @@ class App extends Component {
               showListAndHideDash={this.showListAndHideDash}
               showDashAndHideList={this.showDashAndHideList}
             />
+          
+        }
         </div>
           : 
           <div>
@@ -120,7 +131,7 @@ class App extends Component {
 
         </div>
       </main>
-    );
+    )
   }
 }
 

@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import current from '../pngs/location.png';
+import food from '../pngs/coloredUtensils.png';
 
-const styles = require('../GoogleMapStyles.json');
 require("dotenv").config();
 
 
 
-const style = {
-  width: '75%',
-  height: '500px',
-  margin: '100px 0 0 -500px'
+const styles = {
+
+  map: {
+    width: '75%',
+    height: '500px',
+    margin: '0 auto',
+    marginTop: '100px',
+    border: '3px solid #FF9E00',
+    paddingVertical: '10px',
+    paddingHorizontal: '10px',
+    borderRadius: '3px'
+  }
+
 }
 
 class MapContainer extends Component {
@@ -21,10 +31,10 @@ class MapContainer extends Component {
       geometry: [],
       showingInfoWindow: false,
       activeMarker: {},
-      selectedPlace: {},
-      dataIndex: {}
+      selectedPlace: {}
     }
   }
+
   componentDidMount(){
     this.setState({
       lat: this.props.latitude,
@@ -32,6 +42,7 @@ class MapContainer extends Component {
       geometry: [{...this.props.restaurants}]
     })
   }
+
   onMarkerClick = (props, marker, e) => {
     this.setState({
       selectedPlace: props,
@@ -40,6 +51,14 @@ class MapContainer extends Component {
 
     })
   }
+
+  onClick = (marker, e) => {
+    this.setState({
+      activeMarker: marker,
+      showingInfoWindow: true
+    })
+  }
+
   onClose = props => {
     if (this.state.showingInfoWindow){
         this.setState({
@@ -48,18 +67,21 @@ class MapContainer extends Component {
         });
       }
   }
+
   render(){
+
     return(
-      <div className="map-container">
+
+      <div>
         <Map 
           google={this.props.google}
-          style={style}
+          style={styles.map}
           center={{
             lat: this.state.lat,
             lng: this.state.lng
           }}
           defaultOptions={{
-            styles: styles
+            styles: styles.map
           }}
           zoom={14}
           onClick={this.mapClicked}
@@ -70,13 +92,27 @@ class MapContainer extends Component {
                 lat: this.props.latitude,
                 lng: this.props.longitude
               }}
+              icon={{
+                url: current,
+                scaledSize: new this.props.google.maps.Size(50,50)
+              }} 
+              onClick={this.onClick}
             />
-            {this.props.restaurants.map((info, i) => (
+
+
+            {
+              this.props.restaurants.map((info, i) => (
 
               <Marker
                 name={info.name}
                 address={info.vicinity}
-                icon={info.icon}
+                icon={{
+                  url: food,
+                  scaledSize: new this.props.google.maps.Size(25,25)
+                }} 
+                style={{
+                  color: '#FF6A00'
+                }}
                 openNow={info.opening_hours}
                 position={{lat: info.geometry.location.lat, 
                            lng: info.geometry.location.lng
@@ -84,7 +120,9 @@ class MapContainer extends Component {
                 key={i}
                 onClick={this.onMarkerClick}
               />
-            ))}
+              ))
+            }
+
             <InfoWindow
               marker={this.state.activeMarker}
               visible={this.state.showingInfoWindow}
@@ -105,7 +143,9 @@ class MapContainer extends Component {
             </InfoWindow>
         </Map>
       </div>
+
     )
+
   }
 };
 

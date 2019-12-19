@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
 import EditComment from '../EditComment';
-// import Dashboard from '../Dashboard';
 
 class RestaurantComment extends Component {
 	constructor(props){
 		super();
 		this.state = {
-			commentToEdit: null,
-			// clearComment: this.clearCommentToEdit,
+			commentToEdit: ''
 		}
 	}
 	componentDidMount(){
-		// console.log("STATE, RestaurantComment, in CDM: ", this.state);
-		// console.log("PROPS, RestaurantComment, in CDM: ", this.props);
+
 	}
 	setCommentToEdit = (e) => {
-		// console.log("set comment to edit triggered")
-		// console.log("restaurant ID: ", e.currentTarget.dataset.restaurantId)
-		// console.log("comment ID: ", e.currentTarget.dataset.commentId)
 
 		const restaurantId = e.currentTarget.dataset.restaurantId;
+
 		const commentId = e.currentTarget.dataset.commentId;
 
 
@@ -30,8 +25,6 @@ class RestaurantComment extends Component {
 				return false
 			}
 		})
-		// console.log('this is the found restaurant')
-		// console.log(foundRestaurant)
 
 		const foundComment = foundRestaurant.comments.find((comment) => {
 			if (comment._id === commentId) {
@@ -46,15 +39,7 @@ class RestaurantComment extends Component {
 		})
 	}
 
-	clearCommentToEdit = () => {
-		this.setState({
-			commentToEdit: null
-		})
-	}
-
 	render(){
-		console.log("restaurant comment props in render(): ", this.props)
-		console.log("restaurant comment state in render(): ", this.state)
 
 		const userData = this.props.userData;
 
@@ -64,19 +49,14 @@ class RestaurantComment extends Component {
 		        	method: 'DELETE',
 		        	credentials: 'include'
 			      })
-		      	// console.log("unparsed deleted comment:")
-		      	// console.log(deletedComment);
 
-		      	// const deletedCommentResponse = await deletedComment.json();
+		      	const deletedCommentResponse = await deletedComment.json();
 		      	// console.log("parsed deleted comment response: ")
 		      	// console.log(deletedCommentResponse);
 
-		      	// console.log("original raw response:")
-		      	// console.log(deletedComment)
-
 		      	if (deletedComment.ok) {
 
-		      		// console.log("are we doing this");
+		      		console.log("are we doing this");
 		      		this.props.getUserRestaurantInfo();
 		      	}
 
@@ -124,7 +104,6 @@ class RestaurantComment extends Component {
 								</button> 
 								: 
 								<EditComment 
-									clearCommentToEdit={this.clearCommentToEdit} 
 									commentToEdit={this.state.commentToEdit}
 									getUserRestaurantInfo={this.props.getUserRestaurantInfo}
 								/>

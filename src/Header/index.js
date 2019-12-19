@@ -28,7 +28,7 @@ class Header extends React.Component {
 				}
 			})
 			const parsedResponse = await registerResponse.json();
-			console.log("register parsedResponse: ", parsedResponse);
+			// console.log("register parsedResponse: ", parsedResponse);
 			if (parsedResponse.success === false) {
 				this.setState({
 					registerResponse: parsedResponse.data
@@ -72,7 +72,7 @@ class Header extends React.Component {
   	     		}
   	     	})
   	   		const parsedResponse = await logoutResponse.json();
-  	   		console.log('logout response: ', parsedResponse);
+  	   		// console.log('logout response: ', parsedResponse);
   	   		if (parsedResponse.loggedout === true) {
   	   			this.props.logOutReactApp()
   	   		}

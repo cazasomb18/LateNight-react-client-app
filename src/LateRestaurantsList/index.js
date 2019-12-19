@@ -13,10 +13,12 @@ class LateRestaurantsList extends React.Component {
 			isOpen: false
 		}
 	}
+
 	componentDidMount(){
-		// console.log("this.state in CDM LateRestaurantsList: ", this.state);
-		// console.log("this.props in CDM LateRestaurantsList: ", this.props);
+		console.log("STATE CDM LateRestaurantsList: ", this.state);
+		console.log("PROPS CDM LateRestaurantsList: ", this.props);
 	}
+
     getRestaurants = async (e) => {
         e.preventDefault();
         try {
@@ -28,27 +30,41 @@ class LateRestaurantsList extends React.Component {
                 }
             })
             const parsedResponse = await getRestaurantsResponse.json();
-            // console.log(parsedResponse)
-            const response = parsedResponse.data.results;
-            // console.log(response);
+
+            const response = await parsedResponse.data.results;
+
             this.setState({
                 restaurants: response,
                 isOpen: true,
                 showList: true
             })
+
             this.props.showListAndHideDash();
         } catch(err) {
-            console.error(err);
+            console.log(err);
         }
     }
-	toggleModal = () => {
-		this.setState({
-			isOpen: false,
-			showList: false
-	    })
+
+	toggleModal = (e) => {
+		if (this.state.isOpen === true && this.state.showList === true) {
+			this.setState({
+				isOpen: false,
+				showList: false
+		    })
+		    this.props.showListAndHideDash();
+
+		} else {
+			this.setState({
+				isOpen: true,
+				showList: false
+			})
+		}
 	    this.props.showDashAndHideList();
 	}
+
 	render(){
+		console.log("STATE RENDER laterestaurantslist: ", this.state);
+		console.log("PROPS RENDER laterestaurantslist: ", this.props);
 		return(
 			<div className="lateList-container">
 			{

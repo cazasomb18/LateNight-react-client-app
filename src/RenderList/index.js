@@ -2,7 +2,7 @@ import React from 'react';
 
 
 class RenderList extends React.Component {
-	constructor(){
+	constructor(props){
 		super();
 		this.state = {
 			commentInput: '',
@@ -11,13 +11,14 @@ class RenderList extends React.Component {
 		}
 	}
 	componentDidMount(){
-		// console.log('renderList state/props: ', this.state, this.props);
+		// console.log("renderList STATE: ", this.state);
+		// console.log("renderList PROPS: ", this.props);
 	}
 
 	handleChange = (e) => {
 		e.preventDefault();
 	    this.setState({
-	      [e.currentTarget.name]: e.target.value
+	      [e.currentTarget.name]: e.currentTarget.value
 	    })
 	}
 

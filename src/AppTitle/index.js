@@ -2,7 +2,7 @@ import React from 'react';
 
 const AppTitle = (props) => {
 
-	const arr = ['Welcome back to Munchopoulous, Friend!', 'Deliciousness and Insomnia await beyond!', 'Who\'s hungry!? Let\'s see Who\'s, meybe?'];
+	const arr = ['Welcome back to Munchopoulous, Friend!', 'Deliciousness and Insomnia await beyond!', 'Who\'s hungry!? Let\'s see Who\'s Open, meybe?'];
 	const randInt = Math.floor(Math.random()*2);
 
 	if (props.userName === ''){
@@ -25,6 +25,3 @@ const AppTitle = (props) => {
 };
 
 export default AppTitle;
-				// <h1 className="appTitle">
-				// 	{arr[randInt]}
-				// </h1>

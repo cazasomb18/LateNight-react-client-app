@@ -14,8 +14,6 @@ class EditComment extends React.Component{
 		}
 	}
 	componentDidMount(){
-		console.log("PROPS in editcomment CDM: ", this.props)
-		console.log("STATE in editcomment CDM: ", this.state)
 
 	}
 	handleChange = (e) => {
@@ -43,16 +41,14 @@ class EditComment extends React.Component{
 				}
 			})
 			const parsedCommentResponse = await editCommentResponse.json();
-			console.log(parsedCommentResponse);
-			this.props.clearCommentToEdit();
+			console.log("parsedCommentResponse: ", parsedCommentResponse);
+			
 			this.props.getUserRestaurantInfo();
 		}catch(err){
 			console.error(err);
 		}
 	}
 	render(){
-		console.log('EDIT COMMENT STATE: ', this.state);
-		console.log("EDIT COMMENT PROPS: ", this.props);
 		if (!this.state.editingCommentView) {
 			return(
 					<form className="editCommentBorder form" onSubmit={this.editComments}>

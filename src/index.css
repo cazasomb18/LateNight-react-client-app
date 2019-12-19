@@ -22,27 +22,27 @@
 	--color-grey-dark-2: #6E6E6E;
 	--color-grey-dark-3: #545454;
 
-	--default-shadow: 0rem 1rem 1rem 0rem rgba(14,14,14,0.3);
-}
+	--grid-width: 114rem;
 
-* {
-	margin: 0 auto;
-	padding: 0;
+	--default-shadow: 0rem 1rem 1rem 0rem rgba(14,14,14,0.3);
 }
 
 *,
 *::after,
 *::before {
+	margin: 0;
+	padding: 0;
 	box-sizing: inherit;
 }
 
 
 html {
-	box-sizing: border-box;
 	font-size: 62.5%;
 }
 
 body {
+	box-sizing: border-box;
+	padding: 3rem;
 	font-family: "Heebo", sans-serif;
 	-webkit-background-image: linear-gradient(to right bottom, var(--color-primary-light), var(--color-primary-dark));
 	background-image: linear-gradient(to right bottom, var(--color-primary-light), var(--color-primary-dark));
@@ -61,7 +61,7 @@ code {
 
 main {
 	height: min-content;
-	width: 100%;
+	/*width: 100%;*/
 	max-width: 100%;
 }
 
@@ -81,13 +81,20 @@ button:hover {
 
 
 #spinnerContainer {
-	margin: 2rem 0;
+	display: flex;
+	margin: 0 auto;
 }
 
 #spinnerContainer h3 {
 	color: var(--color-grey);
 	font-family: "Heebo", sans-serif;
 	font-size: 1.5rem;
+}
+
+.spinner {
+	display: flex;
+	margin: 0 auto;
+	margin-bottom: 1rem;
 }
 
 #titleContainer {
@@ -99,7 +106,7 @@ button:hover {
 	margin: 1rem, 0rem, 1rem, 0rem;
 }
 
-.appTitle{
+.appTitle {
 	margin-bottom: 3rem;
 	font-family: 'Cedarville Cursive', cursive;
 	font-weight: 700;
@@ -262,9 +269,6 @@ button:hover {
 	margin: 3rem;
 }
 
-.map-container {
-}
-
 .ul-subitems h3 {
 }
 
@@ -284,7 +288,7 @@ button:hover {
 }
 
 .lnbButton {
-	margin: auto;
+	margin: 0 auto;
 }
 
 .info-window {

@@ -28,33 +28,28 @@ class Dashboard extends Component {
       const parsedUserRestaurantsResponse = await userRestaurantsResponse.json();
 
       this.setState({
-        userRestaurants: parsedUserRestaurantsResponse
+        userRestaurants: parsedUserRestaurantsResponse,
+        show: true
       })
       this.props.showDashAndHideList();
 
     }catch(err){
-      console.error(err)
+      console.log(err)
     }
   }
 
-  toggleModal = () => {
+  toggleModal = (e) => {
     if(!this.state.show) {
       this.setState({
         show: true
       })
+      this.getUserRestaurantInfo();
     } else {
       this.setState({
         show: false
       })
+      this.props.showListAndHideDash();
     }
-    this.getUserRestaurantInfo();
-  }
-
-  hideModal = () => {
-    this.setState({
-      show: false
-    });
-    this.props.showListAndHideDash();
   }
 
   editRestaurantComment = async (e) => {
@@ -71,10 +66,12 @@ class Dashboard extends Component {
           'Content-Type': 'application/json'
         }
       })
-      const editCommentResponse = await editedComment.json();
-      // console.log('edited comment response: ', editCommentResponse);
-      this.props.clearComment();
-      // this.props.showDashAndHideList();
+
+      const editedCommentResponse = await editedComment.json();
+
+      console.log('edited comment response: ', editedCommentResponse);
+
+      this.getUserRestaurantInfo();
 
     }catch(err){
       console.error(err);
@@ -82,7 +79,6 @@ class Dashboard extends Component {
   }
 
   render(){
-    // console.log("THIS.STATE IN DASH render(): ", this.state.userRestaurants);
     return(
       <div className="dashboardFieldContainer fluid">
           {
@@ -90,7 +86,10 @@ class Dashboard extends Component {
             <div>
               <h1 className="dashTitle title">Welcome to your Dashboard, {this.props.userName}</h1>
               <div>
-                <button className="dashboardField" type='button' onClick={this.hideModal}>
+                <button className="dashboardField" type='button' onClick={()=>{
+                  this.toggleModal();
+                  this.props.showListAndHideDash();
+                }}>
                   Hide Dashboard
                 </button>
               </div>
