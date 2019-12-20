@@ -51,12 +51,10 @@ class RestaurantComment extends Component {
 			      })
 
 		      	const deletedCommentResponse = await deletedComment.json();
-		      	// console.log("parsed deleted comment response: ")
-		      	// console.log(deletedCommentResponse);
+		      	console.log("parsed deleted comment response: ", deletedCommentResponse);
 
 		      	if (deletedComment.ok) {
 
-		      		console.log("are we doing this");
 		      		this.props.getUserRestaurantInfo();
 		      	}
 

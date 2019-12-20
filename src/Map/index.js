@@ -13,7 +13,7 @@ const styles = {
     width: '75%',
     height: '500px',
     margin: '0 auto',
-    marginTop: '100px',
+    marginTop: '125px',
     border: '3px solid #FF9E00',
     paddingVertical: '10px',
     paddingHorizontal: '10px',

@@ -69,14 +69,12 @@ class RenderList extends React.Component {
 		const restaurants = this.props.restaurants;
 		const renderList = restaurants.map((restaurant, i) => {
 		return(
-			<form key={i}>
-				<h2 className="list-subtitle">{restaurant.name}</h2>
-				<li>
-					<h3 className="ul-subitems">Address: {restaurant.vicinity}</h3><br/>
-					<h3 className="ul-subitems">ID: {restaurant.place_id}</h3><br/>
-					<button className="field" id={i} onClick={this.addCommentView}>Add Comment</button> 
-				</li>
-				<br/>
+
+			<form key={i} className="row">
+				<h2 className="col-1-of-3 clearfix list-subtitle">{restaurant.name}</h2>
+				<h3 className="col-2-of-3 clearfix ul-subitems">Address: {restaurant.vicinity}</h3><br/>
+				<h3 className="col-2-of-3 clearfix ul-subitems">Google-ID: {restaurant.place_id}</h3><br/>
+				<button className="col-3-of-3 clearfix listBtn" id={i} onClick={this.addCommentView}>Add Comment</button> 
 			</form>
 		)
 	})

@@ -80,7 +80,7 @@ class Dashboard extends Component {
 
   render(){
     return(
-      <div className="dashboardFieldContainer fluid">
+      <div className="dashboardFieldContainer">
           {
             this.state.show === true ? 
             <div>

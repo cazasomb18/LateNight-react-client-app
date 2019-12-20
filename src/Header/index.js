@@ -82,10 +82,12 @@ class Header extends React.Component {
 	}
 	render() {
 	    return(
-	    	<div id="collapsibleContainer" className="collapsible fluid">
-				<Collapsible className="collapsible title bg-transparent" trigger="ABOUT THE APP">
+	    	<div id="collapsibleContainer" className="expanded">
+				<Collapsible className="collapsible title" trigger="ABOUT THE APP">
 						<Card className="bg-transparent">
-							<Card.Text id="userStoryPTag" className="bg-transparent">Late Night Bytes consumes google maps and places api to find late night food in your area. Make sure you agree to share your location, Late Night Bytes is dependent up on this to return the restaurants that match your location, sound good? GREAT! Create an account by clicking the 'REGISTER' drop down menu and you will be logged in. After you're logged in, try the 'FIND LATE BYTES' button, it will show you all the restaurants in your area! If you see something you like on the list, go ahead and leave a comment, this information will be stored in your dashboard. Your dashboard is your private information, and no one else can access it. This a good way to keep track of your favorite late night bytes!</Card.Text>
+							<Card.Text id="userStoryPTag" className="bg-transparent">
+								Late Night Bytes consumes google maps and places api to find late night food in your area. Make sure you agree to share your location, Late Night Bytes is dependent up on this to return the restaurants that match your location, sound good? GREAT! Create an account by clicking the 'REGISTER' drop down menu and you will be logged in. After you're logged in, try the 'FIND LATE BYTES' button, it will show you all the restaurants in your area! If you see something you like on the list, go ahead and leave a comment, this information will be stored in your dashboard. Your dashboard is your private information, and no one else can access it. This a good way to keep track of your favorite late night bytes!
+							</Card.Text>
 						</Card>
 				</Collapsible>
 
@@ -93,20 +95,18 @@ class Header extends React.Component {
 	   		this.props.loggedIn
 	   		?
 
-	      	<div className="collapsible fluid">
-	      		<div className="collapsible title bg-transparent" onClick={this.logOut}>LOGOUT</div>
-	      	</div> 
+      		<div className="collapsible title" onClick={this.logOut}>LOGOUT</div>
 
 	   		:
 
-		   	<div className="collapsible fluid">
-		      <Collapsible className="collapsible title bg-transparent" trigger="REGISTER">
+		   	<div className="expanded">
+		      <Collapsible className="collapsible title" trigger="REGISTER">
 						<h3 className="headerSubTitle subTitle bg-transparent">CREATE AN ACCOUNT</h3>
-						<form className="form bg-transparent" onSubmit={this.handleRegister}>
-							<input className="field" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
-							<input className="field" type="password" name="password" placeholder="password" onChange={this.handleChange}/><br/>
-							<input className="field" type="email" name="email" placeholder="email" onChange={this.handleChange}/><br/>
-							<input className="field " type="submit" value="Register!"/>
+						<form className="form " onSubmit={this.handleRegister}>
+							<input className="field bg-transparent" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
+							<input className="field bg-transparent" type="password" name="password" placeholder="password" onChange={this.handleChange}/><br/>
+							<input className="field bg-transparent" type="email" name="email" placeholder="email" onChange={this.handleChange}/><br/>
+							<input className="field bg-transparent" type="submit" value="Register!"/>
 						</form>
 		      </Collapsible>
 		      	{
@@ -120,12 +120,12 @@ class Header extends React.Component {
 		      	}
 
 
-		      <Collapsible className="collapsible title bg-transparent" trigger="LOGIN">
-			      <h3 className="headerSubTitle subTitle bg-transparent">PLEASE LOGIN</h3>
+		      <Collapsible className="collapsible title" trigger="LOGIN">
+			      <h3 className="headerSubTitle subTitle ">PLEASE LOGIN</h3>
 			        <form className="form bg-transparent" onSubmit={this.handleLogin}>
-			          <input className="field" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
-			          <input className="field" type="password" name="password" placeholder="password" onChange={this.handleChange}/><br/>
-			          <input className="field" type="submit" value="Login!"/>
+			          <input className="field bg-transparent" type="text" name="userName" placeholder="username" onChange={this.handleChange}/><br/>
+			          <input className="field bg-transparent" type="password" name="password" placeholder="password" onChange={this.handleChange}/><br/>
+			          <input className="field bg-transparent" type="submit" value="Login!"/>
 			        </form>
 		      </Collapsible>
 		      <br/>

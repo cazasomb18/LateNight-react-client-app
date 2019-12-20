@@ -76,7 +76,7 @@ class App extends Component {
         <div>
           { this.state.lat === '' || this.state.lng === '' ? 
             <div id="spinnerContainer">
-              <h3>Locating Your GPS Position...</h3>
+              <h3 className="spinnerText" >Locating Your GPS Position...</h3>
               <Spinner className="spinner" animation="border" variant="light" role="status">
                 <span className="sr-only">Locating GPS Position...</span>
               </Spinner>
