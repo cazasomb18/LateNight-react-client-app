@@ -25,7 +25,7 @@
 
 	/*GRID*/
 	--grid-width: 114rem;
-	--gutter-horizontal: 2rem;
+	--gutter-horizontal: 3rem;
 
 	/*SHADOW*/
 	--default-shadow: 0rem 1rem 1rem 0rem rgba(14,14,14,0.3);
@@ -138,17 +138,35 @@ button:hover {
 	margin: 1.5rem;
 }
 
-
-.dashboardFieldContainer {
-	display: flex;
-	flex-direction: column;
-	text-align: center;
-	margin: 1rem 0;
+.dash {
+	display: block;
 }
 
+#dashboardFieldContainer {
+	display: flex;
+	max-width: 100%;
+	margin: 0 auto;
+	flex-direction: column;
+	justify-content: center;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+/*.dashboardFieldContainer {
+	border: 3px solid red;
+	max-width: 100%;
+	margin: 0 auto;
+	flex-direction: column;
+	justify-content: center;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}*/
+
 .dashboardField {
+	margin: 0 auto;
 	background-color: var(--color-secondary);
 	color: var(--color-primary);
+	max-width: 100%;
 	border-radius: 6px;
 	position: relative;
 	transition: 0.3s all;
@@ -167,7 +185,6 @@ button:hover {
 }
 
 #collapsibleContainer {
-	display: flex;
 	margin: 0 auto;
 	justify-content: center;
 	max-width: 50%;
@@ -200,6 +217,10 @@ button:hover {
 	text-align: center;
 	font-size: 1.6rem;
 	color: var(--color-secondary);
+	margin: 0 auto;
+}
+
+.collapsible span {	
 	margin: 0 auto;
 }
 
@@ -277,8 +298,8 @@ button:hover {
 }
 
 .row {
-	/*display: flex;*/
-	height: 25vh;
+	display: flex;
+	height: 33vh;
 	max-width: var(--grid-width);
 	margin: 0 auto;
 	margin-left: 20rem;
@@ -297,18 +318,12 @@ button:hover {
 .col-1-of-3 {
 	width: calc((100% - 2 * var(--gutter-horizontal)) / 3);
 	float: right;
-}
-
-.col-1-of-3:not(:last-child) {
-	margin-right: var(--gutter-horizontal);
+	margin-left: 5rem;
 }
 
 .col-2-of-3 {
 	width: calc( 2 * ((100% - 2 * var(--gutter-horizontal)) / 3) + var(--gutter-horizontal));
-}
-
-.col-3-of-3 {
-	width: calc( 3 * ((100% - )));
+	margin-left: 10rem;
 }
 
 .listBtn {
@@ -325,6 +340,8 @@ button:hover {
 
 .listBtn:hover {
 	transform: translateY(-.5rem);
+	box-shadow: var(--default-shadow);
+	background-color: var(--color-grey-light-3);
 
 }
 
@@ -358,10 +375,27 @@ button:hover {
 	border: 3px solid var(--color-grey-light-3);
 }
 
+.closeListBtn {
+	color: var(--color-secondary);
+	background-color: var(--color-grey-light-3);
+	height: min-content;
+	max-width: 50%;
+	line-height: 3.5rem;
+	border: thick double var(--color-secondary-dark);
+	border-radius: 5px;
+	padding: .3rem;
+	background-color: var(--color-primary-light);
+}
+
 .info-window {
 	width: 20rem;
 	height: 10rem;
 	background-color: var(--color-white-dark);
+}
+
+#restaurant-comment-container {
+	display: flex;
+	flex-direction: row;
 }
 
  .hvr-grow {

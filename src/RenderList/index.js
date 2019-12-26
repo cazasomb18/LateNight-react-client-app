@@ -7,12 +7,14 @@ class RenderList extends React.Component {
 		this.state = {
 			commentInput: '',
 			addingComment: false,
-			targetRestaurant: null
+			targetRestaurant: null,
+			showList: false,
+			showDash: false,
 		}
 	}
 	componentDidMount(){
-		// console.log("renderList STATE: ", this.state);
-		// console.log("renderList PROPS: ", this.props);
+		console.log("renderList STATE: ", this.state);
+		console.log("renderList PROPS: ", this.props);
 	}
 
 	handleChange = (e) => {
@@ -23,7 +25,7 @@ class RenderList extends React.Component {
 	}
 
   	postRestaurantComments = async (e)  => {
-  		e.preventDefault();
+  		// e.preventDefault();
 		try{
 	        const postComments = await fetch(process.env.REACT_APP_BACK_END_URL + '/restaurants/' + this.state.targetRestaurant.place_id + '/comment/', {
 	          method: 'POST',
@@ -64,17 +66,17 @@ class RenderList extends React.Component {
 		});
 	}
 	render(){
-		// console.log("state in RenderList render(): ", this.state);
-		// console.log("props in RenderList render(): ", this.props);
+		console.log("state in RenderList render(): ", this.state);
+		console.log("props in RenderList render(): ", this.props);
 		const restaurants = this.props.restaurants;
 		const renderList = restaurants.map((restaurant, i) => {
 		return(
 
 			<form key={i} className="row">
-				<h2 className="col-1-of-3 clearfix list-subtitle">{restaurant.name}</h2>
-				<h3 className="col-2-of-3 clearfix ul-subitems">Address: {restaurant.vicinity}</h3><br/>
-				<h3 className="col-2-of-3 clearfix ul-subitems">Google-ID: {restaurant.place_id}</h3><br/>
-				<button className="col-3-of-3 clearfix listBtn" id={i} onClick={this.addCommentView}>Add Comment</button> 
+				<h2 className="col-1-of-3 list-subtitle">{restaurant.name}</h2>
+				<h3 className="col-2-of-3 ul-subitems">Address: {restaurant.vicinity}</h3><br/>
+				<h3 className="col-2-of-3 ul-subitems">Google-ID: {restaurant.place_id}</h3><br/>
+				<button className= "listBtn" id={i} onClick={this.addCommentView}>Add Comment</button> 
 			</form>
 		)
 	})
@@ -91,7 +93,11 @@ class RenderList extends React.Component {
 		} else {
 			return (
 				<div className="form">
-					<form className="form" onSubmit={this.postRestaurantComments}>
+					<form className="form" onSubmit={ (e) => {
+						this.postRestaurantComments();
+						this.props.showDashAndHideList();
+					}
+				}>
 						Name:<input className="field" readOnly name="name" value={this.state.targetRestaurant.name}></input><br/>
 						Address: <input className="field" readOnly name="address" value={this.state.targetRestaurant.vicinity}></input><br/>
 						ID: <input className="field" readOnly name="place_id" value={this.state.targetRestaurant.place_id}></input><br/>

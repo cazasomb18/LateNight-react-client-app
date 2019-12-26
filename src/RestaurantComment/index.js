@@ -5,7 +5,9 @@ class RestaurantComment extends Component {
 	constructor(props){
 		super();
 		this.state = {
-			commentToEdit: ''
+			commentToEdit: '',
+			showList: false,
+			showDash: false
 		}
 	}
 	componentDidMount(){
@@ -81,31 +83,37 @@ class RestaurantComment extends Component {
 					return(
 						<ul key={`comment-${j}`}>
 							<p>{comment.commentBody}</p>
-							<form className="form" onSubmit={
-								(e) => { 
-									e.preventDefault();
-									deleteRestaurantComment(restaurant.place_id, comment._id);
-									this.props.getUserRestaurantInfo();
+							<form 
+								id="restaurant-comment-container" 
+								className="form" 
+								onSubmit={
+									(e) => { 
+										e.preventDefault();
+										deleteRestaurantComment(restaurant.place_id, comment._id);
+										this.props.getUserRestaurantInfo();
+										this.props.showDashAndHideList();
+									}}
+							>
+								<button className="field">Delete Comment</button>
+								{
+									!this.state.commentToEdit ? 
+										
+									<button 
+										className="field" 
+										data-restaurant-id={comment.restaurant_id[0]} 
+										data-comment-id={comment._id} 
+										onClick={this.setCommentToEdit}> 
+										Edit Comment
+									</button> 
+									: 
+									<EditComment 
+										commentToEdit={this.state.commentToEdit}
+										getUserRestaurantInfo={this.props.getUserRestaurantInfo}
+										showDashAndHideList={this.props.showDashAndHideList} 
+										showListAndHideDash={this.props.showListandHideDash}
+									/>
 								}
-							}>
-							<button className="field">Delete Comment</button>
 							</form>
-							{
-								!this.state.commentToEdit ? 
-									
-								<button 
-									className="field" 
-									data-restaurant-id={comment.restaurant_id[0]} 
-									data-comment-id={comment._id} 
-									onClick={this.setCommentToEdit}> 
-									Edit Comment
-								</button> 
-								: 
-								<EditComment 
-									commentToEdit={this.state.commentToEdit}
-									getUserRestaurantInfo={this.props.getUserRestaurantInfo}
-								/>
-							}
 
 						</ul>
 					);
@@ -118,9 +126,9 @@ class RestaurantComment extends Component {
 			const thisCommentList = thisCommentListWithNulls.filter((e) => e !== null)
 				return (
 					<div className="form" key={`restaurant-${i}`}>
-						<h2 className="title">Restaurant: {restaurant.name}</h2><br/>
-						<h3 className="subTitle">Google ID: {restaurant.place_id}</h3><br/>
-						<h3 className="subTitle">Comments made by: {restaurant.userName}</h3><br/>
+						<h2 className="row title">Restaurant: {restaurant.name}</h2><br/>
+						<h3 className="col-1-of-3 subTitle">Google ID: {restaurant.place_id}</h3><br/>
+						<h3 className="col-1-of-3 subTitle">Comments made by: {restaurant.userName}</h3><br/>
 							{thisCommentList.length < 1 ? null : thisCommentList}
 						<br/>
 					</div>

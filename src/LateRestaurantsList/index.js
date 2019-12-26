@@ -29,9 +29,12 @@ class LateRestaurantsList extends React.Component {
                     'Content-Type': 'application/json'
                 }
             })
+            
             const parsedResponse = await getRestaurantsResponse.json();
 
             const response = await parsedResponse.data.results;
+
+            console.log("nearby restaurants response: ", response);
 
             this.setState({
                 restaurants: response,
@@ -71,7 +74,7 @@ class LateRestaurantsList extends React.Component {
 				!this.state.showList && !this.state.isOpen ?
 				<div className="lnbButtonContainer">
 					<form className="form" onSubmit={this.getRestaurants}>
-						<input className="lnbButton field hvr-grow" type="submit" value="Find Late Bytes"/>
+						<input className="hvr-grow lnbButton field" type="submit" value="Find Late Bytes"/>
 					</form>
 				</div>
 
@@ -89,11 +92,11 @@ class LateRestaurantsList extends React.Component {
                 		longitude={this.props.longitude}
                 		restaurants={this.state.restaurants}
               		/>
-
-
-					<button className="field" type="button" onClick={this.toggleModal}>
-						Close List
-					</button>
+              		<div className="lnbButtonContainer">
+						<button className="lnbButton field" type="button" onClick={this.toggleModal}>
+							Go to Dashboard
+						</button>
+              		</div>
 				</div>
 			
 			}

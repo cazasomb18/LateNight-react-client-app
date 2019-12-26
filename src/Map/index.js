@@ -54,8 +54,7 @@ class MapContainer extends Component {
 
   onClick = (marker, e) => {
     this.setState({
-      activeMarker: marker,
-      showingInfoWindow: true
+      activeMarker: marker
     })
   }
 
