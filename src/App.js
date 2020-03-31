@@ -98,8 +98,7 @@ class App extends Component {
 
         <div>
 
-        {
-          this.state.showDash ? 
+        {this.state.showDash === true && this.state.showList === false ? 
 
             <Dashboard 
               userName={this.state.userName}

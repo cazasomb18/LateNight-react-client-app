@@ -11,14 +11,16 @@ class RestaurantComment extends Component {
 		}
 	}
 	componentDidMount(){
+		console.log("restaurantComment PROPS CDM: ", this.props);
+		console.log("restaurantComment STATE CDM: ", this.state);
 
 	}
+
 	setCommentToEdit = (e) => {
 
 		const restaurantId = e.currentTarget.dataset.restaurantId;
 
 		const commentId = e.currentTarget.dataset.commentId;
-
 
 		const foundRestaurant = this.props.userData.find((restaurant) => {
 			if (restaurant._id === restaurantId) {
@@ -42,6 +44,8 @@ class RestaurantComment extends Component {
 	}
 
 	render(){
+		console.log("restaurantComment PROPS RENDER: ", this.props);
+		console.log("restaurantComment STATE RENDER: ", this.state);
 
 		const userData = this.props.userData;
 
@@ -51,13 +55,15 @@ class RestaurantComment extends Component {
 		        	method: 'DELETE',
 		        	credentials: 'include'
 			      })
-
 		      	const deletedCommentResponse = await deletedComment.json();
 		      	console.log("parsed deleted comment response: ", deletedCommentResponse);
 
 		      	if (deletedComment.ok) {
 
 		      		this.props.getUserRestaurantInfo();
+		      		// this.setState({
+		      		// 	commentToEdit: ''
+		      		// })
 		      	}
 
 		    }catch(err){
@@ -72,7 +78,6 @@ class RestaurantComment extends Component {
 				return true 
 			}
 		})
-		// console.log("filteredRestaurantList: ", filteredRestaurantList);
 		// NESTED MAP - THIS ONE RETURNS USER'S THE RESTAURANT INFO
 		const restaurantList = filteredRestaurantList.map((restaurant, i) => {
 			
@@ -81,17 +86,16 @@ class RestaurantComment extends Component {
 				if (comment.restaurant_id[0] === restaurant._id){
 
 					return(
-						<ul key={`comment-${j}`}>
-							<p>{comment.commentBody}</p>
+						<ul className="col-2-of-3" key={`comment-${j}`}>
+							<p className="title">{comment.commentBody}</p>
 							<form 
 								id="restaurant-comment-container" 
-								className="form" 
-								onSubmit={
-									(e) => { 
+								// className="form" 
+								onSubmit={(e) => { 
 										e.preventDefault();
 										deleteRestaurantComment(restaurant.place_id, comment._id);
-										this.props.getUserRestaurantInfo();
-										this.props.showDashAndHideList();
+										// this.props.getUserRestaurantInfo();
+										// this.props.showDashAndHideList();
 									}}
 							>
 								<button className="field">Delete Comment</button>
@@ -125,19 +129,25 @@ class RestaurantComment extends Component {
 			/// FILTERS OUT NULL COMMENT ARRAYS FROM DATA USER'S DATA OBJECT ///
 			const thisCommentList = thisCommentListWithNulls.filter((e) => e !== null)
 				return (
-					<div className="form" key={`restaurant-${i}`}>
-						<h2 className="row title">Restaurant: {restaurant.name}</h2><br/>
-						<h3 className="col-1-of-3 subTitle">Google ID: {restaurant.place_id}</h3><br/>
-						<h3 className="col-1-of-3 subTitle">Comments made by: {restaurant.userName}</h3><br/>
-							{thisCommentList.length < 1 ? null : thisCommentList}
-						<br/>
+					<div className="row" key={`restaurant-${i}`}>
+
+						<div className="col-1-of-3">
+							<h2 className="title">Restaurant: {restaurant.name}</h2>
+						</div>
+
+						<div className="col-2-of-3">
+							<h3 className="subTitle">Google ID: {restaurant.place_id}</h3>
+							<h3 className="subTitle">Comments made by: {restaurant.userName}</h3>
+							<h3 className="subTitle">{thisCommentList.length < 1 ? null : thisCommentList}</h3>
+						</div>
+
 					</div>
 				);
 		})
 
 
 		return (
-			<div className="form">
+			<div>
 				{restaurantList}
 			</div>
 		)

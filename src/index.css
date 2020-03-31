@@ -25,7 +25,7 @@
 
 	/*GRID*/
 	--grid-width: 114rem;
-	--gutter-horizontal: 3rem;
+	--gutter-horizontal: 2rem;
 
 	/*SHADOW*/
 	--default-shadow: 0rem 1rem 1rem 0rem rgba(14,14,14,0.3);
@@ -83,6 +83,20 @@ button:hover {
 	box-shadow: 0rem 1rem 1rem 0rem rgba(179,76,0,0.3);
 }
 
+@keyframes hvr-pulse-grow {
+	0% {transform: scale(1);}
+	10% {transform: scale(1.05);}
+	20% {transform: scale(1);}
+	30% {transform: scale(1.05);}
+	40% {transform: scale(1);}
+	50% {transform: scale(1.05);}
+	60% {transform: scale(1);}
+	70% {transform: scale(1.05);}
+	80% {transform: scale(1);}
+	90% {transform: scale(1.05);}
+	100% {transform: scale(1);}
+}
+
 .clearfix::after {
 	/* append a pseudo element after the element which will then clear these floats */
 		content: "";
@@ -131,7 +145,7 @@ button:hover {
 .headerSubTitle {
 	font-family: "Heebo", sans-serif;
 	color: var(--color-secondary);
-	text-align: center;
+	text-align: left;
 }
 
 .dashTitle {
@@ -151,16 +165,6 @@ button:hover {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 }
-
-/*.dashboardFieldContainer {
-	border: 3px solid red;
-	max-width: 100%;
-	margin: 0 auto;
-	flex-direction: column;
-	justify-content: center;
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-}*/
 
 .dashboardField {
 	margin: 0 auto;
@@ -298,16 +302,13 @@ button:hover {
 }
 
 .row {
-	display: flex;
-	height: 33vh;
 	max-width: var(--grid-width);
 	margin: 0 auto;
-	margin-left: 20rem;
+	/*margin-left: 20rem;*/
 }
 
 [class^="col-"] { 
-	margin-right: var(--gutter-horizontal);
-	float: right;
+	float: left;
 }
 
 [class^="col-"]:not(:last-child) {
@@ -317,13 +318,13 @@ button:hover {
 
 .col-1-of-3 {
 	width: calc((100% - 2 * var(--gutter-horizontal)) / 3);
-	float: right;
-	margin-left: 5rem;
+/*	float: left;
+	margin-left: 5rem;*/
 }
 
 .col-2-of-3 {
 	width: calc( 2 * ((100% - 2 * var(--gutter-horizontal)) / 3) + var(--gutter-horizontal));
-	margin-left: 10rem;
+	/*margin-left: 10rem;*/
 }
 
 .listBtn {
@@ -398,14 +399,15 @@ button:hover {
 	flex-direction: row;
 }
 
- .hvr-grow {
- 	vertical-align: middle;
- 	-webkit-transform: perspective(1px) translateZ(0);
- 	transform: perspective(1px) translateZ(0);
- 	box-shadow: 0 0 1px rgba(0,0,0,0);
- 	-webkit-transition-duration: .3s;
- 	transition-duration: .3s;
- 	-webkit-transition-property: transform;
- 	transition-property: transform;
+ .pulse-grow {
+ 	animation-name: hvr-pulse-grow;
+ 	animation-duration: 2500ms;
+ 	transform-origin: 10% 10%;
+ 	animation-iteration-count: infinite;
+ 	animation-timing-function: linear;
+ }
+
+ .pulse-grow:hover {
+ 	animation: none;
  }
 

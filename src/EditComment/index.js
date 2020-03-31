@@ -5,7 +5,8 @@ import React from 'react';
 
 class EditComment extends React.Component{
 	constructor(props){
-		super();
+		super(props);
+		this.editComments.bind(this);
 		this.state = {
 			placeId: props.commentToEdit.restaurant_id[0],
 			commentId: props.commentToEdit._id,
@@ -16,6 +17,9 @@ class EditComment extends React.Component{
 		}
 	}
 	componentDidMount(){
+		this.props.getUserRestaurantInfo();
+		console.log("editComment PROPS CDM: ", this.props);
+		console.log("editComment STATE CDM: ", this.state);
 
 	}
 	handleChange = (e) => {
@@ -31,7 +35,7 @@ class EditComment extends React.Component{
   		})
   	}
 	editComments = async (e) => {
-		// e.preventDefault()
+		// e.preventDefault();
 		try{
 			const editCommentResponse = await fetch(process.env.REACT_APP_BACK_END_URL + '/comment/restaurants/' + this.state.placeId + '/edit/' + this.state.commentId, {
 
@@ -51,14 +55,17 @@ class EditComment extends React.Component{
 		}
 	}
 	render(){
-		if (!this.state.editingCommentView) {
+		console.log("editComment PROPS render: ", this.props);
+		console.log("editComment STATE render: ", this.state);
+		if (!this.state.editingComment) {
 			return(
-					<form className="editCommentBorder form" onSubmit={(e) => {
+					<form className="form" onSubmit={(e) => {
 							e.preventDefault();
 							this.editComments();
-							this.props.showDashAndHideList();
+							this.props.getUserRestaurantInfo();
+							// e.this.props.showDashAndHideList();
 						}}>
-						<input className="field bg-dark" type='text' value={this.state.commentBody} onChange={this.handleChange} onClick={this.editingCommentView} name="commentBody" placeholder={this.state.commentBody}/>
+						<input className="field bg-dark" type='text' value={this.state.commentBody} onChange={this.handleChange} name="commentBody" placeholder={this.state.commentBody}/>
 						<input className="field bg" type='submit' value='EDIT'/>
 					</form>
 			)
