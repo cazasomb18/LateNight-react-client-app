@@ -12,7 +12,6 @@ class LateRestaurantsList extends React.Component {
 			resultLatLng: [],
 			showList: false,
 			showDash: false
-			// isOpen: false
 		}
 	}
 
@@ -37,13 +36,12 @@ class LateRestaurantsList extends React.Component {
 
             const resultLatLng = parsedResponse.resultLatLng;
 
-            console.log("nearby restaurants response: ", response);
+            // console.log("nearby restaurants response: ", response);
 
             this.setState({
                 restaurants: response,
                 resultLatLng: resultLatLng,
                 showList: true
-                // isOpen: true
             })
 
             this.props.showListAndHideDash();
@@ -54,7 +52,6 @@ class LateRestaurantsList extends React.Component {
     }
 
 	toggleModal = (e) => {
-		// e.preventDefault();
 		if (this.state.showDash === false && this.state.showList === true) {
 			this.setState({
 				showDash: true,
@@ -97,7 +94,7 @@ class LateRestaurantsList extends React.Component {
 					<RenderList 
 						showListAndHideDash={this.props.showListAndHideDash} 
 						showDashAndHideList={this.props.showDashAndHideList} 
-						restaurants={this.state.restaurants}
+						restaurants={this.state.restaurants} 
 						resultLatLng={this.state.resultLatLng} 
 					/>
 					<MapContainer

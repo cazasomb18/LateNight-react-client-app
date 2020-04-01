@@ -14,7 +14,6 @@ class App extends Component {
       loggedIn: false,
       isRegistered: false,
       userName: '',
-      comments: [],
       showList: false,
       showDash: false,
       lat: '',
@@ -41,25 +40,29 @@ class App extends Component {
 
   showDashAndHideList = (e) => {
     console.log("showDashAndHideList");
-    this.setState({
-      showDash: true,
-      showList: false
-    })
+    if (this.state.showDash === false && this.state.showList === true ) {  
+      this.setState({
+        showDash: true,
+        showList: false
+      })
+    }
   }
 
   showListAndHideDash = (e) => {
     console.log("showListAndHideDash");
-    this.setState({
-      showDash: false,
-      showList: true
-    })
+    if (this.state.showList === false && this.state.showDash === true) {
+      this.setState({
+        showList: true,
+        showDash: false
+      })
+    }
   }
 
   logOutReactApp = () => {
     this.setState({
       loggedIn: false,
       userName: '',
-      comments: [],
+      // comments: [],
       showDash: false,
       showList: false
     })

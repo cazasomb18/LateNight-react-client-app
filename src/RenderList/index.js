@@ -45,13 +45,13 @@ class RenderList extends React.Component {
 	        })
 	        const commentResponse = await postComments.json();
 
-	        await this.setState({
+	        this.setState({
 	          commentInput: JSON.stringify(commentResponse)
 	        })
 	        if (commentResponse.ok) {
 
 	        	this.props.showDashAndHideList();
-	        	
+
 	        }
 	    }catch(err){
 	        console.error(err)
