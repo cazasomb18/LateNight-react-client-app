@@ -9,18 +9,18 @@ class LateRestaurantsList extends React.Component {
 		this.getRestaurants.bind(this);
 		this.state = {
 			restaurants: [],
-			resultLatLng: [],
 			showList: false,
 			showDash: false
 		}
 	}
 
 	componentDidMount(){
-		// console.log("STATE CDM LateRestaurantsList: ", this.state);
-		// console.log("PROPS CDM LateRestaurantsList: ", this.props);
+		console.log("STATE CDM LateRestaurantsList: ", this.state);
+		console.log("PROPS CDM LateRestaurantsList: ", this.props);
 	}
 
     getRestaurants = async (e) => {
+        e.preventDefault();
         try {
             const getRestaurantsResponse = await fetch(process.env.REACT_APP_BACK_END_URL + '/restaurants/nearby?searchTerm=' + this.props.latitude + ',' + this.props.longitude, {
                 method: 'GET',
@@ -40,12 +40,11 @@ class LateRestaurantsList extends React.Component {
 
             this.setState({
                 restaurants: response,
-                resultLatLng: resultLatLng,
+                isOpen: true,
                 showList: true
             })
 
             this.props.showListAndHideDash();
-
         } catch(err) {
             console.log(err);
         }
@@ -54,48 +53,41 @@ class LateRestaurantsList extends React.Component {
 	toggleModal = (e) => {
 		if (this.state.showDash === false && this.state.showList === true) {
 			this.setState({
-				showDash: true,
+				isOpen: false,
 				showList: false
 		    })
-		    this.props.showDashAndHideList();
-		}
-		if (this.state.showList === false && this.state.showDash === true) {
+		    this.props.showListAndHideDash();
+
+		} else {
 			this.setState({
-				showList: true,
-				showDash: false
+				isOpen: true,
+				showList: false
 			})
-    		this.props.showListAndHideDash();
 		}
+	    this.props.showDashAndHideList();
 	}
 
 	render(){
-		// console.log("STATE RENDER laterestaurantslist: ", this.state);
-		// console.log("PROPS RENDER laterestaurantslist: ", this.props);
-
+		console.log("STATE RENDER laterestaurantslist: ", this.state);
+		console.log("PROPS RENDER laterestaurantslist: ", this.props);
 		return(
 			<div className="lateList-container">
 			{
 				!this.state.showList && !this.state.isOpen ?
 				<div className="lnbButtonContainer">
-					<form 
-						className="form" 
-						onSubmit={(e) => {
-							e.preventDefault();
-							this.getRestaurants();
-						}
-					}>
-						<input className="pulse-grow lnbButton field" type="submit" value="Find Late Bytes"/>
+					<form className="form" onSubmit={this.getRestaurants}>
+						<input className="hvr-grow lnbButton field" type="submit" value="Find Late Bytes"/>
 					</form>
 				</div>
 
 				: 
 
 				<div>
+				
 					<RenderList 
-						showListAndHideDash={this.props.showListAndHideDash} 
-						showDashAndHideList={this.props.showDashAndHideList} 
-						restaurants={this.state.restaurants} 
-						resultLatLng={this.state.resultLatLng} 
+						showListAndHideDash={this.props.showListAndHideDash}
+						showDashAndHideList={this.props.showDashAndHideList}
+						restaurants={this.state.restaurants}
 					/>
 					<MapContainer
                 		latitude={this.props.latitude}
@@ -103,7 +95,7 @@ class LateRestaurantsList extends React.Component {
                 		restaurants={this.state.restaurants}
               		/>
               		<div className="lnbButtonContainer">
-						<button className="pulse-grow lnbButton field" type="button" onClick={(e)=>{this.toggleModal()}}>
+						<button className="lnbButton field" type="button" onClick={this.toggleModal}>
 							Go to Dashboard
 						</button>
               		</div>

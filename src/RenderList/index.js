@@ -1,5 +1,4 @@
 import React from 'react';
-import Geocode from 'react-geocode';
 
 
 class RenderList extends React.Component {
@@ -10,12 +9,12 @@ class RenderList extends React.Component {
 			addingComment: false,
 			targetRestaurant: null,
 			showList: false,
-			showDash: false
+			showDash: false,
 		}
 	}
 	componentDidMount(){
-		// console.log("renderList STATE: ", this.state);
-		// console.log("renderList PROPS: ", this.props);
+		console.log("renderList STATE: ", this.state);
+		console.log("renderList PROPS: ", this.props);
 	}
 
 	handleChange = (e) => {
@@ -46,11 +45,15 @@ class RenderList extends React.Component {
 	        const commentResponse = await postComments.json();
 
 	        this.setState({
+	        await this.setState({
 	          commentInput: JSON.stringify(commentResponse)
 	        })
 	        if (commentResponse.ok) {
-
+	        	// console.log("we're about to run showDashAndHideList in postRestaurantComments");
+	        	// console.log("props:");
+	        	// console.log(this.props);
 	        	this.props.showDashAndHideList();
+	        // console.log("comment response in RestaurantComment async func: ", commentResponse);
 
 	        }
 	    }catch(err){
@@ -64,27 +67,17 @@ class RenderList extends React.Component {
 			targetRestaurant: this.props.restaurants[e.currentTarget.id]
 		});
 	}
-
-	//need to do the geocoding to get/interpolate the state/zip values from the backend
-
 	render(){
-		// console.log("state in RenderList render(): ", this.state);
-		// console.log("props in RenderList render(): ", this.props);
-
+		console.log("state in RenderList render(): ", this.state);
+		console.log("props in RenderList render(): ", this.props);
 		const restaurants = this.props.restaurants;
-
 		const renderList = restaurants.map((restaurant, i) => {
 		return(
 
 			<form key={i} className="row">
-				<div className="col-1-of-3">
-					<h2 className="list-subtitle">{restaurant.name}</h2>
-				</div>
-				<div className="col-2-of-3" >
-				{}
-					<h3 className="ul-subitems">Address: {restaurant.vicinity}</h3>
-					<h3 className="ul-subitems">Google-ID: {restaurant.place_id}</h3>
-				</div>
+				<h2 className="col-1-of-3 list-subtitle">{restaurant.name}</h2>
+				<h3 className="col-2-of-3 ul-subitems">Address: {restaurant.vicinity}</h3><br/>
+				<h3 className="col-2-of-3 ul-subitems">Google-ID: {restaurant.place_id}</h3><br/>
 				<button className= "listBtn" id={i} onClick={this.addCommentView}>Add Comment</button> 
 			</form>
 		)
@@ -94,16 +87,19 @@ class RenderList extends React.Component {
 			return (
 				<div className="form">
 					<h4 className="title lateListTitle">LATE NIGHT LIST</h4>
-					<ul>{renderList}</ul>
+					<ul className="form">
+					{renderList}
+					</ul>
 				</div>
 			)
 		} else {
 			return (
 				<div className="form">
-					<form className="form" onSubmit={(e) => {
-							e.preventDefault();
-							this.postRestaurantComments();
-					}}>
+					<form className="form" onSubmit={ (e) => {
+						this.postRestaurantComments();
+						this.props.showDashAndHideList();
+					}
+				}>
 						Name:<input className="field" readOnly name="name" value={this.state.targetRestaurant.name}></input><br/>
 						Address: <input className="field" readOnly name="address" value={this.state.targetRestaurant.vicinity}></input><br/>
 						ID: <input className="field" readOnly name="place_id" value={this.state.targetRestaurant.place_id}></input><br/>

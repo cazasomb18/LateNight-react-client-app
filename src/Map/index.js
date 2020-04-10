@@ -68,7 +68,9 @@ class MapContainer extends Component {
   }
 
   render(){
+
     return(
+
       <div>
         <Map 
           google={this.props.google}
@@ -83,7 +85,7 @@ class MapContainer extends Component {
           zoom={14}
           onClick={this.mapClicked}
           >
-            <Marker 
+            <Marker
               name={'You are Here!'}
               position={{
                 lat: this.props.latitude,

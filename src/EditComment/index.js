@@ -34,7 +34,7 @@ class EditComment extends React.Component{
   	}
 
 	editComments = async (e) => {
-
+		// e.preventDefault()
 		try{
 			const editCommentResponse = await fetch(process.env.REACT_APP_BACK_END_URL + '/comment/restaurants/' + this.state.placeId + '/edit/' + this.state.commentId, {
 
@@ -57,11 +57,9 @@ class EditComment extends React.Component{
 	}
 
 	render(){
-		console.log("editComment PROPS render: ", this.props);
-		console.log("editComment STATE render: ", this.state);
-		if (!this.state.editingComment) {
+		if (!this.state.editingCommentView) {
 			return(
-					<form className="form" onSubmit={(e) => {
+					<form className="editCommentBorder form" onSubmit={(e) => {
 							e.preventDefault();
 							this.editComments();
 							this.props.showDashAndHideList();
@@ -80,6 +78,8 @@ class EditComment extends React.Component{
 							type='submit' 
 							value='EDIT'
 						/>
+						<input className="field bg-dark" type='text' value={this.state.commentBody} onChange={this.handleChange} onClick={this.editingCommentView} name="commentBody" placeholder={this.state.commentBody}/>
+						<input className="field bg" type='submit' value='EDIT'/>
 					</form>
 			)
 

@@ -16,10 +16,9 @@ class Header extends React.Component {
 		e.preventDefault();
     	this.setState({[e.target.name]: e.target.value});
   	}
-
 	handleRegister = async (e) => {
 		e.preventDefault();
-		try{
+		try{			
 			const registerResponse = await fetch(process.env.REACT_APP_BACK_END_URL + '/auth/register', {
 				method: 'POST',
 				credentials: 'include',
