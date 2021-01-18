@@ -11,12 +11,8 @@ class RestaurantComment extends Component {
 		}
 	}
 	componentDidMount(){
-<<<<<<< HEAD
 		console.log("restaurantComment STATE CDM: ", this.state);
 		console.log("restaurantComment PROPS CDM: ", this.props);
-=======
-
->>>>>>> parent of 53db93c... fixed list link to dashboard
 	}
 	setCommentToEdit = (e) => {
 
@@ -70,13 +66,6 @@ class RestaurantComment extends Component {
 	}
 
 	render(){
-<<<<<<< HEAD
-		console.log("restaurantComment STATE RENDER: ", this.state);
-		console.log("restaurantComment PROPS RENDER: ", this.props);
-
-		const userData = this.props.userData;
-		
-=======
 
 		const userData = this.props.userData;
 
@@ -99,7 +88,6 @@ class RestaurantComment extends Component {
 		 		console.error(err)
 			}
 		}
->>>>>>> parent of 53db93c... fixed list link to dashboard
 		//removing userData entires where foundComments.length === 0
 		const filteredRestaurantList = userData.filter((restaurant) => {
 			if (restaurant.comments.length < 1) {
@@ -125,32 +113,6 @@ class RestaurantComment extends Component {
 								onSubmit={
 									(e) => { 
 										e.preventDefault();
-<<<<<<< HEAD
-										this.deleteRestaurantComment(restaurant.place_id, comment._id);
-										this.props.getUserRestaurantInfo();
-										this.props.showDashAndHideList();
-							}}>
-								<button className="field" type="submit">Delete Comment</button>
-
-							{	
-								!this.state.commentToEdit ? 
-
-								<button 
-									className="field" 
-									data-restaurant-id={comment.restaurant_id[0]} 
-									data-comment-id={comment._id} 
-									onClick={this.setCommentToEdit}> 
-									Edit Comment
-								</button> 
-								:		
-								<EditComment 
-									commentToEdit={this.state.commentToEdit} 
-									getUserRestaurantInfo={this.props.getUserRestaurantInfo}
-									showDashAndHideList={this.props.showDashAndHideList} 
-									showListAndHideDash={this.props.showListAndHideDash} 
-								/>
-							}
-=======
 										deleteRestaurantComment(restaurant.place_id, comment._id);
 										this.props.getUserRestaurantInfo();
 										this.props.showDashAndHideList();
@@ -175,7 +137,6 @@ class RestaurantComment extends Component {
 										showListAndHideDash={this.props.showListandHideDash}
 									/>
 								}
->>>>>>> parent of 53db93c... fixed list link to dashboard
 							</form>
 						</ul>
 					);
@@ -187,24 +148,12 @@ class RestaurantComment extends Component {
 			/// FILTERS OUT NULL COMMENT ARRAYS FROM DATA USER'S DATA OBJECT ///
 			const thisCommentList = thisCommentListWithNulls.filter((e) => e !== null)
 				return (
-<<<<<<< HEAD
-					<div className="form row" key={`restaurant-${i}`}>
-						<div className="col-1-of-3">
-							<h2 className="title">{restaurant.name}</h2>
-						</div>
-						<div className="col-2-of-3">
-							<h3 className="subTitle">Google ID: {restaurant.place_id}</h3>
-							<h3 className="subTitle">Posted By: {restaurant.userName}</h3>
-							<h3 className="subTitle">{thisCommentList.length < 1 ? null : thisCommentList}</h3>
-						</div>
-=======
 					<div className="form" key={`restaurant-${i}`}>
 						<h2 className="row title">Restaurant: {restaurant.name}</h2><br/>
 						<h3 className="col-1-of-3 subTitle">Google ID: {restaurant.place_id}</h3><br/>
 						<h3 className="col-1-of-3 subTitle">Comments made by: {restaurant.userName}</h3><br/>
 							{thisCommentList.length < 1 ? null : thisCommentList}
 						<br/>
->>>>>>> parent of 53db93c... fixed list link to dashboard
 					</div>
 				);
 		})

@@ -13,8 +13,8 @@ class RenderList extends React.Component {
 		}
 	}
 	componentDidMount(){
-		console.log("renderList STATE: ", this.state);
-		console.log("renderList PROPS: ", this.props);
+		// console.log("renderList STATE: ", this.state);
+		// console.log("renderList PROPS: ", this.props);
 	}
 
 	handleChange = (e) => {
@@ -45,7 +45,6 @@ class RenderList extends React.Component {
 	        const commentResponse = await postComments.json();
 
 	        this.setState({
-	        await this.setState({
 	          commentInput: JSON.stringify(commentResponse)
 	        })
 	        if (commentResponse.ok) {
@@ -53,7 +52,6 @@ class RenderList extends React.Component {
 	        	// console.log("props:");
 	        	// console.log(this.props);
 	        	this.props.showDashAndHideList();
-	        // console.log("comment response in RestaurantComment async func: ", commentResponse);
 
 	        }
 	    }catch(err){

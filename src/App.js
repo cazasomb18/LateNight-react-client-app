@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Header from './Header';
@@ -7,7 +7,7 @@ import LateRestaurantsList from './LateRestaurantsList';
 import Dashboard from './Dashboard';
 import Spinner from 'react-bootstrap/Spinner';
 
-class App extends Component {
+class App extends React.Component {
   constructor(props){
     super(props);
     this.state = ({
@@ -22,6 +22,8 @@ class App extends Component {
   }
 
   componentDidMount () {
+    console.log("state: ", this.state);
+    console.log("props: ", this.props);
     navigator.geolocation.getCurrentPosition((data) => {       
        this.setState({
           lat: data.coords.latitude,
@@ -74,6 +76,8 @@ class App extends Component {
     })
   }
   render(){
+    console.log("STATE: ", this.state);
+    console.log("PROPS: ", this.props);
     return (
       <main>
         <div>
