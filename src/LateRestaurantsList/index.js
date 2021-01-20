@@ -15,8 +15,8 @@ class LateRestaurantsList extends React.Component {
 	}
 
 	componentDidMount(){
-		console.log("STATE CDM LateRestaurantsList: ", this.state);
-		console.log("PROPS CDM LateRestaurantsList: ", this.props);
+		// console.log("STATE CDM LateRestaurantsList: ", this.state);
+		// console.log("PROPS CDM LateRestaurantsList: ", this.props);
 	}
 
     getRestaurants = async (e) => {
@@ -68,8 +68,8 @@ class LateRestaurantsList extends React.Component {
 	}
 
 	render(){
-		console.log("STATE RENDER laterestaurantslist: ", this.state);
-		console.log("PROPS RENDER laterestaurantslist: ", this.props);
+		// console.log("STATE RENDER laterestaurantslist: ", this.state);
+		// console.log("PROPS RENDER laterestaurantslist: ", this.props);
 		return(
 			<div className="lateList-container">
 			{

@@ -3,7 +3,7 @@ import RestaurantComment from '../RestaurantComment';
 
 class Dashboard extends Component {
   constructor(props){
-    super();
+    super(props);
     this.getUserRestaurantInfo.bind(this);
     this.state = {
       restaurants: [],

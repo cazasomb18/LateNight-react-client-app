@@ -15,8 +15,8 @@ class EditComment extends React.Component{
 	}
 
 	componentDidMount(){
-		console.log("editComment PROPS CDM: ", this.props);
-		console.log("editComment STATE CDM: ", this.state);
+		// console.log("editComment PROPS CDM: ", this.props);
+		// console.log("editComment STATE CDM: ", this.state);
 	}
 
 	handleChange = (e) => {

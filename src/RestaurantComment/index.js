@@ -11,8 +11,8 @@ class RestaurantComment extends Component {
 		}
 	}
 	componentDidMount(){
-		console.log("restaurantComment STATE CDM: ", this.state);
-		console.log("restaurantComment PROPS CDM: ", this.props);
+		// console.log("restaurantComment STATE CDM: ", this.state);
+		// console.log("restaurantComment PROPS CDM: ", this.props);
 	}
 	setCommentToEdit = (e) => {
 

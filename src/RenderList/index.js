@@ -66,8 +66,8 @@ class RenderList extends React.Component {
 		});
 	}
 	render(){
-		console.log("state in RenderList render(): ", this.state);
-		console.log("props in RenderList render(): ", this.props);
+		// console.log("state in RenderList render(): ", this.state);
+		// console.log("props in RenderList render(): ", this.props);
 		const restaurants = this.props.restaurants;
 		const renderList = restaurants.map((restaurant, i) => {
 		return(
