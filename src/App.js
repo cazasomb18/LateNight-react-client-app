@@ -29,10 +29,14 @@ class App extends React.Component {
 
   renderPosition(){
     navigator.geolocation.getCurrentPosition( position => {
-      console.log("Latitude is: ", position.coords.latitude);
-      console.log("Longitude is: ", position.coords.longitude);
-    });
-
+      // console.log("Latitude is: ", position.coords.latitude);
+      // console.log("Longitude is: ", position.coords.longitude);
+      this.setState({ 
+        lat: position.coords.latitude, 
+        lng: position.coords.longitude 
+      });
+    })
+    
     if (this.state.errorMessage && this.state.lat === null && this.state.lng === null) {
       return <div>Error: {this.state.errrorMessage}</div>
     }

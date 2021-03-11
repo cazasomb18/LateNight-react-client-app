@@ -15,8 +15,7 @@ class LateRestaurantsList extends React.Component {
 	}
 
 	componentDidMount(){
-		// console.log("STATE CDM LateRestaurantsList: ", this.state);
-		// console.log("PROPS CDM LateRestaurantsList: ", this.props);
+
 	}
 
     getRestaurants = async (e) => {
@@ -35,8 +34,6 @@ class LateRestaurantsList extends React.Component {
             const response = await parsedResponse.data.results;
 
             const resultLatLng = parsedResponse.resultLatLng;
-
-            // console.log("nearby restaurants response: ", response);
 
             this.setState({
                 restaurants: response,
